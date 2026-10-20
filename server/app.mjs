@@ -1,14 +1,15 @@
 import {createServer} from 'node:http';
-import {readFile,stat,mkdir,writeFile,unlink} from 'node:fs/promises';
+import {readFile,stat} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import {randomUUID,createHash} from 'node:crypto';
 import sharp from 'sharp';
 import {HttpError,validateArtwork} from './validation.mjs';
 import {getSession,newSession,sessionCookie,passwordHash,passwordMatches,validateCredentials} from './auth.mjs';
+import {createCloudinaryStorage,IMAGE_LIMIT,VIDEO_LIMIT,imageTypes,videoTypes,validateVideo} from './media-storage.mjs';
 const publicDir=fileURLToPath(new URL('../dist/',import.meta.url));
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.jpg':'image/jpeg','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml'};
-export function createApp({db,uploadDir=fileURLToPath(new URL('../uploads/',import.meta.url)),allowSetup=false,publicOrigin='',secureCookies=false,onError=()=>{}}){
+export function createApp({db,uploadDir=fileURLToPath(new URL('../uploads/',import.meta.url)),mediaStorage=createCloudinaryStorage(),allowSetup=false,publicOrigin='',secureCookies=false,onError=()=>{}}){
   const attempts=new Map();
   const json=(res,status,body,headers={})=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store',...headers});res.end(JSON.stringify(body));};
   async function bodyBuffer(req,limit){
@@ -58,19 +59,27 @@ export function createApp({db,uploadDir=fileURLToPath(new URL('../uploads/',impo
       const items=await db.collection('artworks').find({},{projection:{_id:0}}).sort({createdAt:1,id:1}).toArray();return json(res,200,{items,database:'mongodb'});
     }
     if(pathname==='/api/uploads'&&req.method==='POST'){
-      const user=await admin(req);if(!['image/jpeg','image/png','image/webp'].includes(req.headers['content-type']?.split(';')[0]))throw new HttpError(415,'Chỉ nhận ảnh JPG, PNG hoặc WebP.');
-      const buffer=await bodyBuffer(req,8*1024*1024);let output,info;
-      try{const meta=await sharp(buffer,{limitInputPixels:40000000,animated:false}).metadata();if(!['jpeg','png','webp'].includes(meta.format))throw new Error();({data:output,info}=await sharp(buffer,{limitInputPixels:40000000}).rotate().resize({width:2000,height:2000,fit:'inside',withoutEnlargement:true}).webp({quality:85}).toBuffer({resolveWithObject:true}));}catch{throw new HttpError(422,'Không đọc được ảnh. Hãy chọn một tệp JPG, PNG hoặc WebP hợp lệ.');}
-      const id=randomUUID(),filename=id+'.webp';await mkdir(uploadDir,{recursive:true});await writeFile(path.join(uploadDir,filename),output,{flag:'wx'});
-      const media={id,url:'/uploads/'+filename,mimeType:'image/webp',format:'WEBP',sizeBytes:output.length,width:info.width,height:info.height,sha256:createHash('sha256').update(output).digest('hex'),uploadedBy:user.id,createdAt:new Date()};
-      try{await db.collection('media').insertOne(media);}catch(e){await unlink(path.join(uploadDir,filename)).catch(()=>{});throw e;}
+      const user=await admin(req),mimeType=req.headers['content-type']?.split(';')[0];
+      if(![...imageTypes,...videoTypes].includes(mimeType))throw new HttpError(415,'Chỉ nhận ảnh JPG, PNG, WebP hoặc video MP4, WebM, MOV.');
+      const resourceType=videoTypes.includes(mimeType)?'video':'image';
+      mediaStorage.assertConfigured();
+      const buffer=await bodyBuffer(req,resourceType==='video'?VIDEO_LIMIT:IMAGE_LIMIT);let output;
+      if(resourceType==='image'){
+      try{const meta=await sharp(buffer,{limitInputPixels:40000000,animated:false}).metadata();if(!['jpeg','png','webp'].includes(meta.format))throw new Error();output=await sharp(buffer,{limitInputPixels:40000000}).rotate().resize({width:2000,height:2000,fit:'inside',withoutEnlargement:true}).webp({quality:85}).toBuffer();}catch{throw new HttpError(422,'Không đọc được ảnh. Hãy chọn một tệp JPG, PNG hoặc WebP hợp lệ.');}
+      }else{validateVideo(buffer,mimeType);output=buffer;}
+      const id=randomUUID(),asset=await mediaStorage.upload(output,{id,resourceType});
+      const media={id,...asset,sha256:createHash('sha256').update(output).digest('hex'),uploadedBy:user.id,createdAt:new Date()};
+      try{await db.collection('media').insertOne(media);}catch(e){await mediaStorage.remove(asset).catch(onError);throw e;}
       return json(res,201,{media});
     }
     const match=pathname.match(/^\/api\/artworks\/([a-zA-Z0-9-]{1,64})$/);
     if(match&&req.method==='GET'){const item=await db.collection('artworks').findOne({id:match[1]});if(!item)throw new HttpError(404,'Không tìm thấy tác phẩm.');return json(res,200,{item:clean(item)});}
     if((pathname==='/api/artworks'&&req.method==='POST')||(match&&req.method==='PUT')){
       const user=await admin(req),raw=await jsonBody(req),data=validateArtwork(raw);
-      const media=await db.collection('media').findOne({id:data.imageId});if(!media)throw new HttpError(422,'Ảnh đại diện chưa được tải lên hoặc không còn tồn tại.',{imageId:'Hãy chọn và tải lại ảnh.'});
+      const media=await db.collection('media').findOne({id:data.imageId});if(!media||!media.mimeType?.startsWith('image/'))throw new HttpError(422,'Ảnh đại diện chưa được tải lên hoặc không còn tồn tại.',{imageId:'Hãy chọn và tải lại ảnh.'});
+      const video=data.videoId?await db.collection('media').findOne({id:data.videoId}):null;
+      if(data.videoId&&(!video||!video.mimeType?.startsWith('video/')))throw new HttpError(422,'Video chưa được tải lên hoặc không hợp lệ.',{videoId:'Hãy chọn và tải lại video.'});
+      Object.assign(data,{video:video?.url||'',videoMimeType:video?.mimeType||'',videoSizeBytes:video?.sizeBytes||0,videoDuration:video?.duration||0});
       Object.assign(data,{image:media.url,sizeBytes:media.sizeBytes,format:media.format,originalMedium:data.material,updatedAt:new Date()});
       let artwork;
       if(req.method==='POST'){

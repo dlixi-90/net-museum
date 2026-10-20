@@ -6,7 +6,7 @@
 flowchart LR
   Browser[Website Nét] -->|HTTP cùng origin| API[Backend Node.js]
   API -->|MongoDB driver| Mongo[(MongoDB)]
-  API --> Files[Ảnh trong uploads/]
+  API --> Cloudinary[Cloudinary: ảnh và video]
 ```
 
 MongoDB là nơi lưu dữ liệu nghiệp vụ. Frontend không giữ mật khẩu hoặc connection string MongoDB. Giao diện bảo tàng giữ thiết kế đã chọn; quản trị mở qua nút “Quản lý tác phẩm”.
@@ -23,15 +23,15 @@ Trang bộ sưu tập giữ bộ lọc trong URL; chi tiết tác phẩm liên k
 
 | Collection | Dữ liệu và ràng buộc |
 |---|---|
-| artworks | id duy nhất, title, author, period, year, category, material, origin, description, tags, imageId, image, sizeBytes, source, license, revision, createdAt, updatedAt |
-| media | id duy nhất, URL, định dạng, MIME, dung lượng, kích thước, SHA-256, người tải lên, ngày tạo |
+| artworks | id duy nhất, title, author, period, year, category, material, origin, description, tags, imageId, image, videoId, video, videoMimeType, videoSizeBytes, videoDuration, sizeBytes, source, license, revision, createdAt, updatedAt |
+| media | id duy nhất, URL HTTPS, storage, publicId, resourceType, định dạng, MIME, dung lượng, kích thước, thời lượng, SHA-256, người tải lên, ngày tạo |
 | users | admin có email duy nhất, họ tên, vai trò, passwordHash scrypt; hiện chỉ hỗ trợ một admin |
 | sessions | hash token, userId, expiresAt; TTL index để dọn phiên hết hạn |
 | collections | mã nhóm nghệ thuật duy nhất và tên hiển thị |
 | keywords | tên từ khóa duy nhất |
 | audit_logs | tác phẩm, thao tác create/update, quản trị viên, revision, thời điểm |
 
-`artworks.imageId` tham chiếu `media.id`. `sessions.userId`, `media.uploadedBy` và `audit_logs.userId` tham chiếu user. `artworks.tags` là mảng dùng để tìm kiếm; keywords là từ điển được cập nhật khi seed/thêm/sửa. Các tham chiếu này được kiểm tra trong backend; MongoDB không cung cấp FK giống SQL.
+`artworks.imageId` và `artworks.videoId` tham chiếu `media.id`; backend kiểm tra đúng loại ảnh/video. `sessions.userId`, `media.uploadedBy` và `audit_logs.userId` tham chiếu user. `artworks.tags` là mảng dùng để tìm kiếm; keywords là từ điển được cập nhật khi seed/thêm/sửa. Các tham chiếu này được kiểm tra trong backend; MongoDB không cung cấp FK giống SQL.
 
 ID công khai của 7 tác phẩm cũ được giữ dưới dạng chuỗi, ví dụ `37557`, để các vị trí giới thiệu tiếp tục mở đúng tác phẩm. Tác phẩm mới dùng UUID. `_id` nội bộ do MongoDB quản lý. Không lấy ID hay revision từ đầu vào để chèn tùy ý.
 
@@ -50,7 +50,7 @@ Hiện gallery lấy catalogue từ API và tìm không dấu bằng JavaScript.
 | POST /api/auth/logout | Xóa phiên và cookie |
 | GET /api/artworks | Danh sách hồ sơ từ MongoDB |
 | GET /api/artworks/:id | Một hồ sơ |
-| POST /api/uploads | Admin tải ảnh binary JPG/PNG/WebP; tối đa 8 MB |
+| POST /api/uploads | Admin tải ảnh binary JPG/PNG/WebP tối đa 8 MB hoặc video MP4/WebM/MOV tối đa 50 MB lên Cloudinary |
 | POST /api/artworks | Admin tạo hồ sơ, imageId phải tồn tại |
 | PUT /api/artworks/:id | Admin cập nhật hồ sơ với revision hiện tại |
 
@@ -62,7 +62,7 @@ Mật khẩu băm scrypt với salt riêng. Token phiên ngẫu nhiên không l�
 
 Client chọn ảnh và xem trước bằng object URL, gửi binary đến backend khi lưu. Backend giải mã bằng sharp, kiểm tra định dạng thực tế, giới hạn số pixel, xoay theo EXIF, resize trong 2000×2000 và chuyển WebP. Tên file UUID do server tạo; không sử dụng tên tệp người dùng để xây đường dẫn.
 
-MongoDB chỉ lưu metadata/URL; ảnh trong `uploads/`. Phải sao lưu cả hai. Upload và ghi hồ sơ là hai bước; khi bỏ biểu mẫu hoặc đổi ảnh có thể còn media chưa tham chiếu. Truy vấn số 14 trong `database/queries.mongodb.js` giúp kiểm tra media đó; chưa có tác vụ tự động xóa. Không tự xóa ảnh đang được tham chiếu.
+MongoDB chỉ lưu metadata/URL; tệp mới lưu trên Cloudinary qua SDK có xác thực ở backend. Video được kiểm tra container, Cloudinary giải mã và chuyển MP4; loại tệp audio-only bị từ chối. Không cần volume cho upload mới. `/uploads/` chỉ phục vụ ảnh cũ trước khi chuyển bằng `npm.cmd run media:migrate -- --apply`. Xem [Cloudinary](CLOUDINARY.md). Upload và ghi hồ sơ là hai bước; khi bỏ biểu mẫu hoặc đổi ảnh có thể còn media chưa tham chiếu. Truy vấn số 14 trong `database/queries.mongodb.js` giúp kiểm tra media đó; chưa có tác vụ tự động xóa. Không tự xóa ảnh đang được tham chiếu.
 
 ## Seed và chuyển đổi dữ liệu
 
@@ -72,10 +72,10 @@ Không chuyển yêu thích/lượt mở từ trình duyệt sang DB trong đợ
 
 ## Triển khai
 
-Bản chạy đầy đủ cần Node.js + MongoDB + filesystem/volume bền vững. Có thể dùng MongoDB local hoặc Atlas qua biến môi trường `MONGODB_URI`. Khi sử dụng production cần TLS, cấu hình origin, tắt thiết lập admin và lưu ảnh trên volume/object storage.
+Bản chạy đầy đủ cần Node.js + MongoDB Atlas + Cloudinary. Có thể dùng MongoDB local hoặc Atlas qua biến môi trường `MONGODB_URI`. Khi sử dụng production cần TLS, cấu hình origin, tắt thiết lập admin và cấu hình Cloudinary qua biến môi trường backend.
 
-Hosting Sites hiện tại chỉ triển khai `dist/`. Nó không có MongoDB hoặc backend Node.js này. Trên hosting tĩnh, catalogue đọc snapshot có nhãn; giao diện quản lý thông báo chưa kết nối, không lưu giả vào localStorage. Để thêm/sửa trên mạng, triển khai cả source Node.js lên host phù hợp; chưa có endpoint backend trực tuyến hoặc MongoDB Atlas được cung cấp trong phiên làm việc.
+Hosting Sites hiện tại chỉ triển khai `dist/`. Nó không có MongoDB hoặc backend Node.js này. Trên hosting tĩnh, catalogue đọc snapshot có nhãn; giao diện quản lý thông báo chưa kết nối, không lưu giả vào localStorage. Để thêm/sửa trên mạng, triển khai cả source Node.js lên host phù hợp; backend Cloudinary và MongoDB cần triển khai riêng trên máy chủ Node.js.
 
 ## Đối chiếu bài tập
 
-Đã có thêm/sửa tác phẩm, ảnh đại diện, đăng nhập admin và kết nối MongoDB thật. Chưa có xóa, nhiều ảnh/video/audio/PDF trên một hiện vật, quản trị nhiều người dùng, bộ đếm tập trung hay đánh giá CBIR có nhãn. MongoDB là thay đổi theo yêu cầu mới; 7 collections và 15 truy vấn MongoDB không tự thay thế yêu cầu “7 bảng quan hệ và 15 SQL” trong tài liệu môn học gốc. Cần trình bày lựa chọn này rõ trong báo cáo và đối chiếu tiêu chí giảng viên.
+Đã có thêm/sửa tác phẩm, ảnh đại diện, đăng nhập admin và kết nối MongoDB thật. Chưa có xóa, nhiều ảnh/audio/PDF trên một hiện vật, quản trị nhiều người dùng, bộ đếm tập trung hay đánh giá CBIR có nhãn. MongoDB là thay đổi theo yêu cầu mới; 7 collections và 15 truy vấn MongoDB không tự thay thế yêu cầu “7 bảng quan hệ và 15 SQL” trong tài liệu môn học gốc. Cần trình bày lựa chọn này rõ trong báo cáo và đối chiếu tiêu chí giảng viên.

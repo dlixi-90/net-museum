@@ -1,6 +1,6 @@
 # Nét — Bảo tàng nghệ thuật số
 
-Website mỹ thuật với giao diện bảo tàng theo ảnh tham khảo. Phiên bản hiện tại dùng **Node.js + MongoDB** để lưu tác phẩm, tài khoản quản trị, phiên đăng nhập và metadata ảnh. Bộ sưu tập ban đầu có 7 hiện vật gốm Việt từ The Met.
+Website mỹ thuật với giao diện bảo tàng theo ảnh tham khảo. Phiên bản hiện tại dùng **Node.js + MongoDB Atlas + Cloudinary** để lưu tác phẩm, tài khoản quản trị, phiên đăng nhập và metadata ảnh/video. Bộ sưu tập ban đầu có 7 hiện vật gốm Việt từ The Met.
 
 ## Các trang riêng
 
@@ -41,7 +41,7 @@ Terminal thứ hai:
 npm.cmd start
 ```
 
-Mở **http://localhost:3000** → **Quản lý tác phẩm** → lần đầu tạo tài khoản quản trị → **Thêm tác phẩm**. Điền thông tin và chọn ảnh. Muốn sửa, chọn **Chỉnh sửa** trong bảng quản lý. Khi lưu thành công, danh sách và bộ sưu tập được cập nhật từ MongoDB.
+Mở **http://localhost:3000** → **Quản lý tác phẩm** → lần đầu tạo tài khoản quản trị → **Thêm tác phẩm**. Điền thông tin, chọn ảnh và video giới thiệu tùy chọn. Thiết lập Cloudinary theo hướng dẫn bên dưới trước khi tải tệp. Muốn sửa, chọn **Chỉnh sửa** trong bảng quản lý. Khi lưu thành công, danh sách và bộ sưu tập được cập nhật từ MongoDB.
 
 Backend tự tạo index và nhập 7 tác phẩm mẫu bằng `$setOnInsert`: khởi động lại không ghi đè tác phẩm đã chỉnh sửa. Muốn chạy seed riêng: `npm.cmd run db:seed`.
 
@@ -51,7 +51,15 @@ Backend tự tạo index và nhập 7 tác phẩm mẫu bằng `$setOnInsert`: k
 
 Sao chép `.env.example` thành `.env`, điền `MONGODB_URI` và `MONGODB_DB` trên máy bạn. Không đưa URI chứa mật khẩu vào mã trình duyệt hoặc Git. Sau đó chạy `npm.cmd start`; không cần `db:start`. `.env` đã được loại khỏi Git và thư mục phát web.
 
-Khi triển khai thật, phục vụ **cả frontend và backend Node.js trên cùng origin**, cấu hình `PUBLIC_ORIGIN=https://...`, TLS, `NODE_ENV=production`, `ALLOW_ADMIN_SETUP=false`, MongoDB đã có tài khoản quản trị và volume bền vững cho `uploads/`. Khởi tạo admin trong môi trường cục bộ an toàn trước khi công bố. Sao lưu cả MongoDB và thư mục ảnh.
+Khi triển khai thật, phục vụ **cả frontend và backend Node.js trên cùng origin**, cấu hình `PUBLIC_ORIGIN=https://...`, TLS, `NODE_ENV=production`, `ALLOW_ADMIN_SETUP=false`, MongoDB đã có tài khoản quản trị và các biến Cloudinary. Khởi tạo admin trong môi trường cục bộ an toàn trước khi công bố. Sao lưu MongoDB và quản lý tài sản trong Cloudinary Media Library. Tệp upload mới không lưu trên ổ đĩa máy chủ.
+
+## Lưu ảnh và video trên Cloudinary
+
+Xem [hướng dẫn Cloudinary](docs/CLOUDINARY.md). Điền `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` trong `.env`, chạy `npm.cmd run cloudinary:check`, rồi khởi động lại `npm.cmd start`. Khóa chỉ dùng ở backend, không đưa vào frontend hoặc Git.
+
+Ảnh đại diện (JPG/PNG/WebP, tối đa 8 MB) được chuyển WebP; video giới thiệu tùy chọn (MP4/WebM/MOV, tối đa 50 MB) được lưu và phát dưới dạng MP4. MongoDB lưu URL HTTPS, public ID, loại tệp, dung lượng, kích thước và thời lượng. Mở trang chi tiết để phát video. Gỡ video khỏi hồ sơ không xóa tài sản trên Cloudinary.
+
+Ảnh cũ vẫn xem được. Chạy `npm.cmd run media:migrate` để xem số ảnh có thể chuyển, sau đó `npm.cmd run media:migrate -- --apply` để chuyển các ảnh trong `uploads/` và ảnh tác phẩm mẫu trong `dist/assets/`. Lệnh giữ tệp gốc, cập nhật URL hồ sơ và có thể chạy lại khi gián đoạn.
 
 ## Phân biệt bản đầy đủ và bản Sites
 
@@ -59,7 +67,7 @@ Khi triển khai thật, phục vụ **cả frontend và backend Node.js trên c
 - `npm.cmd run preview`: chỉ website tĩnh; hiện snapshot mẫu có nhãn, không lưu tác phẩm.
 - Link Sites hiện tại triển khai từ `dist/`, vẫn là hosting tĩnh. MongoDB không chạy bên trong gói này. Nút quản lý sẽ giải thích khi chưa có backend, không báo lưu thành công giả và không dùng localStorage để thay thế MongoDB.
 
-Để có thêm/sửa trực tuyến, cần triển khai backend Node.js với MongoDB lên máy chủ hỗ trợ Node/TCP và lưu trữ ảnh bền vững. Chỉ đưa URI Atlas vào frontend không đủ và sẽ làm lộ mật khẩu.
+Để có thêm/sửa trực tuyến, cần triển khai backend Node.js với MongoDB lên máy chủ hỗ trợ Node/TCP và cấu hình Cloudinary. Chỉ đưa URI Atlas vào frontend không đủ và sẽ làm lộ mật khẩu.
 
 ## Chức năng đã có
 
@@ -67,11 +75,11 @@ Khi triển khai thật, phục vụ **cả frontend và backend Node.js trên c
 - Sửa metadata hoặc thay ảnh; kiểm tra revision để trả lỗi 409 khi có cập nhật mới từ cửa sổ khác.
 - Thiết lập admin lần đầu trên máy cục bộ; đăng nhập/đăng xuất. Mật khẩu băm scrypt; phiên cookie HttpOnly lưu hash token trong MongoDB và hết hạn sau 24 giờ.
 - API ghi bắt buộc đăng nhập, kiểm tra origin, allowlist trường dữ liệu và loại tệp. Ảnh JPG/PNG/WebP tối đa 8 MB được giải mã thật và chuyển WebP, cạnh dài tối đa 2000 px.
-- Danh mục gốm, hội họa, điêu khắc, đồ họa; tìm kiếm có/không dấu, niên đại, dung lượng và sắp xếp.
+- Danh mục gốm, hội họa, điêu khắc, đồ họa; tìm kiếm có/không dấu, niên đại và sắp xếp.
 - Chi tiết, phóng ảnh, giọng đọc tổng hợp, CBIR histogram RGB 64 chiều và cosine similarity.
 - Yêu thích và lượt mở chi tiết vẫn là dữ liệu trình duyệt; hồ sơ tác phẩm và tài khoản lưu trong MongoDB.
 
-Chưa triển khai xóa tác phẩm, quản lý nhiều tài khoản, nhiều ảnh/tác phẩm, video/audio/PDF thật, bộ đếm truy cập tập trung và đánh giá CBIR có nhãn.
+Chưa triển khai xóa tác phẩm, quản lý nhiều tài khoản, nhiều ảnh/tác phẩm, audio/PDF thật, bộ đếm truy cập tập trung và đánh giá CBIR có nhãn.
 
 ## Cấu trúc và kiểm thử
 
@@ -95,7 +103,7 @@ npm.cmd run check
 npm.cmd run test:integration
 ```
 
-Integration test tạo database riêng tên `net_test_*` và thư mục ảnh tạm riêng, sau đó chỉ xóa dữ liệu thử nghiệm của chính nó; không xóa `net_museum`. Đã kiểm tra giao diện Chrome trên máy tính/điện thoại, thêm/sửa qua biểu mẫu, tải lại trang, đăng xuất và giữ dữ liệu sau khởi động lại backend.
+Integration test dùng bộ giả lập tại ranh giới Cloudinary (không gọi tài khoản thật), tạo database riêng tên `net_test_*` và thư mục ảnh tạm riêng, sau đó chỉ xóa dữ liệu thử nghiệm của chính nó; không xóa `net_museum`. Đã kiểm tra giao diện Chrome trên máy tính/điện thoại, thêm/sửa qua biểu mẫu, tải lại trang, đăng xuất và giữ dữ liệu sau khởi động lại backend.
 
 ## Nguồn tư liệu
 

@@ -15,6 +15,7 @@ export function validateArtwork(input) {
   text('material','Chất liệu',300,true);text('origin','Xuất xứ',150,false,'Việt Nam');
   text('originalTitle','Tên gốc',250);text('license','Nguồn/quyền sử dụng',500);
   text('imageId','Ảnh đại diện',80,true);
+  text('videoId','Video giới thiệu',80);
   if (!Object.hasOwn(categories,input.category)) fields.category = 'Chọn một nhóm nghệ thuật hợp lệ.';
   else {result.category = input.category;result.categoryLabel=categories[input.category];}
   if (!Number.isInteger(input.year) || input.year < -5000 || input.year > 2100) fields.year = 'Năm bắt đầu cần là số nguyên từ -5000 đến 2100.';
