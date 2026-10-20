@@ -17,7 +17,7 @@ Website mỹ thuật với giao diện bảo tàng theo ảnh tham khảo. Phiê
 | Quản lý và thêm/sửa tác phẩm | `/quan-ly/` |
 | Thống kê bộ sưu tập | `/thong-ke/` |
 
-Các mục điều hướng mở tài liệu HTML riêng, có thể mở trực tiếp và tải lại. Bộ lọc lưu trong query string, ví dụ `/bo-suu-tap/?category=blue`. Nguồn template tại `web/`; chạy `npm.cmd run build` sau khi sửa template để sinh các file trong `dist/`. JavaScript và CSS phục vụ từ đường dẫn gốc để hoạt động trên mọi trang con. Giao diện dùng nền giấy, chữ serif, màu đỏ đất và bố cục trưng bày có khoảng thở.
+Các mục điều hướng mở tài liệu HTML riêng, có thể mở trực tiếp và tải lại. Bộ lọc lưu trong query string, ví dụ `/bo-suu-tap/?category=blue`. Nguồn template tại `web/`; chạy `npm.cmd run build` sau khi sửa template để sinh các file trong `dist/`. JavaScript và CSS phục vụ từ đường dẫn gốc để hoạt động trên mọi trang con. Giao diện theo phong cách Artversnght: nền trắng, chữ sans Manrope, banner phòng tranh phủ tối, nút dạng viên thuốc, ảnh tác phẩm bo góc với chú thích phủ trên ảnh và khu tuyển chọn nền đen. Menu có bố cục một hàng; các trang con sử dụng cùng ngôn ngữ thiết kế. Trang chủ có trình chiếu 3 chủ đề bằng nút bấm và FAQ dùng details/summary; không tự chuyển slide.
 
 ## Chạy bản đầy đủ trên máy
 
@@ -106,6 +106,10 @@ npm.cmd run test:integration
 Integration test dùng bộ giả lập tại ranh giới Cloudinary (không gọi tài khoản thật), tạo database riêng tên `net_test_*` và thư mục ảnh tạm riêng, sau đó chỉ xóa dữ liệu thử nghiệm của chính nó; không xóa `net_museum`. Đã kiểm tra giao diện Chrome trên máy tính/điện thoại, thêm/sửa qua biểu mẫu, tải lại trang, đăng xuất và giữ dữ liệu sau khởi động lại backend.
 
 ## Nguồn tư liệu
+
+Tham khảo thiết kế: [Artversnght — Luthfi Setiaji / Pickolab](https://dribbble.com/shots/23724133-Artversnght-Art-Gallery-Landing-Page). Giao diện được triển khai lại bằng HTML/CSS cho nội dung Nét; không sử dụng ảnh chụp thiết kế làm giao diện. Nguồn homepage tại `web/home.mjs`, theme mới tại `dist/gallery.css`, trình chiếu tại `dist/hero.js`.
+
+Ảnh phòng tranh: [Dannie Jing / Unsplash](https://unsplash.com/photos/3GZlhROZIQg), theo [Unsplash License](https://unsplash.com/license). Lưu tại `dist/assets/gallery-interior.jpg`; nguồn ghi trong `gallery-source.json`. Ảnh minh họa được cắt và phủ tối bằng CSS.
 
 Ảnh và metadata mẫu: [The Met Open Access](https://www.metmuseum.org/about-the-met/policies-and-documents/open-access). API xác nhận `isPublicDomain: true` cho 7 ảnh. Metadata gốc ở `dist/assets/sources.json`; tên, mô tả tiếng Việt và phân nhóm trưng bày do dự án biên soạn. Tác phẩm tự thêm hiển thị tác giả và nguồn do quản trị viên nhập.
 

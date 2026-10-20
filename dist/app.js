@@ -1,7 +1,9 @@
 import {loadCatalog,categoryNames,escapeHtml as esc} from './catalog.js';
 import {filterArtworks,colorHistogram,cosineSimilarity} from './core.js';
+import {initHero} from './hero.js';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const page=document.body.dataset.page;
+if(page==='home')initHero();
 function readStore(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fallback;}catch{return fallback;}}
 const previous=readStore('net.saved',[]);
 let saved=new Set(Array.isArray(previous)?previous.map(String):[]),artworks=[],scores=null,queryUrl=null,searchRun=0,toastTimer;
@@ -16,7 +18,8 @@ function updateSaved(){
 }
 function toggleSave(id){saved.has(id)?saved.delete(id):saved.add(id);persist('net.saved',[...saved]);updateSaved();if(page==='saved')renderGallery();toast(saved.has(id)?'Đã giữ lại một cảm hứng.':'Đã bỏ lưu tác phẩm.');}
 const artworkUrl=id=>'/tac-pham/?id='+encodeURIComponent(id);
-function card(a,index){return `<article class="artwork-card"><div class="artwork-image"><a class="artwork-image-link" href="${artworkUrl(a.id)}" aria-label="Xem ${esc(a.title)}"><img src="${esc(a.image)}" alt="${esc(a.title)}" loading="lazy"><span class="artwork-index">NÉT / ${String(index+1).padStart(2,'0')}</span>${scores?`<span class="similarity-score">Tương đồng màu · ${((scores.get(a.id)||0)*100).toFixed(1)}%</span>`:''}</a><button class="artwork-save" data-save="${esc(a.id)}" aria-label="Lưu tác phẩm" aria-pressed="false"><svg><use href="#icon-heart"/></svg></button></div><div class="card-meta"><span>${esc(categoryNames[a.category]||a.categoryLabel)}</span><span>${esc(a.period)}</span></div><h3><a class="card-title" href="${artworkUrl(a.id)}">${esc(a.title)} <span aria-hidden="true">↗</span></a></h3><p class="card-author">${esc(a.author||'Chưa xác định')} · ${esc(a.origin||'Việt Nam')}</p></article>`;}
+function card(a,index){return `<article class="artwork-card"><div class="artwork-image"><a class="artwork-image-link" href="${artworkUrl(a.id)}" aria-label="Xem ${esc(a.title)}"><img src="${esc(a.image)}" alt="${esc(a.title)}" loading="lazy"><span class="artwork-index">${esc(categoryNames[a.category]||a.categoryLabel)}</span><div class="artwork-caption"><span class="artwork-period">${esc(a.period)}</span><h3 class="card-title">${esc(a.title)} <span aria-hidden="true">↗</span></h3><p class="card-author">${esc(a.author||'Chưa xác định')} · ${esc(a.origin||'Việt Nam')}</p></div>${scores?`<span class="similarity-score">Tương đồng màu · ${((scores.get(a.id)||0)*100).toFixed(1)}%</span>`:''}</a><button class="artwork-save" data-save="${esc(a.id)}" aria-label="Lưu tác phẩm" aria-pressed="false"><svg><use href="#icon-heart"/></svg></button></div></article>`;}
+
 function updateLocation(){if(!['collection','search'].includes(page))return;const next=new URLSearchParams();if(state.query)next.set('q',state.query);if(state.category!=='all')next.set('category',state.category);if(state.era!=='all')next.set('era',state.era);if(state.sort!=='curated')next.set('sort',state.sort);history.replaceState(null,'',location.pathname+(next.size?'?'+next:''));}
 function renderGallery(){
   let list=page==='saved'?artworks.filter(a=>saved.has(a.id)):filterArtworks(artworks,state);
@@ -91,7 +94,7 @@ updateSaved();
 if(['home','collection','search','saved','artwork','stats'].includes(page)){
   try{
     const result=await loadCatalog();artworks=result.items.map(a=>({...a,id:String(a.id)}));if($('#catalog-mode'))$('#catalog-mode').textContent=result.mode==='snapshot'?'Bộ sưu tập mẫu · Bản xem đang dùng tư liệu khởi đầu.':'';
-    if(page==='home'){$('#home-artworks').innerHTML=artworks.slice(0,3).map((a,i)=>card(a,i)).join('');updateSaved();}
+    if(page==='home'){$('#home-artworks').innerHTML=artworks.slice(0,2).map((a,i)=>card(a,i)).join('');$('#curated-artworks').innerHTML=artworks.slice(2,5).map((a,i)=>card(a,i+2)).join('');updateSaved();}
     if(['collection','search','saved'].includes(page)){initGallery();if(page==='search')initImageSearch();}
     if(page==='artwork')renderDetail();
     if(page==='stats')renderStats();
