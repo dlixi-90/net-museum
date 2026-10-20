@@ -2,6 +2,23 @@
 
 Website mỹ thuật với giao diện bảo tàng theo ảnh tham khảo. Phiên bản hiện tại dùng **Node.js + MongoDB** để lưu tác phẩm, tài khoản quản trị, phiên đăng nhập và metadata ảnh. Bộ sưu tập ban đầu có 7 hiện vật gốm Việt từ The Met.
 
+## Các trang riêng
+
+| Trang | Đường dẫn |
+|---|---|
+| Trang chủ | `/` |
+| Bộ sưu tập | `/bo-suu-tap/` |
+| Khám phá theo chủ đề | `/kham-pha/` |
+| Câu chuyện nghệ thuật | `/cau-chuyen/` |
+| Tìm kiếm từ khóa và hình ảnh | `/tim-kiem/` |
+| Về bảo tàng và nguồn tư liệu | `/ve-bao-tang/` |
+| Tác phẩm đã lưu | `/da-luu/` |
+| Chi tiết tác phẩm | `/tac-pham/?id=37557` |
+| Quản lý và thêm/sửa tác phẩm | `/quan-ly/` |
+| Thống kê bộ sưu tập | `/thong-ke/` |
+
+Các mục điều hướng mở tài liệu HTML riêng, có thể mở trực tiếp và tải lại. Bộ lọc lưu trong query string, ví dụ `/bo-suu-tap/?category=blue`. Nguồn template tại `web/`; chạy `npm.cmd run build` sau khi sửa template để sinh các file trong `dist/`. JavaScript và CSS phục vụ từ đường dẫn gốc để hoạt động trên mọi trang con. Giao diện dùng nền giấy, chữ serif, màu đỏ đất và bố cục trưng bày có khoảng thở.
+
 ## Chạy bản đầy đủ trên máy
 
 Cần Node.js 22.14+ hoặc 24. Mở terminal tại thư mục `di-san-viet`.
@@ -29,6 +46,8 @@ Mở **http://localhost:3000** → **Quản lý tác phẩm** → lần đầu t
 Backend tự tạo index và nhập 7 tác phẩm mẫu bằng `$setOnInsert`: khởi động lại không ghi đè tác phẩm đã chỉnh sửa. Muốn chạy seed riêng: `npm.cmd run db:seed`.
 
 ## Dùng MongoDB Atlas hoặc MongoDB sẵn có
+
+**Lựa chọn hiện tại: MongoDB Atlas.** Xem [hướng dẫn cho cluster đã có](docs/ATLAS.md), điền URI trong `.env`, chạy `npm.cmd run db:check` rồi `npm.cmd start`. Với Atlas không cần chạy `db:start`.
 
 Sao chép `.env.example` thành `.env`, điền `MONGODB_URI` và `MONGODB_DB` trên máy bạn. Không đưa URI chứa mật khẩu vào mã trình duyệt hoặc Git. Sau đó chạy `npm.cmd start`; không cần `db:start`. `.env` đã được loại khỏi Git và thư mục phát web.
 
@@ -59,6 +78,8 @@ Chưa triển khai xóa tác phẩm, quản lý nhiều tài khoản, nhiều �
 ```text
 server/                   Backend HTTP, MongoDB, auth, validation, upload
 dist/                     Giao diện và snapshot chỉ đọc cho hosting tĩnh
+web/                      Template chung và nội dung 10 trang riêng
+scripts/build-pages.mjs   Sinh HTML tĩnh; không cần framework mới
 dist/manage.js            Đăng nhập và biểu mẫu thêm/sửa
 scripts/start-mongodb.mjs  MongoDB cục bộ với thư mục dữ liệu bền vững
 database/seed-mongodb.mjs  Seed không ghi đè dữ liệu đã sửa

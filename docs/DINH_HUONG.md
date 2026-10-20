@@ -11,6 +11,14 @@ flowchart LR
 
 MongoDB là nơi lưu dữ liệu nghiệp vụ. Frontend không giữ mật khẩu hoặc connection string MongoDB. Giao diện bảo tàng giữ thiết kế đã chọn; quản trị mở qua nút “Quản lý tác phẩm”.
 
+## Giao diện nhiều trang
+
+Các mục chính đã tách thành trang HTML riêng: `/`, `/bo-suu-tap/`, `/kham-pha/`, `/cau-chuyen/`, `/tim-kiem/`, `/ve-bao-tang/`. Các chức năng bổ sung cũng có URL riêng: `/quan-ly/`, `/da-luu/`, `/thong-ke/`, `/tac-pham/?id=...`. Menu không còn dùng neo để cuộn tới các khối trên một trang. Chỉ biểu mẫu sửa tác phẩm tiếp tục dùng dialog để giữ ngữ cảnh quản trị.
+
+Nguồn HTML sinh từ `web/layout.mjs`, `web/pages.mjs` và phần editor dùng chung ở `web/partials/`. `npm run build` tạo các `index.html` trong thư mục con của `dist/`. Node backend và máy chủ tĩnh đều phục vụ thư mục này mà không cần SPA fallback. Đường dẫn CSS/JS/ảnh bắt đầu bằng `/` để tải đúng ở mọi trang con.
+
+Trang bộ sưu tập giữ bộ lọc trong URL; chi tiết tác phẩm liên kết trực tiếp tới trang sửa có `?edit=id`. Yêu thích vẫn dùng cùng khóa localStorage từ phiên bản trước, có thể xem ở trang riêng. Tìm bằng ảnh hiện hiển thị tối đa 5 kết quả theo màu sắc. Thống kê chỉ lấy số liệu hồ sơ hiện có, với lượt mở/yêu thích ghi rõ phạm vi trình duyệt.
+
 ## Collections
 
 | Collection | Dữ liệu và ràng buộc |

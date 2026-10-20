@@ -4,11 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "node scripts/build-pages.mjs",
     "start": "node server/index.mjs",
     "preview": "node scripts/serve.mjs",
     "db:start": "node scripts/start-mongodb.mjs",
     "db:seed": "node database/seed-mongodb.mjs",
-    "check": "node --check dist/app.js && node --check dist/manage.js && node --check server/index.mjs && node --test tests/core.test.mjs tests/validation.test.mjs",
+    "db:check": "node scripts/check-database.mjs",
+    "check": "node scripts/build-pages.mjs --check && node --check dist/app.js && node --check dist/manage.js && node --check server/index.mjs && node --test tests/core.test.mjs tests/validation.test.mjs tests/mongo-config.test.mjs",
     "test:integration": "node --test tests/api.test.mjs"
   },
   "dependencies": { "mongodb": "^7.7.0", "sharp": "^0.35.5" },

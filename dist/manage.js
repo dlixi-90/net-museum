@@ -3,7 +3,7 @@ const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 let user=null,items=[],selected=null,pendingId=null,imageUrl=null,pendingMediaId=null,unsaved=false,busy=false;
 function message(text,error=false){const node=$('#manage-message');node.textContent=text;node.classList.toggle('error',error);}
 function setEditorError(text){$('#editor-error').textContent=text;}
-function showManage(){if(!$('#manage-dialog').open)$('#manage-dialog').showModal();}
+function showManage(){$('#manage-panel').setAttribute('aria-busy','false');}
 function hideEditor(){if(busy)return;if(unsaved&&!window.confirm('Bạn có thay đổi chưa lưu. Đóng biểu mẫu?'))return;$('#editor-dialog').close();if(imageUrl){URL.revokeObjectURL(imageUrl);imageUrl=null;}}
 async function openManager(id=null){
   pendingId=id;showManage();$('#manage-body').innerHTML='<p class="manage-loading">Đang kết nối bộ sưu tập…</p>';message('');
@@ -30,7 +30,7 @@ function openEditor(artwork=null){
   selected=artwork;pendingMediaId=null;unsaved=false;busy=false;setEditorError('');const form=$('#artwork-form');form.reset();
   $('#editor-title').textContent=artwork?'Chỉnh sửa tác phẩm':'Thêm tác phẩm mới';$('#editor-submit').textContent=artwork?'Lưu thay đổi ↗':'Thêm vào bộ sưu tập ↗';
   for(const name of ['title','author','category','period','year','material','origin','description','originalTitle','source','license'])form.elements[name].value=artwork?.[name]??({category:'painting',origin:'Việt Nam',author:'Chưa xác định'}[name]||'');
-  form.elements.tags.value=(artwork?.tags||[]).join(', ');$('#editor-image').src=artwork?.image||'assets/favicon.svg';$('#editor-image').alt=artwork?.title||'Ảnh đại diện đang chờ chọn';$('#image-filename').textContent=artwork?'Ảnh đại diện hiện tại. Chọn tệp để thay ảnh.':'Chọn ảnh JPG, PNG hoặc WebP, tối đa 8 MB.';
+  form.elements.tags.value=(artwork?.tags||[]).join(', ');$('#editor-image').src=artwork?.image||'/assets/favicon.svg';$('#editor-image').alt=artwork?.title||'Ảnh đại diện đang chờ chọn';$('#image-filename').textContent=artwork?'Ảnh đại diện hiện tại. Chọn tệp để thay ảnh.':'Chọn ảnh JPG, PNG hoặc WebP, tối đa 8 MB.';
   $('#editor-dialog').showModal();
 }
 $('#artwork-form').addEventListener('input',()=>{unsaved=true;});
@@ -58,7 +58,7 @@ document.addEventListener('click',e=>{
   if(e.target.closest('[data-manage-open]'))return openManager();
   const edit=e.target.closest('[data-edit-artwork]');if(edit){if(!user)return openManager(edit.dataset.editArtwork);const item=items.find(a=>a.id===edit.dataset.editArtwork);if(item)openEditor(item);return;}
   if(e.target.closest('[data-editor-close]'))hideEditor();
-  if(e.target.closest('[data-manage-close]'))$('#manage-dialog').close();
 });
 $('#editor-dialog').addEventListener('cancel',e=>{e.preventDefault();hideEditor();});
 window.addEventListener('beforeunload',e=>{if(unsaved){e.preventDefault();e.returnValue='';}});
+await openManager(new URLSearchParams(location.search).get('edit'));

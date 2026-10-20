@@ -1,8 +1,10 @@
 import {MongoClient} from 'mongodb';
 import {readFile} from 'node:fs/promises';
 import {categories} from './validation.mjs';
+import {validateConnectionUri} from './mongo-config.mjs';
 export async function connectDatabase({uri=process.env.MONGODB_URI||'mongodb://127.0.0.1:27017',name=process.env.MONGODB_DB||'net_museum'}={}) {
-  const client=new MongoClient(uri,{serverSelectionTimeoutMS:5000});
+  validateConnectionUri(uri);
+  const client=new MongoClient(uri,{serverSelectionTimeoutMS:uri.startsWith('mongodb+srv://')?15000:5000,appName:'NetMuseum'});
   try{await client.connect();return {client,db:client.db(name)};}catch(e){await client.close();throw e;}
 }
 export async function initializeDatabase(db,{seed=true}={}) {

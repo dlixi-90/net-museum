@@ -1,5 +1,13 @@
 # Kết quả kiểm tra bản mẫu
 
+## Cập nhật tách trang và thiết kế nghệ thuật
+
+- Đã sinh 10 trang HTML từ template, có đường dẫn trực tiếp và tài nguyên tải bằng đường dẫn gốc.
+- Kiểm tra Chrome: điều hướng bằng liên kết thật, trạng thái menu đúng trang, tải trực tiếp và tải lại trang con, bộ lọc category giữ trong URL, yêu thích xuyên trang, tìm từ khóa tiếng Việt, CBIR top-5, trang chi tiết và phóng ảnh.
+- Kiểm tra bố cục desktop 1440 px và mobile 390 px trên các trang; menu thu gọn và không tràn ngang.
+- Trang quản trị riêng được kiểm tra thêm/sửa với MongoDB thật trong database `net_test_ui_*`: tạo admin, upload, thêm, sửa, chuyển sang bộ sưu tập, tải lại và đăng xuất. Không dùng tài khoản hay dữ liệu Atlas của người dùng để thử nghiệm.
+- `npm run check` còn kiểm tra HTML đã sinh khớp template. Backend API và cấu hình Atlas được giữ lại.
+
 Kiểm tra trong môi trường Windows, Node.js 24 và Chrome headless, ngày 20/10/2026.
 
 - `npm.cmd run check`: kiểm tra cú pháp và 4 bài kiểm tra tìm kiếm/CBIR/validation đều đạt.
