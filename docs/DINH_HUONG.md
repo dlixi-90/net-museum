@@ -17,7 +17,7 @@ Các mục chính đã tách thành trang HTML riêng: `/`, `/bo-suu-tap/`, `/kh
 
 Nguồn HTML sinh từ `web/layout.mjs`, `web/pages.mjs` và phần editor dùng chung ở `web/partials/`. `npm run build` tạo các `index.html` trong thư mục con của `dist/`. Node backend và máy chủ tĩnh đều phục vụ thư mục này mà không cần SPA fallback. Đường dẫn CSS/JS/ảnh bắt đầu bằng `/` để tải đúng ở mọi trang con.
 
-Trang bộ sưu tập giữ bộ lọc trong URL; chi tiết tác phẩm liên kết trực tiếp tới trang sửa có `?edit=id`. Yêu thích vẫn dùng cùng khóa localStorage từ phiên bản trước, có thể xem ở trang riêng. Tìm kiếm tên được đặt trong header dùng chung, kết quả lọc trên Bộ sưu tập; không còn trang tìm kiếm riêng hoặc tìm bằng ảnh. Đường dẫn `/tim-kiem/` cũ chỉ chuyển hướng về `/bo-suu-tap/` và giữ `q`. Nhãn số đầu trang đã bỏ. Thống kê chỉ lấy số liệu hồ sơ hiện có, với lượt mở/yêu thích ghi rõ phạm vi trình duyệt.
+Trang bộ sưu tập giữ bộ lọc trong URL; chi tiết tác phẩm liên kết trực tiếp tới trang sửa có `?edit=id`. Yêu thích vẫn dùng cùng khóa localStorage từ phiên bản trước, có thể xem ở trang riêng. Tìm kiếm tên được đặt trong header dùng chung, kết quả lọc trên Bộ sưu tập; không còn trang tìm kiếm riêng hoặc tìm bằng ảnh. Đường dẫn `/tim-kiem/` cũ chỉ chuyển hướng về `/bo-suu-tap/` và giữ `q`. Các khối tiêu đề/mô tả lớn đầu trang và ghi chú snapshot đã bỏ; breadcrumb và h1 ẩn giữ tên trang. Menu ngang giãn khoảng cách 28–34 px theo độ rộng màn hình. Thống kê chỉ lấy số liệu hồ sơ hiện có, với lượt mở/yêu thích ghi rõ phạm vi trình duyệt.
 
 ## Collections
 
@@ -74,7 +74,7 @@ Không chuyển yêu thích/lượt mở từ trình duyệt sang DB trong đợ
 
 Bản chạy đầy đủ cần Node.js + MongoDB Atlas + Cloudinary. Có thể dùng MongoDB local hoặc Atlas qua biến môi trường `MONGODB_URI`. Khi sử dụng production cần TLS, cấu hình origin, tắt thiết lập admin và cấu hình Cloudinary qua biến môi trường backend.
 
-Hosting Sites hiện tại chỉ triển khai `dist/`. Nó không có MongoDB hoặc backend Node.js này. Trên hosting tĩnh, catalogue đọc snapshot có nhãn; giao diện quản lý thông báo chưa kết nối, không lưu giả vào localStorage. Để thêm/sửa trên mạng, triển khai cả source Node.js lên host phù hợp; backend Cloudinary và MongoDB cần triển khai riêng trên máy chủ Node.js.
+Hosting Sites hiện tại chỉ triển khai `dist/`. Nó không có MongoDB hoặc backend Node.js này. Trên hosting tĩnh, catalogue đọc snapshot; giao diện quản lý thông báo chưa kết nối, không lưu giả vào localStorage. Để thêm/sửa trên mạng, triển khai cả source Node.js lên host phù hợp; backend Cloudinary và MongoDB cần triển khai riêng trên máy chủ Node.js.
 
 ## Đối chiếu bài tập
 

@@ -315,3 +315,13 @@ h1,h2,h3{font-weight:500;text-wrap:pretty}
  .heading-row{margin-top:0}
 }
 @media(max-width:380px){.gallery-header-actions{gap:9px}.header-search input{font-size:16px}.gallery-header .header-visit{padding-inline:10px}}
+/* Keep page content close to the breadcrumb and give navigation more room. */
+.breadcrumb{padding-top:24px;margin-bottom:30px}
+.gallery-header nav{gap:34px}
+.discovery-list,.stats-page{padding-top:0}
+.manager-page{margin-top:0}
+.artwork-detail{padding-top:0}
+.art-story>.story-cover{margin-top:0}
+@media(min-width:1201px) and (max-width:1450px){.gallery-header nav{gap:28px}}
+@media(max-width:1200px){.gallery-header nav{gap:0}.gallery-header nav a{padding-block:16px}}
+@media(max-width:760px){.breadcrumb{padding-top:18px;margin-bottom:22px}.artwork-detail{padding-top:0}.manager-page{padding-top:20px}.discovery-list{padding-top:0}}

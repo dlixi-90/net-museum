@@ -82,7 +82,7 @@ updateSaved();
 initHeaderSearch();
 if(['home','collection','saved','artwork','stats'].includes(page)){
   try{
-    const result=await loadCatalog();artworks=result.items.map(a=>({...a,id:String(a.id)}));if($('#catalog-mode'))$('#catalog-mode').textContent=result.mode==='snapshot'?'Bộ sưu tập mẫu · Bản xem đang dùng tư liệu khởi đầu.':'';
+    const result=await loadCatalog();artworks=result.items.map(a=>({...a,id:String(a.id)}));
     if(page==='home'){$('#home-artworks').innerHTML=artworks.slice(0,2).map((a,i)=>card(a,i)).join('');$('#curated-artworks').innerHTML=artworks.slice(2,5).map((a,i)=>card(a,i+2)).join('');updateSaved();}
     if(['collection','saved'].includes(page))initGallery();
     if(page==='artwork')renderDetail();

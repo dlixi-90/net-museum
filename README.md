@@ -18,7 +18,7 @@ Website mỹ thuật với giao diện bảo tàng theo ảnh tham khảo. Phiê
 
 Các mục điều hướng mở tài liệu HTML riêng, có thể mở trực tiếp và tải lại. Bộ lọc lưu trong query string, ví dụ `/bo-suu-tap/?category=blue`. Nguồn template tại `web/`; chạy `npm.cmd run build` sau khi sửa template để sinh các file trong `dist/`. JavaScript và CSS phục vụ từ đường dẫn gốc để hoạt động trên mọi trang con. Giao diện theo phong cách Artversnght: nền trắng, chữ Be Vietnam Pro hỗ trợ tiếng Việt, nội dung và giao diện dùng cỡ chữ lớn hơn, banner phòng tranh phủ tối, nút dạng viên thuốc, ảnh tác phẩm bo góc với chú thích phủ trên ảnh và khu tuyển chọn nền đen. Menu có bố cục một hàng; các trang con sử dụng cùng ngôn ngữ thiết kế. Trang chủ có trình chiếu 3 chủ đề bằng nút bấm và FAQ dùng details/summary; không tự chuyển slide.
 
-Ô tìm kiếm tên tác phẩm có ở đầu mọi trang. Khi đang ở Bộ sưu tập, kết quả lọc trực tiếp theo tên; từ các trang khác, nhấn Enter để mở `/bo-suu-tap/?q=...`. Hỗ trợ tiếng Việt có/không dấu và không phân biệt hoa/thường, chỉ tìm trong tên hiển thị. `/tim-kiem/` cũ chuyển sang Bộ sưu tập và giữ tham số `q`; không còn trang tìm bằng ảnh. Nhãn đánh số đầu tiêu đề đã bỏ trên các trang.
+Ô tìm kiếm tên tác phẩm có ở đầu mọi trang. Khi đang ở Bộ sưu tập, kết quả lọc trực tiếp theo tên; từ các trang khác, nhấn Enter để mở `/bo-suu-tap/?q=...`. Hỗ trợ tiếng Việt có/không dấu và không phân biệt hoa/thường, chỉ tìm trong tên hiển thị. `/tim-kiem/` cũ chuyển sang Bộ sưu tập và giữ tham số `q`; không còn trang tìm bằng ảnh. Các trang con đi thẳng vào nội dung sau breadcrumb; không còn khối tiêu đề/mô tả lớn hoặc dòng ghi chú snapshot. Tên trang vẫn có trong document title và tiêu đề h1 ẩn cho khả năng truy cập. Menu chính có khoảng cách rộng hơn giữa các mục.
 
 ## Chạy bản đầy đủ trên máy
 
@@ -65,7 +65,7 @@ Xem [hướng dẫn Cloudinary](docs/CLOUDINARY.md). Điền `CLOUDINARY_CLOUD_N
 ## Phân biệt bản đầy đủ và bản Sites
 
 - `npm.cmd start`: frontend + API + MongoDB; thêm/sửa và upload hoạt động.
-- `npm.cmd run preview`: chỉ website tĩnh; hiện snapshot mẫu có nhãn, không lưu tác phẩm.
+- `npm.cmd run preview`: chỉ website tĩnh; hiện snapshot mẫu, không lưu tác phẩm.
 - Link Sites hiện tại triển khai từ `dist/`, vẫn là hosting tĩnh. MongoDB không chạy bên trong gói này. Nút quản lý sẽ giải thích khi chưa có backend, không báo lưu thành công giả và không dùng localStorage để thay thế MongoDB.
 
 Để có thêm/sửa trực tuyến, cần triển khai backend Node.js với MongoDB lên máy chủ hỗ trợ Node/TCP và cấu hình Cloudinary. Chỉ đưa URI Atlas vào frontend không đủ và sẽ làm lộ mật khẩu.
