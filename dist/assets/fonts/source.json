@@ -1,0 +1,17 @@
+{
+  "family": "Be Vietnam Pro",
+  "source": "https://github.com/google/fonts/tree/main/ofl/bevietnampro",
+  "stylesheet": "https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap",
+  "weights": [
+    400,
+    500,
+    600,
+    700
+  ],
+  "subsets": [
+    "vietnamese",
+    "latin-ext",
+    "latin"
+  ],
+  "license": "SIL Open Font License 1.1"
+}

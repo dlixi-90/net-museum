@@ -17,7 +17,7 @@ Website mỹ thuật với giao diện bảo tàng theo ảnh tham khảo. Phiê
 | Quản lý và thêm/sửa tác phẩm | `/quan-ly/` |
 | Thống kê bộ sưu tập | `/thong-ke/` |
 
-Các mục điều hướng mở tài liệu HTML riêng, có thể mở trực tiếp và tải lại. Bộ lọc lưu trong query string, ví dụ `/bo-suu-tap/?category=blue`. Nguồn template tại `web/`; chạy `npm.cmd run build` sau khi sửa template để sinh các file trong `dist/`. JavaScript và CSS phục vụ từ đường dẫn gốc để hoạt động trên mọi trang con. Giao diện theo phong cách Artversnght: nền trắng, chữ sans Manrope, banner phòng tranh phủ tối, nút dạng viên thuốc, ảnh tác phẩm bo góc với chú thích phủ trên ảnh và khu tuyển chọn nền đen. Menu có bố cục một hàng; các trang con sử dụng cùng ngôn ngữ thiết kế. Trang chủ có trình chiếu 3 chủ đề bằng nút bấm và FAQ dùng details/summary; không tự chuyển slide.
+Các mục điều hướng mở tài liệu HTML riêng, có thể mở trực tiếp và tải lại. Bộ lọc lưu trong query string, ví dụ `/bo-suu-tap/?category=blue`. Nguồn template tại `web/`; chạy `npm.cmd run build` sau khi sửa template để sinh các file trong `dist/`. JavaScript và CSS phục vụ từ đường dẫn gốc để hoạt động trên mọi trang con. Giao diện theo phong cách Artversnght: nền trắng, chữ Be Vietnam Pro hỗ trợ tiếng Việt, nội dung và giao diện dùng cỡ chữ lớn hơn, banner phòng tranh phủ tối, nút dạng viên thuốc, ảnh tác phẩm bo góc với chú thích phủ trên ảnh và khu tuyển chọn nền đen. Menu có bố cục một hàng; các trang con sử dụng cùng ngôn ngữ thiết kế. Trang chủ có trình chiếu 3 chủ đề bằng nút bấm và FAQ dùng details/summary; không tự chuyển slide.
 
 ## Chạy bản đầy đủ trên máy
 
@@ -113,6 +113,6 @@ Tham khảo thiết kế: [Artversnght — Luthfi Setiaji / Pickolab](https://dr
 
 Ảnh và metadata mẫu: [The Met Open Access](https://www.metmuseum.org/about-the-met/policies-and-documents/open-access). API xác nhận `isPublicDomain: true` cho 7 ảnh. Metadata gốc ở `dist/assets/sources.json`; tên, mô tả tiếng Việt và phân nhóm trưng bày do dự án biên soạn. Tác phẩm tự thêm hiển thị tác giả và nguồn do quản trị viên nhập.
 
-Ảnh kiến trúc: [Natural History Museum Main Hall — DAVID ILIFF](https://commons.wikimedia.org/wiki/File:Natural_History_Museum_Main_Hall,_London,_UK_-_Diliff.jpg), [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), cắt khung và phủ tối bằng CSS; dùng minh họa, không phải địa điểm thực tế của Nét. Font từ Google Fonts có font dự phòng hệ thống.
+Ảnh kiến trúc: [Natural History Museum Main Hall — DAVID ILIFF](https://commons.wikimedia.org/wiki/File:Natural_History_Museum_Main_Hall,_London,_UK_-_Diliff.jpg), [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), cắt khung và phủ tối bằng CSS; dùng minh họa, không phải địa điểm thực tế của Nét. Font Be Vietnam Pro được phục vụ trực tiếp từ `dist/assets/fonts/` với các subset tiếng Việt, Latin mở rộng và Latin; giấy phép SIL OFL đi kèm. Không cần tải font từ Google khi xem trang.
 
 Theo yêu cầu mới, MongoDB thay thế thiết kế PostgreSQL ban đầu. Tài liệu môn học gốc yêu cầu CSDL quan hệ và SQL; bản SQL cũ được giữ trong thư mục lịch sử để đối chiếu với yêu cầu bài nộp.
