@@ -10,7 +10,6 @@ Website mỹ thuật với giao diện bảo tàng theo ảnh tham khảo. Phiê
 | Bộ sưu tập | `/bo-suu-tap/` |
 | Khám phá theo chủ đề | `/kham-pha/` |
 | Câu chuyện nghệ thuật | `/cau-chuyen/` |
-| Tìm kiếm từ khóa và hình ảnh | `/tim-kiem/` |
 | Về bảo tàng và nguồn tư liệu | `/ve-bao-tang/` |
 | Tác phẩm đã lưu | `/da-luu/` |
 | Chi tiết tác phẩm | `/tac-pham/?id=37557` |
@@ -18,6 +17,8 @@ Website mỹ thuật với giao diện bảo tàng theo ảnh tham khảo. Phiê
 | Thống kê bộ sưu tập | `/thong-ke/` |
 
 Các mục điều hướng mở tài liệu HTML riêng, có thể mở trực tiếp và tải lại. Bộ lọc lưu trong query string, ví dụ `/bo-suu-tap/?category=blue`. Nguồn template tại `web/`; chạy `npm.cmd run build` sau khi sửa template để sinh các file trong `dist/`. JavaScript và CSS phục vụ từ đường dẫn gốc để hoạt động trên mọi trang con. Giao diện theo phong cách Artversnght: nền trắng, chữ Be Vietnam Pro hỗ trợ tiếng Việt, nội dung và giao diện dùng cỡ chữ lớn hơn, banner phòng tranh phủ tối, nút dạng viên thuốc, ảnh tác phẩm bo góc với chú thích phủ trên ảnh và khu tuyển chọn nền đen. Menu có bố cục một hàng; các trang con sử dụng cùng ngôn ngữ thiết kế. Trang chủ có trình chiếu 3 chủ đề bằng nút bấm và FAQ dùng details/summary; không tự chuyển slide.
+
+Ô tìm kiếm tên tác phẩm có ở đầu mọi trang. Khi đang ở Bộ sưu tập, kết quả lọc trực tiếp theo tên; từ các trang khác, nhấn Enter để mở `/bo-suu-tap/?q=...`. Hỗ trợ tiếng Việt có/không dấu và không phân biệt hoa/thường, chỉ tìm trong tên hiển thị. `/tim-kiem/` cũ chuyển sang Bộ sưu tập và giữ tham số `q`; không còn trang tìm bằng ảnh. Nhãn đánh số đầu tiêu đề đã bỏ trên các trang.
 
 ## Chạy bản đầy đủ trên máy
 
@@ -75,8 +76,8 @@ Xem [hướng dẫn Cloudinary](docs/CLOUDINARY.md). Điền `CLOUDINARY_CLOUD_N
 - Sửa metadata hoặc thay ảnh; kiểm tra revision để trả lỗi 409 khi có cập nhật mới từ cửa sổ khác.
 - Thiết lập admin lần đầu trên máy cục bộ; đăng nhập/đăng xuất. Mật khẩu băm scrypt; phiên cookie HttpOnly lưu hash token trong MongoDB và hết hạn sau 24 giờ.
 - API ghi bắt buộc đăng nhập, kiểm tra origin, allowlist trường dữ liệu và loại tệp. Ảnh JPG/PNG/WebP tối đa 8 MB được giải mã thật và chuyển WebP, cạnh dài tối đa 2000 px.
-- Danh mục gốm, hội họa, điêu khắc, đồ họa; tìm kiếm có/không dấu, niên đại và sắp xếp.
-- Chi tiết, phóng ảnh, giọng đọc tổng hợp, CBIR histogram RGB 64 chiều và cosine similarity.
+- Danh mục gốm, hội họa, điêu khắc, đồ họa; tìm theo tên có/không dấu, niên đại và sắp xếp.
+- Chi tiết, phóng ảnh và giọng đọc tổng hợp. Các hàm CBIR cũ trong `core.js` chỉ còn là tiện ích tham khảo, không có giao diện tìm bằng ảnh.
 - Yêu thích và lượt mở chi tiết vẫn là dữ liệu trình duyệt; hồ sơ tác phẩm và tài khoản lưu trong MongoDB.
 
 Chưa triển khai xóa tác phẩm, quản lý nhiều tài khoản, nhiều ảnh/tác phẩm, audio/PDF thật, bộ đếm truy cập tập trung và đánh giá CBIR có nhãn.
@@ -86,7 +87,7 @@ Chưa triển khai xóa tác phẩm, quản lý nhiều tài khoản, nhiều �
 ```text
 server/                   Backend HTTP, MongoDB, auth, validation, upload
 dist/                     Giao diện và snapshot chỉ đọc cho hosting tĩnh
-web/                      Template chung và nội dung 10 trang riêng
+web/                      Template chung và nội dung 9 trang riêng
 scripts/build-pages.mjs   Sinh HTML tĩnh; không cần framework mới
 dist/manage.js            Đăng nhập và biểu mẫu thêm/sửa
 scripts/start-mongodb.mjs  MongoDB cục bộ với thư mục dữ liệu bền vững

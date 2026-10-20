@@ -13,11 +13,11 @@ MongoDB là nơi lưu dữ liệu nghiệp vụ. Frontend không giữ mật kh�
 
 ## Giao diện nhiều trang
 
-Các mục chính đã tách thành trang HTML riêng: `/`, `/bo-suu-tap/`, `/kham-pha/`, `/cau-chuyen/`, `/tim-kiem/`, `/ve-bao-tang/`. Các chức năng bổ sung cũng có URL riêng: `/quan-ly/`, `/da-luu/`, `/thong-ke/`, `/tac-pham/?id=...`. Menu không còn dùng neo để cuộn tới các khối trên một trang. Chỉ biểu mẫu sửa tác phẩm tiếp tục dùng dialog để giữ ngữ cảnh quản trị.
+Các mục chính đã tách thành trang HTML riêng: `/`, `/bo-suu-tap/`, `/kham-pha/`, `/cau-chuyen/`, `/ve-bao-tang/`. Các chức năng bổ sung cũng có URL riêng: `/quan-ly/`, `/da-luu/`, `/thong-ke/`, `/tac-pham/?id=...`. Menu không còn dùng neo để cuộn tới các khối trên một trang. Chỉ biểu mẫu sửa tác phẩm tiếp tục dùng dialog để giữ ngữ cảnh quản trị.
 
 Nguồn HTML sinh từ `web/layout.mjs`, `web/pages.mjs` và phần editor dùng chung ở `web/partials/`. `npm run build` tạo các `index.html` trong thư mục con của `dist/`. Node backend và máy chủ tĩnh đều phục vụ thư mục này mà không cần SPA fallback. Đường dẫn CSS/JS/ảnh bắt đầu bằng `/` để tải đúng ở mọi trang con.
 
-Trang bộ sưu tập giữ bộ lọc trong URL; chi tiết tác phẩm liên kết trực tiếp tới trang sửa có `?edit=id`. Yêu thích vẫn dùng cùng khóa localStorage từ phiên bản trước, có thể xem ở trang riêng. Tìm bằng ảnh hiện hiển thị tối đa 5 kết quả theo màu sắc. Thống kê chỉ lấy số liệu hồ sơ hiện có, với lượt mở/yêu thích ghi rõ phạm vi trình duyệt.
+Trang bộ sưu tập giữ bộ lọc trong URL; chi tiết tác phẩm liên kết trực tiếp tới trang sửa có `?edit=id`. Yêu thích vẫn dùng cùng khóa localStorage từ phiên bản trước, có thể xem ở trang riêng. Tìm kiếm tên được đặt trong header dùng chung, kết quả lọc trên Bộ sưu tập; không còn trang tìm kiếm riêng hoặc tìm bằng ảnh. Đường dẫn `/tim-kiem/` cũ chỉ chuyển hướng về `/bo-suu-tap/` và giữ `q`. Nhãn số đầu trang đã bỏ. Thống kê chỉ lấy số liệu hồ sơ hiện có, với lượt mở/yêu thích ghi rõ phạm vi trình duyệt.
 
 ## Collections
 
@@ -37,7 +37,7 @@ ID công khai của 7 tác phẩm cũ được giữ dưới dạng chuỗi, ví
 
 Index: artworks.id unique; artworks(category,year); text index title/author/description/tags; media.id unique; users.email unique; sessions.expiresAt TTL; collections.key và keywords.name unique; audit_logs(artworkId,createdAt).
 
-Hiện gallery lấy catalogue từ API và tìm không dấu bằng JavaScript. Text index được chuẩn bị cho bước tìm kiếm phía server; không tuyên bố frontend hiện đã dùng truy vấn text index. Chưa lưu vector CBIR vào MongoDB.
+Hiện gallery lấy catalogue từ API và tìm theo tên có hoặc không dấu bằng JavaScript. Text index được chuẩn bị cho bước tìm kiếm phía server; không tuyên bố frontend hiện đã dùng truy vấn text index. Chưa lưu vector CBIR vào MongoDB.
 
 ## API đã thực hiện
 

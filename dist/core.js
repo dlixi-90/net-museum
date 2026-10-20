@@ -5,7 +5,7 @@ export function normalize(value) {
 export function filterArtworks(artworks, {query = '', category = 'all', era = 'all', maxSize = '', sort = 'curated'} = {}) {
   const tokens = normalize(query).trim().split(/\s+/).filter(Boolean);
   const result = artworks.filter(a => {
-    const searchable = normalize([a.title, a.originalTitle, a.author, a.description, a.material, a.period, a.categoryLabel, ...(a.tags || [])].join(' '));
+    const searchable = normalize(a.title);
     return tokens.every(t => searchable.includes(t)) && (category === 'all' || a.category === category)
       && (era === 'all' || (era === 'early' ? a.year < 1400 : a.year >= 1400))
       && (maxSize === '' || a.sizeBytes <= Number(maxSize) * 1024 * 1024);

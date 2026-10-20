@@ -286,3 +286,32 @@ h1,h2,h3{font-weight:500;text-wrap:pretty}
  .toast{font-size:14px;line-height:1.9}
 }
 @media(max-width:380px){.gallery-header-actions{gap:8px}.gallery-header .header-visit{font-size:12px;padding:7px 9px}.gallery-header .header-visit>span{display:none}.gallery-brand{font-size:40px}.gallery-hero h1{font-size:34px}.gallery-hero-bottom{left:18px;right:18px;gap:20px 8px}.gallery-hero-bottom>.button{font-size:13px;padding:10px 12px;gap:8px}.slider-arrow{height:32px;width:32px}.hero-navigation{gap:6px}.artwork-grid{grid-template-columns:1fr}.artwork-grid .artwork-image{aspect-ratio:4/5.2}.artwork-grid .artwork-card h3{font-size:25px}.artwork-grid .card-author{font-size:14px}.home-featured .artwork-card h3{font-size:18px}.home-featured .artwork-image{aspect-ratio:4/7.5}.heading-row h1{font-size:43px}.detail-copy h1{font-size:37px}.stats-summary strong{font-size:33px}.stats-summary span{font-size:9px}.category-bar{grid-template-columns:120px 1fr 18px;font-size:13px}.footer-info>p{max-width:185px}.editor-fields{grid-template-columns:1fr}.editor-fields .full-width{grid-column:1}.gallery-brand small{font-size:7px}}
+/* A single name search in the shared header replaces the search page. */
+.header-search{display:flex;align-items:center;gap:0;border:1px solid #d7d7d7;border-radius:11px;background:white;min-width:180px;max-width:300px;width:clamp(180px,20vw,300px);overflow:hidden;min-height:46px}
+.header-search:focus-within{outline:2px solid #333;outline-offset:3px;border-color:#333}
+.header-search input{flex:1;min-width:0;width:100%;border:0;background:transparent;padding:11px 4px 11px 14px;font:400 14px/1.7 var(--sans);outline:none;color:#222}
+.header-search input::placeholder{color:#8a8a8a;opacity:1}
+.header-search input:focus-visible{outline:none}
+.header-search button{flex-shrink:0;display:grid;place-items:center;width:42px;min-height:44px;padding:8px}
+.header-search button:hover{background:#f4f4f4}
+.header-search button:focus-visible{outline:2px solid #333;outline-offset:-4px;border-radius:8px}
+.header-search button svg{width:19px;height:19px}
+.gallery-header-actions{gap:15px;min-width:0}
+.gallery-header nav{gap:16px}
+.page-heading>.heading-row{margin-top:0}
+.advanced-filters label:first-child{flex:0 1 250px;min-width:180px}
+.advanced-filters select{width:100%}
+@media(min-width:1201px) and (max-width:1450px){.gallery-header nav{gap:14px}.header-search{width:220px;min-width:180px}.gallery-header-actions{gap:12px}}
+@media(min-width:761px) and (max-width:1200px){.header-search{width:clamp(220px,30vw,300px)}.gallery-header-actions{gap:15px}.gallery-header{column-gap:25px}}
+@media(max-width:760px){
+ .gallery-header{position:relative;min-height:152px;padding-block:14px 66px;column-gap:20px;align-items:center}
+ .gallery-header-actions{gap:13px}
+ .gallery-header .header-search{position:absolute;bottom:12px;left:0;right:0;width:100%;max-width:none;min-width:0;min-height:46px;border-radius:10px}
+ .header-search input{font-size:16px;line-height:1.7;padding:10px 5px 10px 14px}
+ .header-search button{width:46px;min-height:44px}
+ .gallery-header nav{top:calc(100% - 3px);left:0;right:0;font-size:16px;z-index:12}
+ .advanced-filters label:first-child{flex:1;min-width:130px}
+ .page-heading{padding-top:25px}
+ .heading-row{margin-top:0}
+}
+@media(max-width:380px){.gallery-header-actions{gap:9px}.header-search input{font-size:16px}.gallery-header .header-visit{padding-inline:10px}}
