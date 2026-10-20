@@ -1,10 +1,16 @@
 {
   "name": "net-digital-art-museum",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node scripts/serve.mjs",
-    "check": "node --check dist/app.js && node --check dist/core.js && node --test tests/core.test.mjs"
-  }
+    "start": "node server/index.mjs",
+    "preview": "node scripts/serve.mjs",
+    "db:start": "node scripts/start-mongodb.mjs",
+    "db:seed": "node database/seed-mongodb.mjs",
+    "check": "node --check dist/app.js && node --check dist/manage.js && node --check server/index.mjs && node --test tests/core.test.mjs tests/validation.test.mjs",
+    "test:integration": "node --test tests/api.test.mjs"
+  },
+  "dependencies": { "mongodb": "^7.7.0", "sharp": "^0.35.5" },
+  "devDependencies": { "mongodb-memory-server-core": "^11.3.0" }
 }

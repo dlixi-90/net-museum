@@ -1,0 +1,64 @@
+import {api,categoryNames,escapeHtml as esc} from './catalog.js';
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+let user=null,items=[],selected=null,pendingId=null,imageUrl=null,pendingMediaId=null,unsaved=false,busy=false;
+function message(text,error=false){const node=$('#manage-message');node.textContent=text;node.classList.toggle('error',error);}
+function setEditorError(text){$('#editor-error').textContent=text;}
+function showManage(){if(!$('#manage-dialog').open)$('#manage-dialog').showModal();}
+function hideEditor(){if(busy)return;if(unsaved&&!window.confirm('Bạn có thay đổi chưa lưu. Đóng biểu mẫu?'))return;$('#editor-dialog').close();if(imageUrl){URL.revokeObjectURL(imageUrl);imageUrl=null;}}
+async function openManager(id=null){
+  pendingId=id;showManage();$('#manage-body').innerHTML='<p class="manage-loading">Đang kết nối bộ sưu tập…</p>';message('');
+  try{const session=await api('/session');user=session.user;if(!user)return showLogin(session.setupRequired);await renderManager();if(pendingId){const a=items.find(a=>a.id===pendingId);pendingId=null;if(a)openEditor(a);}}
+  catch{user=null;$('#manage-body').innerHTML='<div class="backend-needed"><h3>Chưa kết nối máy chủ quản lý</h3><p>Bạn vẫn có thể xem bộ sưu tập trên trang này. Để thêm và chỉnh sửa tác phẩm, hãy mở bản website chạy cùng MongoDB trên máy hoặc trên máy chủ của bạn.</p><p>Dữ liệu sẽ chỉ được lưu khi kết nối thành công; biểu mẫu không lưu tạm vào trình duyệt.</p></div>';}
+}
+function showLogin(setup=false){
+  $('#manage-body').innerHTML=`<form id="admin-auth-form" class="auth-form"><h3>${setup?'Thiết lập quản trị viên':'Đăng nhập quản trị'}</h3><p>${setup?'Tạo tài khoản đầu tiên để quản lý bộ sưu tập.':'Đăng nhập để thêm tác phẩm và cập nhật thông tin.'}</p>${setup?'<label>Họ tên<input name="name" autocomplete="name" required maxlength="150"></label>':''}<label>Email<input name="email" type="email" autocomplete="username" required maxlength="254"></label><label>Mật khẩu<input name="password" type="password" autocomplete="${setup?'new-password':'current-password'}" required minlength="${setup?10:1}" maxlength="200"></label>${setup?'<small>Ít nhất 10 ký tự. Tài khoản này được lưu trong MongoDB.</small>':''}<p id="auth-error" class="form-error" role="alert"></p><button class="button button-dark" type="submit">${setup?'Tạo tài khoản & tiếp tục':'Đăng nhập'} ↗</button></form>`;
+  $('#admin-auth-form').addEventListener('submit',async e=>{e.preventDefault();const form=e.currentTarget,button=form.querySelector('button');button.disabled=true;$('#auth-error').textContent='';try{const body=Object.fromEntries(new FormData(form));const result=await api(setup?'/auth/setup':'/auth/login',{method:'POST',body:JSON.stringify(body)});user=result.user;await renderManager();if(pendingId){const a=items.find(a=>a.id===pendingId);pendingId=null;if(a)openEditor(a);}}catch(error){$('#auth-error').textContent=error.message;}finally{button.disabled=false;}});
+}
+async function renderManager(){
+  const result=await api('/artworks');items=result.items.map(a=>({...a,id:String(a.id)}));
+  $('#manage-body').innerHTML=`<div class="manager-toolbar"><p><strong>${esc(user.name)}</strong><span>Quản trị viên · ${items.length} tác phẩm</span></p><button class="button button-outline" id="admin-logout">Đăng xuất</button><button class="button button-dark" id="add-artwork">+ Thêm tác phẩm</button></div><div class="manager-search"><label>Tìm trong bộ sưu tập<input id="manager-query" type="search" placeholder="Tên tác phẩm, tác giả…"></label><button id="reload-manager" class="text-button">Tải lại danh sách ↻</button></div><div class="manager-table-container"><table class="manager-table"><thead><tr><th>Tác phẩm</th><th>Nhóm nghệ thuật</th><th>Niên đại</th><th>Thao tác</th></tr></thead><tbody id="manager-rows"></tbody></table></div><p class="manager-footnote">Thay đổi được lưu vào MongoDB. Ảnh được lưu trên máy chủ và gắn với hồ sơ tác phẩm.</p>`;
+  renderRows();$('#manager-query').addEventListener('input',renderRows);
+  $('#add-artwork').addEventListener('click',()=>openEditor());
+  $('#reload-manager').addEventListener('click',async()=>{try{await renderManager();message('Đã tải lại danh sách.');}catch(e){message(e.message,true);}});
+  $('#admin-logout').addEventListener('click',async()=>{try{await api('/auth/logout',{method:'POST'});user=null;showLogin(false);message('Đã đăng xuất.');}catch(e){message(e.message,true);}});
+}
+function renderRows(){
+  const query=$('#manager-query').value.trim().toLocaleLowerCase('vi');const list=items.filter(a=>`${a.title} ${a.author}`.toLocaleLowerCase('vi').includes(query));
+  $('#manager-rows').innerHTML=list.length?list.map(a=>`<tr><td><div class="manager-artwork"><img src="${esc(a.image)}" alt=""><div><strong>${esc(a.title)}</strong><span>${esc(a.author)}</span></div></div></td><td>${esc(categoryNames[a.category]||a.category)}</td><td>${esc(a.period)}</td><td><button class="edit-artwork" data-edit-artwork="${esc(a.id)}">Chỉnh sửa ↗</button></td></tr>`).join(''):'<tr><td colspan="4" class="manager-empty">Chưa có tác phẩm phù hợp.</td></tr>';
+}
+function openEditor(artwork=null){
+  selected=artwork;pendingMediaId=null;unsaved=false;busy=false;setEditorError('');const form=$('#artwork-form');form.reset();
+  $('#editor-title').textContent=artwork?'Chỉnh sửa tác phẩm':'Thêm tác phẩm mới';$('#editor-submit').textContent=artwork?'Lưu thay đổi ↗':'Thêm vào bộ sưu tập ↗';
+  for(const name of ['title','author','category','period','year','material','origin','description','originalTitle','source','license'])form.elements[name].value=artwork?.[name]??({category:'painting',origin:'Việt Nam',author:'Chưa xác định'}[name]||'');
+  form.elements.tags.value=(artwork?.tags||[]).join(', ');$('#editor-image').src=artwork?.image||'assets/favicon.svg';$('#editor-image').alt=artwork?.title||'Ảnh đại diện đang chờ chọn';$('#image-filename').textContent=artwork?'Ảnh đại diện hiện tại. Chọn tệp để thay ảnh.':'Chọn ảnh JPG, PNG hoặc WebP, tối đa 8 MB.';
+  $('#editor-dialog').showModal();
+}
+$('#artwork-form').addEventListener('input',()=>{unsaved=true;});
+$('#artwork-image-file').addEventListener('change',async e=>{
+  const file=e.target.files[0];if(!file)return;
+  pendingMediaId=null;
+  if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>8*1024*1024){e.target.value='';setEditorError('Chọn ảnh JPG, PNG hoặc WebP nhỏ hơn 8 MB.');return;}
+  if(imageUrl)URL.revokeObjectURL(imageUrl);imageUrl=URL.createObjectURL(file);$('#editor-image').src=imageUrl;$('#image-filename').textContent=file.name;setEditorError('');unsaved=true;
+});
+$('#artwork-form').addEventListener('submit',async e=>{
+  e.preventDefault();if(busy)return;const form=e.currentTarget;
+  const file=form.elements.imageFile.files[0];if(!selected&&!file)return setEditorError('Chọn ảnh đại diện cho tác phẩm mới.');
+  busy=true;const submit=$('#editor-submit');submit.disabled=true;setEditorError('');submit.textContent='Đang lưu…';
+  try{
+    let imageId=pendingMediaId||selected?.imageId;
+    if(file&&!pendingMediaId){const result=await api('/uploads',{method:'POST',headers:{'Content-Type':file.type},body:file,signal:AbortSignal.timeout(30000)});imageId=result.media.id;pendingMediaId=imageId;}
+    const data=Object.fromEntries(new FormData(form));delete data.imageFile;data.year=Number(data.year);data.tags=data.tags.split(',').map(t=>t.trim()).filter(Boolean);data.imageId=imageId;if(selected)data.revision=selected.revision;
+    const {item}=await api(selected?'/artworks/'+encodeURIComponent(selected.id):'/artworks',{method:selected?'PUT':'POST',body:JSON.stringify(data)});
+    unsaved=false;busy=false;$('#editor-dialog').close();if(imageUrl){URL.revokeObjectURL(imageUrl);imageUrl=null;}
+    window.dispatchEvent(new CustomEvent('catalog-updated',{detail:{id:item.id}}));await renderManager();message(selected?'Đã lưu thay đổi tác phẩm.':'Đã thêm tác phẩm vào bộ sưu tập.');
+  }catch(error){if(error.status===401){message('Phiên đăng nhập đã hết hạn. Đóng biểu mẫu và đăng nhập lại.',true);}setEditorError(error.message+(error.fields?' '+Object.values(error.fields).join(' '):''));}
+  finally{busy=false;submit.disabled=false;submit.textContent=selected?'Lưu thay đổi ↗':'Thêm vào bộ sưu tập ↗';}
+});
+document.addEventListener('click',e=>{
+  if(e.target.closest('[data-manage-open]'))return openManager();
+  const edit=e.target.closest('[data-edit-artwork]');if(edit){if(!user)return openManager(edit.dataset.editArtwork);const item=items.find(a=>a.id===edit.dataset.editArtwork);if(item)openEditor(item);return;}
+  if(e.target.closest('[data-editor-close]'))hideEditor();
+  if(e.target.closest('[data-manage-close]'))$('#manage-dialog').close();
+});
+$('#editor-dialog').addEventListener('cancel',e=>{e.preventDefault();hideEditor();});
+window.addEventListener('beforeunload',e=>{if(unsaved){e.preventDefault();e.returnValue='';}});

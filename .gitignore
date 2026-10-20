@@ -2,3 +2,9 @@ node_modules/
 .local/
 *.tar.gz
 *.zip
+.env
+.env.*
+!.env.example
+uploads/
+data/
+*.log
