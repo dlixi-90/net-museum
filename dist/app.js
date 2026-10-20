@@ -7,7 +7,7 @@ const previous=readStore('net.saved',[]);
 let saved=new Set(Array.isArray(previous)?previous.map(String):[]),artworks=[],scores=null,queryUrl=null,searchRun=0,toastTimer;
 const features=new Map();
 const params=new URLSearchParams(location.search);
-let state={query:params.get('q')||'',category:Object.hasOwn(categoryNames,params.get('category'))?params.get('category'):'all',era:['early','late'].includes(params.get('era'))?params.get('era'):'all',maxSize:params.get('size')||'',sort:['name','oldest'].includes(params.get('sort'))?params.get('sort'):'curated'};
+let state={query:params.get('q')||'',category:Object.hasOwn(categoryNames,params.get('category'))?params.get('category'):'all',era:['early','late'].includes(params.get('era'))?params.get('era'):'all',sort:['name','oldest'].includes(params.get('sort'))?params.get('sort'):'curated'};
 function toast(text){clearTimeout(toastTimer);$('#toast').textContent=text;$('#toast').classList.add('visible');toastTimer=setTimeout(()=>$('#toast').classList.remove('visible'),3500);}
 function persist(key,value){try{localStorage.setItem(key,JSON.stringify(value));}catch{toast('Trình duyệt chưa cho phép lưu. Thay đổi được giữ trong phiên này.');}}
 function updateSaved(){
@@ -17,7 +17,7 @@ function updateSaved(){
 function toggleSave(id){saved.has(id)?saved.delete(id):saved.add(id);persist('net.saved',[...saved]);updateSaved();if(page==='saved')renderGallery();toast(saved.has(id)?'Đã giữ lại một cảm hứng.':'Đã bỏ lưu tác phẩm.');}
 const artworkUrl=id=>'/tac-pham/?id='+encodeURIComponent(id);
 function card(a,index){return `<article class="artwork-card"><div class="artwork-image"><a class="artwork-image-link" href="${artworkUrl(a.id)}" aria-label="Xem ${esc(a.title)}"><img src="${esc(a.image)}" alt="${esc(a.title)}" loading="lazy"><span class="artwork-index">NÉT / ${String(index+1).padStart(2,'0')}</span>${scores?`<span class="similarity-score">Tương đồng màu · ${((scores.get(a.id)||0)*100).toFixed(1)}%</span>`:''}</a><button class="artwork-save" data-save="${esc(a.id)}" aria-label="Lưu tác phẩm" aria-pressed="false"><svg><use href="#icon-heart"/></svg></button></div><div class="card-meta"><span>${esc(categoryNames[a.category]||a.categoryLabel)}</span><span>${esc(a.period)}</span></div><h3><a class="card-title" href="${artworkUrl(a.id)}">${esc(a.title)} <span aria-hidden="true">↗</span></a></h3><p class="card-author">${esc(a.author||'Chưa xác định')} · ${esc(a.origin||'Việt Nam')}</p></article>`;}
-function updateLocation(){if(!['collection','search'].includes(page))return;const next=new URLSearchParams();if(state.query)next.set('q',state.query);if(state.category!=='all')next.set('category',state.category);if(state.era!=='all')next.set('era',state.era);if(state.maxSize)next.set('size',state.maxSize);if(state.sort!=='curated')next.set('sort',state.sort);history.replaceState(null,'',location.pathname+(next.size?'?'+next:''));}
+function updateLocation(){if(!['collection','search'].includes(page))return;const next=new URLSearchParams();if(state.query)next.set('q',state.query);if(state.category!=='all')next.set('category',state.category);if(state.era!=='all')next.set('era',state.era);if(state.sort!=='curated')next.set('sort',state.sort);history.replaceState(null,'',location.pathname+(next.size?'?'+next:''));}
 function renderGallery(){
   let list=page==='saved'?artworks.filter(a=>saved.has(a.id)):filterArtworks(artworks,state);
   if(scores){list.sort((a,b)=>(scores.get(b.id)||0)-(scores.get(a.id)||0));list=list.slice(0,5);}
@@ -25,15 +25,14 @@ function renderGallery(){
   $('#search-status').textContent=`${list.length} tác phẩm${scores?' · Xếp theo độ tương đồng màu':''}${state.query?' · “'+state.query+'”':''}`;
   $$('[data-category]').forEach(b=>{const active=b.dataset.category===state.category;b.classList.toggle('selected',active);b.setAttribute('aria-pressed',String(active));});updateSaved();updateLocation();
 }
-function resetFilters(){state={query:'',category:'all',era:'all',maxSize:'',sort:'curated'};for(const [selector,value] of [['#search-input',''],['#keyword-query',''],['#era-filter','all'],['#size-filter',''],['#sort-filter','curated']])if($(selector))$(selector).value=value;clearSimilarity();renderGallery();}
+function resetFilters(){state={query:'',category:'all',era:'all',sort:'curated'};for(const [selector,value] of [['#search-input',''],['#keyword-query',''],['#era-filter','all'],['#sort-filter','curated']])if($(selector))$(selector).value=value;clearSimilarity();renderGallery();}
 function initGallery(){
   if($('#category-filters'))$('#category-filters').innerHTML=`<button data-category="all" aria-pressed="true">Tất cả <span>${artworks.length}</span></button>`+Object.entries(categoryNames).filter(([key])=>artworks.some(a=>a.category===key)).map(([key,label])=>`<button data-category="${key}" aria-pressed="false">${label}</button>`).join('');
-  for(const [selector,value] of [['#search-input',state.query],['#keyword-query',state.query],['#era-filter',state.era],['#size-filter',state.maxSize],['#sort-filter',state.sort]])if($(selector))$(selector).value=value;
-  if(state.query||state.era!=='all'||state.maxSize){if($('#advanced-filters'))$('#advanced-filters').hidden=false;$('#advanced-toggle')?.setAttribute('aria-expanded','true');}
+  for(const [selector,value] of [['#search-input',state.query],['#keyword-query',state.query],['#era-filter',state.era],['#sort-filter',state.sort]])if($(selector))$(selector).value=value;
+  if(state.query||state.era!=='all'){if($('#advanced-filters'))$('#advanced-filters').hidden=false;$('#advanced-toggle')?.setAttribute('aria-expanded','true');}
   $('#advanced-toggle')?.addEventListener('click',()=>{const open=$('#advanced-filters').hidden;$('#advanced-filters').hidden=!open;$('#advanced-toggle').setAttribute('aria-expanded',String(open));});
   $('#search-input')?.addEventListener('input',e=>{state.query=e.target.value;if($('#keyword-query'))$('#keyword-query').value=state.query;renderGallery();});
   $('#era-filter')?.addEventListener('change',e=>{state.era=e.target.value;renderGallery();});
-  $('#size-filter')?.addEventListener('input',e=>{state.maxSize=e.target.validity.valid?e.target.value:'';renderGallery();});
   $('#sort-filter')?.addEventListener('change',e=>{state.sort=e.target.value;renderGallery();});
   $('#reset-filters')?.addEventListener('click',resetFilters);$('#empty-reset')?.addEventListener('click',resetFilters);
   $('#keyword-form')?.addEventListener('submit',e=>{e.preventDefault();state.query=$('#keyword-query').value;$('#search-input').value=state.query;renderGallery();$('.search-results').scrollIntoView({behavior:'smooth'});});
