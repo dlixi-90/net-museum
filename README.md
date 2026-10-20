@@ -109,7 +109,7 @@ Integration test dùng bộ giả lập tại ranh giới Cloudinary (không g�
 
 Tham khảo thiết kế: [Artversnght — Luthfi Setiaji / Pickolab](https://dribbble.com/shots/23724133-Artversnght-Art-Gallery-Landing-Page). Giao diện được triển khai lại bằng HTML/CSS cho nội dung Nét; không sử dụng ảnh chụp thiết kế làm giao diện. Nguồn homepage tại `web/home.mjs`, theme mới tại `dist/gallery.css`, trình chiếu tại `dist/hero.js`.
 
-Ảnh phòng tranh: [Dannie Jing / Unsplash](https://unsplash.com/photos/3GZlhROZIQg), theo [Unsplash License](https://unsplash.com/license). Lưu tại `dist/assets/gallery-interior.jpg`; nguồn ghi trong `gallery-source.json`. Ảnh minh họa được cắt và phủ tối bằng CSS.
+Ảnh banner: [Phòng trưng bày Bảo tàng Mỹ thuật Việt Nam, Hà Nội — Daderot / Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Interior_view_-_Vietnam_National_Museum_of_Fine_Arts_-_Hanoi,_Vietnam_-_DSC05276.JPG), theo [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/). Lưu tại `dist/assets/vietnam-fine-arts-museum.jpg`; nguồn ghi trong `vietnam-fine-arts-museum-source.json`. Ảnh được tối ưu kích thước; cắt khung và phủ tối bằng CSS.
 
 Ảnh và metadata mẫu: [The Met Open Access](https://www.metmuseum.org/about-the-met/policies-and-documents/open-access). API xác nhận `isPublicDomain: true` cho 7 ảnh. Metadata gốc ở `dist/assets/sources.json`; tên, mô tả tiếng Việt và phân nhóm trưng bày do dự án biên soạn. Tác phẩm tự thêm hiển thị tác giả và nguồn do quản trị viên nhập.
 
