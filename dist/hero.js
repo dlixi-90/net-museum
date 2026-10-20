@@ -12,7 +12,6 @@ export function initHero(){
     document.querySelector('#hero-badge').textContent=slide.badge;document.querySelector('#home-title').innerHTML=slide.title;
     document.querySelector('#hero-description').textContent=slide.description;
     const cta=document.querySelector('#hero-cta');cta.href=slide.link;cta.innerHTML=slide.cta+' <span aria-hidden="true">↗</span>';
-    const credit=document.querySelector('#hero-credit');credit.href=slide.source;credit.textContent=slide.credit;
     document.querySelector('#hero-current').textContent=String(current+1).padStart(2,'0')+' / 03';
   }
   document.querySelector('#hero-prev').addEventListener('click',()=>change(-1));
