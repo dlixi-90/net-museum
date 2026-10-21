@@ -540,8 +540,8 @@ h1,h2,h3{font-weight:500;text-wrap:pretty}
 
 /* Shared layout rails: every page uses the same content and outer frame. */
 :root{
- --content-max:1200px;
- --frame-max:1320px;
+ --content-max:1560px;
+ --frame-max:1680px;
  --page-gutter:40px;
  --frame-gutter:16px;
  --grid-gap:24px;
