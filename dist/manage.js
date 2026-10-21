@@ -30,11 +30,22 @@ window.addEventListener('net-access-updated',()=>{
 async function renderManager(){
   if(!isAdmin(user))return showDenied();
   const result=await api('/artworks');items=result.items.map(a=>({...a,id:String(a.id)}));
-  $('#manage-body').innerHTML=`<div class="manager-toolbar"><p><strong>${esc(user.name)}</strong></p><button class="button button-outline" id="admin-logout">Đăng xuất</button><button class="button button-dark" id="add-artwork">+ Thêm tác phẩm</button></div><div class="manager-search"><label>Tìm trong bộ sưu tập<input id="manager-query" type="search" placeholder="Tên tác phẩm, tác giả…"></label><button id="reload-manager" class="text-button">Tải lại danh sách ↻</button></div><div class="manager-table-container"><table class="manager-table"><thead><tr><th>Tác phẩm</th><th>Nhóm nghệ thuật</th><th>Niên đại</th><th>Thao tác</th></tr></thead><tbody id="manager-rows"></tbody></table></div>`;
+  $('#manage-body').innerHTML=`<div class="manager-toolbar"><p><strong>${esc(user.name)}</strong></p><button class="button button-outline" id="admin-logout">Đăng xuất</button><button class="button button-dark" id="add-artwork">+ Thêm tác phẩm</button></div><div class="manager-search"><label>Tìm trong bộ sưu tập<input id="manager-query" type="search" placeholder="Tên tác phẩm, tác giả…"></label><button id="reload-manager" type="button" class="button button-outline manager-reload" aria-busy="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2 6M20 4v7h-7"/></svg><span>Tải lại danh sách</span></button></div><div class="manager-table-container"><table class="manager-table"><thead><tr><th>Tác phẩm</th><th>Nhóm nghệ thuật</th><th>Niên đại</th><th>Thao tác</th></tr></thead><tbody id="manager-rows"></tbody></table></div>`;
   renderRows();$('#manager-query').addEventListener('input',renderRows);
   $('#add-artwork').addEventListener('click',()=>openEditor());
-  $('#reload-manager').addEventListener('click',async()=>{try{await renderManager();message('Đã tải lại danh sách.');}catch(e){message(e.message,true);}});
+  $('#reload-manager').addEventListener('click',reloadManager);
   $('#admin-logout').addEventListener('click',async()=>{try{await api('/auth/logout',{method:'POST'});user=null;items=[];setSession(null);showLogin(false);message('Đã đăng xuất.');}catch(e){message(e.message,true);}});
+}
+async function reloadManager(event){
+  const button=event.currentTarget,label=button.querySelector('span');
+  if(button.disabled||!isAdmin(user))return;
+  button.disabled=true;button.setAttribute('aria-busy','true');label.textContent='Đang tải…';message('');
+  try{
+    const result=await api('/artworks');
+    if(!button.isConnected||!isAdmin(user))return;
+    items=result.items.map(item=>({...item,id:String(item.id)}));renderRows();
+  }catch(error){if(button.isConnected)message(error.message,true);}
+  finally{button.disabled=false;button.setAttribute('aria-busy','false');label.textContent='Tải lại danh sách';}
 }
 function renderRows(){
   const query=$('#manager-query').value.trim().toLocaleLowerCase('vi');const list=items.filter(a=>`${a.title} ${a.author}`.toLocaleLowerCase('vi').includes(query));

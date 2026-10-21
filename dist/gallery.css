@@ -591,3 +591,20 @@ html{scrollbar-gutter:stable both-edges}
  .home-featured .home-artworks{grid-template-columns:minmax(0,1fr)}
  .home-featured .artwork-image,.curated-section .artwork-image{aspect-ratio:1/1.05}
 }
+
+/* Match the manager refresh action to the search field and gallery buttons. */
+.manager-search{align-items:flex-end;gap:20px}
+.manager-search input{height:48px;min-height:48px;padding:11px 14px;font:400 16px/1.5 var(--sans)}
+.manager-search .manager-reload{min-height:48px;min-width:196px;padding:11px 18px;gap:10px;font:500 15px/1.5 var(--sans);border-color:#d0d0d0;background:#fff;color:var(--ink)}
+.manager-search .manager-reload:hover:not(:disabled){background:#f3f3f3;border-color:#999}
+.manager-reload>span{font:inherit}
+.manager-reload svg{width:18px;height:18px;flex-shrink:0;stroke-width:1.6}
+.manager-reload:disabled{opacity:.65;cursor:wait}
+.manager-reload[aria-busy="true"] svg{animation:manager-refresh-spin 1s linear infinite}
+@keyframes manager-refresh-spin{to{transform:rotate(360deg)}}
+@media(max-width:760px){
+ .manager-search{align-items:stretch;gap:12px}
+ .manager-search label{width:100%}
+ .manager-search .manager-reload{width:100%;min-width:0;font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){.manager-reload[aria-busy="true"] svg{animation:none}}
