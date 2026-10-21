@@ -326,6 +326,8 @@ h1,h2,h3{font-weight:500;text-wrap:pretty}
 @media(max-width:1200px){.gallery-header nav{gap:0}.gallery-header nav a{padding-block:16px}}
 @media(max-width:760px){.breadcrumb{padding-top:18px;margin-bottom:22px}.artwork-detail{padding-top:0}.manager-page{padding-top:20px}.discovery-list{padding-top:0}}
 
+.collection-controls~.artwork-grid{margin-top:24px}
+
 /* Fit the gallery to laptop, tablet and phone viewports at normal browser zoom. */
 .wrap{width:min(1200px,calc(100% - 80px))}
 .gallery-header.wrap{width:min(1320px,calc(100% - 64px));min-height:90px;gap:26px}
