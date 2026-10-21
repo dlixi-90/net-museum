@@ -9,7 +9,7 @@ import {getSession,newSession,sessionCookie,passwordHash,passwordMatches,validat
 import {createCloudinaryStorage,IMAGE_LIMIT,VIDEO_LIMIT,imageTypes,videoTypes,validateVideo} from './media-storage.mjs';
 const publicDir=fileURLToPath(new URL('../dist/',import.meta.url));
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.jpg':'image/jpeg','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.woff2':'font/woff2'};
-export function createApp({db,uploadDir=fileURLToPath(new URL('../uploads/',import.meta.url)),mediaStorage=createCloudinaryStorage(),allowSetup=false,adminEmails=parseAdminEmails(),publicOrigin='',secureCookies=false,onError=()=>{}}){
+export function createRequestHandler({db,uploadDir=fileURLToPath(new URL('../uploads/',import.meta.url)),mediaStorage=createCloudinaryStorage(),allowSetup=false,adminEmails=parseAdminEmails(),publicOrigin='',secureCookies=false,directUploads=false,onError=()=>{}}){
   const administrators=parseAdminEmails(adminEmails);
   const attempts=new Map();
   const json=(res,status,body,headers={})=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store',...headers});res.end(JSON.stringify(body));};
@@ -37,7 +37,7 @@ export function createApp({db,uploadDir=fileURLToPath(new URL('../uploads/',impo
     if(pathname==='/api/health'&&req.method==='GET'){await db.command({ping:1});return json(res,200,{database:'mongodb',connected:true});}
     if(pathname==='/api/session'&&req.method==='GET'){
       const user=await getSession(req,db,administrators),setupAvailable=allowSetup&&administrators.size>0;
-      return json(res,200,{user:user?{name:user.name,email:user.email,role:user.role}:null,setupAvailable,setupRequired:setupAvailable&&!await db.collection('users').findOne({email:{$in:[...administrators]}})});
+      return json(res,200,{user:user?{name:user.name,email:user.email,role:user.role}:null,directUploads,setupAvailable,setupRequired:setupAvailable&&!await db.collection('users').findOne({email:{$in:[...administrators]}})});
     }
     if(pathname==='/api/auth/setup'&&req.method==='POST'){
       if(!allowSetup)throw new HttpError(403,'Thiết lập quản trị ban đầu chỉ được mở trong môi trường cục bộ.');
@@ -60,6 +60,27 @@ export function createApp({db,uploadDir=fileURLToPath(new URL('../uploads/',impo
     }
     if(pathname==='/api/artworks'&&req.method==='GET'){
       const items=await db.collection('artworks').find({},{projection:{_id:0}}).sort({createdAt:1,id:1}).toArray();return json(res,200,{items,database:'mongodb'});
+    }
+    if(pathname==='/api/uploads/sign'&&req.method==='POST'){
+      const user=await admin(req),body=await jsonBody(req);
+      if(!body||![...imageTypes,...videoTypes].includes(body.mimeType))throw new HttpError(415,'Chỉ nhận ảnh JPG, PNG, WebP hoặc video MP4, WebM, MOV.');
+      const resourceType=videoTypes.includes(body.mimeType)?'video':'image',limit=resourceType==='video'?VIDEO_LIMIT:IMAGE_LIMIT;
+      if(!Number.isInteger(body.sizeBytes)||body.sizeBytes<1||body.sizeBytes>limit)throw new HttpError(413,'Tệp vượt quá dung lượng cho phép.');
+      const id=randomUUID(),upload=mediaStorage.signUpload({id,resourceType});
+      await db.collection('upload_intents').insertOne({_id:id,resourceType,uploadedBy:user.id,expiresAt:new Date(Date.now()+3600000)});
+      return json(res,201,{upload:{id,...upload}});
+    }
+    if(pathname==='/api/uploads/complete'&&req.method==='POST'){
+      const user=await admin(req),body=await jsonBody(req);
+      if(!body||typeof body.id!=='string'||!/^[a-f0-9-]{36}$/.test(body.id))throw new HttpError(422,'Mã tải lên không hợp lệ.');
+      const existing=await db.collection('media').findOne({id:body.id,uploadedBy:user.id});
+      if(existing)return json(res,200,{media:clean(existing)});
+      const intent=await db.collection('upload_intents').findOne({_id:body.id,uploadedBy:user.id,expiresAt:{$gt:new Date()}});
+      if(!intent)throw new HttpError(422,'Phiên tải lên đã hết hạn. Hãy chọn lại tệp.');
+      const asset=await mediaStorage.resolveUpload({id:body.id,resourceType:intent.resourceType});
+      const media={id:body.id,...asset,uploadedBy:user.id,createdAt:new Date()};
+      await db.collection('media').updateOne({id:body.id},{$setOnInsert:media},{upsert:true});
+      return json(res,201,{media});
     }
     if(pathname==='/api/uploads'&&req.method==='POST'){
       const user=await admin(req),mimeType=req.headers['content-type']?.split(';')[0];
@@ -103,8 +124,9 @@ export function createApp({db,uploadDir=fileURLToPath(new URL('../uploads/',impo
     if(rel.startsWith('..')||path.isAbsolute(rel)||rel.split(path.sep).some(p=>p.startsWith('.')))throw new HttpError(404,'Không tìm thấy tệp.');
     try{if((await stat(file)).isDirectory())file=path.join(file,'index.html');const buffer=await readFile(file);res.writeHead(200,{'Content-Type':types[path.extname(file)]||'application/octet-stream','Cache-Control':'no-cache'});res.end(req.method==='HEAD'?undefined:buffer);}catch{throw new HttpError(404,'Không tìm thấy trang.');}
   }
-  return createServer(async(req,res)=>{
+  return async(req,res)=>{
     res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');res.setHeader('X-Frame-Options','DENY');
     try{await route(req,res,new URL(req.url,'http://localhost'));}catch(e){if(res.headersSent){res.end();return;}if(e instanceof HttpError)return json(res,e.status,{error:e.message,...(e.fields?{fields:e.fields}:{})});onError(e);json(res,503,{error:'Chưa kết nối được cơ sở dữ liệu. Vui lòng thử lại sau.'});}
-  });
+  };
 }
+export const createApp=options=>createServer(createRequestHandler(options));

@@ -1,7 +1,7 @@
 import {api,categoryNames,escapeHtml as esc} from './catalog.js';
 import {isAdmin,loadSession,setSession,sessionUser} from './access.js';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-let user=null,items=[],selected=null,pendingId=null,imageUrl=null,videoUrl=null,pendingMediaId=null,pendingVideoId=null,videoRemoved=false,unsaved=false,busy=false,setupAvailable=false;
+let user=null,items=[],selected=null,pendingId=null,imageUrl=null,videoUrl=null,pendingMediaId=null,pendingVideoId=null,videoRemoved=false,unsaved=false,busy=false,setupAvailable=false,directUploads=false;
 function clearPreviews(){if(imageUrl)URL.revokeObjectURL(imageUrl);if(videoUrl)URL.revokeObjectURL(videoUrl);imageUrl=videoUrl=null;$('#editor-video').pause();$('#editor-video').removeAttribute('src');$('#editor-video').load();}
 function message(text,error=false){const node=$('#manage-message');node.textContent=text;node.classList.toggle('error',error);}
 function setEditorError(text){$('#editor-error').textContent=text;}
@@ -9,7 +9,7 @@ function showManage(){$('#manage-panel').setAttribute('aria-busy','false');}
 function hideEditor(){if(busy)return;if(unsaved&&!window.confirm('Bạn có thay đổi chưa lưu. Đóng biểu mẫu?'))return;$('#editor-dialog').close();clearPreviews();}
 async function openManager(id=null){
   pendingId=id;showManage();$('#manage-body').innerHTML='<p class="manage-loading">Đang kết nối bộ sưu tập…</p>';message('');
-  try{const session=await loadSession({refresh:true});user=session.user;setupAvailable=session.setupAvailable===true;if(!user)return showLogin(session.setupRequired);if(!isAdmin(user))return showDenied();await renderManager();if(pendingId){const a=items.find(a=>a.id===pendingId);pendingId=null;if(a)openEditor(a);}}
+  try{const session=await loadSession({refresh:true});user=session.user;setupAvailable=session.setupAvailable===true;directUploads=session.directUploads===true;if(!user)return showLogin(session.setupRequired);if(!isAdmin(user))return showDenied();await renderManager();if(pendingId){const a=items.find(a=>a.id===pendingId);pendingId=null;if(a)openEditor(a);}}
   catch{user=null;$('#manage-body').innerHTML='<div class="backend-needed"><h3>Chưa kết nối máy chủ quản lý</h3><p>Bạn vẫn có thể xem bộ sưu tập trên trang này. Để thêm và chỉnh sửa tác phẩm, hãy mở bản website chạy cùng MongoDB trên máy hoặc trên máy chủ của bạn.</p><p>Dữ liệu sẽ chỉ được lưu khi kết nối thành công; biểu mẫu không lưu tạm vào trình duyệt.</p></div>';}
 }
 function showLogin(setup=false){
@@ -86,6 +86,16 @@ $('#remove-video').addEventListener('click',()=>{
   $('#editor-video').pause();$('#editor-video').removeAttribute('src');$('#editor-video').load();$('#editor-video').hidden=true;
   if(videoUrl)URL.revokeObjectURL(videoUrl);videoUrl=null;$('#remove-video').hidden=true;$('#video-filename').textContent='Không gắn video với tác phẩm này.';unsaved=true;
 });
+async function uploadMedia(file){
+  if(!directUploads)return api('/uploads',{method:'POST',headers:{'Content-Type':file.type},body:file,signal:AbortSignal.timeout(150000)});
+  const {upload}=await api('/uploads/sign',{method:'POST',body:JSON.stringify({mimeType:file.type,sizeBytes:file.size})});
+  const form=new FormData();for(const [name,value] of Object.entries(upload.fields))form.append(name,String(value));form.append('file',file);
+  let response;
+  try{response=await fetch(upload.url,{method:'POST',body:form,credentials:'omit',signal:AbortSignal.timeout(150000)});}
+  catch{throw new Error('Không tải được tệp lên Cloudinary. Kiểm tra kết nối và thử lại.');}
+  if(!response.ok)throw new Error('Cloudinary không nhận được tệp. Kiểm tra định dạng, dung lượng và thử lại.');
+  return api('/uploads/complete',{method:'POST',body:JSON.stringify({id:upload.id})});
+}
 $('#artwork-form').addEventListener('submit',async e=>{
   e.preventDefault();if(busy)return;const form=e.currentTarget;
   const file=form.elements.imageFile.files[0];if(!selected&&!file)return setEditorError('Chọn ảnh đại diện cho tác phẩm mới.');
@@ -93,9 +103,9 @@ $('#artwork-form').addEventListener('submit',async e=>{
   const controls=[...form.elements],disabled=controls.map(c=>c.disabled),formData=new FormData(form);controls.forEach(c=>c.disabled=true);
   try{
     let imageId=pendingMediaId||selected?.imageId;
-    if(file&&!pendingMediaId){submit.textContent='Đang tải ảnh…';const result=await api('/uploads',{method:'POST',headers:{'Content-Type':file.type},body:file,signal:AbortSignal.timeout(150000)});imageId=result.media.id;pendingMediaId=imageId;}
+    if(file&&!pendingMediaId){submit.textContent='Đang tải ảnh…';const result=await uploadMedia(file);imageId=result.media.id;pendingMediaId=imageId;}
     const videoFile=formData.get('videoFile');let videoId=videoRemoved?'':pendingVideoId||selected?.videoId||'';
-    if(videoFile?.size&&!pendingVideoId){submit.textContent='Đang tải video…';const result=await api('/uploads',{method:'POST',headers:{'Content-Type':videoFile.type},body:videoFile,signal:AbortSignal.timeout(150000)});videoId=result.media.id;pendingVideoId=videoId;}
+    if(videoFile?.size&&!pendingVideoId){submit.textContent='Đang tải video…';const result=await uploadMedia(videoFile);videoId=result.media.id;pendingVideoId=videoId;}
     const data=Object.fromEntries(formData);for(const name of ['originalTitle','source','license'])data[name]=selected?.[name]||'';delete data.imageFile;delete data.videoFile;data.year=Number(data.year);data.tags=Array.isArray(selected?.tags)?selected.tags:[];data.imageId=imageId;data.videoId=videoId;if(selected)data.revision=selected.revision;
     const {item}=await api(selected?'/artworks/'+encodeURIComponent(selected.id):'/artworks',{method:selected?'PUT':'POST',body:JSON.stringify(data)});
     unsaved=false;busy=false;$('#editor-dialog').close();clearPreviews();

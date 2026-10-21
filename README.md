@@ -2,6 +2,8 @@
 
 Website mỹ thuật với giao diện bảo tàng theo ảnh tham khảo. Phiên bản hiện tại dùng **Node.js + MongoDB Atlas + Cloudinary** để lưu tác phẩm, tài khoản quản trị, phiên đăng nhập và metadata ảnh/video. Bộ sưu tập ban đầu có 7 hiện vật gốm Việt từ The Met.
 
+Website: [net-museum-tau.vercel.app](https://net-museum-tau.vercel.app). Xem [hướng dẫn triển khai Vercel](docs/VERCEL.md) để cấu hình backend và biến môi trường.
+
 ## Các trang riêng
 
 | Trang | Đường dẫn |

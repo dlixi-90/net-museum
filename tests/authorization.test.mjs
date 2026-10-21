@@ -19,7 +19,7 @@ test('HTTP permissions: guests/readers denied, two allowed admins admitted, revo
     return {status:response.status,body:await response.json(),cookie:response.headers.get('set-cookie')?.split(';')[0]};
   };
   const deniedWrites=async(cookie,status)=>{
-    for(const [route,method] of [['/api/artworks','POST'],['/api/artworks/37557','PUT'],['/api/uploads','POST']]){
+    for(const [route,method] of [['/api/artworks','POST'],['/api/artworks/37557','PUT'],['/api/uploads','POST'],['/api/uploads/sign','POST'],['/api/uploads/complete','POST']]){
       assert.equal((await call(route,{method,body:{role:'admin',email:emails[0]},cookie,headers:{'X-User-Role':'admin'}})).status,status,route);
     }
   };

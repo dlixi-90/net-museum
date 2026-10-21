@@ -24,6 +24,19 @@ export function createCloudinaryStorage({env=process.env,sdk=cloudinary}={}){
   const options=()=>({...cloudinaryConfig(env),secure:true});
   return {
     assertConfigured(){options();},
+    signUpload({id,resourceType}){
+      const config=options(),fields={timestamp:Math.floor(Date.now()/1000),public_id:`net-museum/${resourceType}/${id}`,overwrite:false,allowed_formats:resourceType==='image'?'jpg,jpeg,png,webp':'mp4,webm,mov',...(resourceType==='image'?{transformation:'c_limit,w_2000,h_2000/q_85',format:'webp'}:{format:'mp4'})};
+      return {url:`https://api.cloudinary.com/v1_1/${config.cloud_name}/${resourceType}/upload`,fields:{...fields,api_key:config.api_key,signature:sdk.utils.api_sign_request(fields,config.api_secret)}};
+    },
+    async resolveUpload({id,resourceType}){
+      const publicId=`net-museum/${resourceType}/${id}`;
+      let result;
+      try{result=await sdk.api.resource(publicId,{...options(),resource_type:resourceType,type:'upload'});}
+      catch{throw new HttpError(502,'Chưa xác nhận được tệp trên Cloudinary. Vui lòng thử lưu lại.');}
+      const valid=result.public_id===publicId&&result.resource_type===resourceType&&result.width>0&&result.height>0&&result.bytes>0&&result.bytes<=(resourceType==='video'?VIDEO_LIMIT:IMAGE_LIMIT)&&result.secure_url?.startsWith('https://')&&result.format===(resourceType==='image'?'webp':'mp4');
+      if(!valid){await this.remove({publicId,resourceType}).catch(()=>{});throw new HttpError(422,'Tệp tải lên không phải ảnh hoặc video hợp lệ, hoặc vượt quá dung lượng cho phép.');}
+      return {storage:'cloudinary',publicId,resourceType,url:result.secure_url,format:result.format.toUpperCase(),mimeType:resourceType==='image'?'image/webp':'video/mp4',sizeBytes:result.bytes,width:result.width,height:result.height,...(resourceType==='video'?{duration:result.duration||0}:{}),version:result.version};
+    },
     async upload(buffer,{id,resourceType}){
       try{
         const result=await new Promise((resolve,reject)=>{

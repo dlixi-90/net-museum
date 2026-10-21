@@ -13,6 +13,7 @@ export async function initializeDatabase(db,{seed=true}={}) {
     db.collection('artworks').createIndex({category:1,year:1}),
     db.collection('artworks').createIndex({title:'text',author:'text',description:'text',tags:'text'},{default_language:'none'}),
     db.collection('media').createIndex({id:1},{unique:true}),
+    db.collection('upload_intents').createIndex({expiresAt:1},{expireAfterSeconds:0}),
     db.collection('sessions').createIndex({expiresAt:1},{expireAfterSeconds:0}),
     db.collection('users').createIndex({email:1},{unique:true}),
     db.collection('collections').createIndex({key:1},{unique:true}),

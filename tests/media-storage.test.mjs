@@ -30,3 +30,17 @@ test('video container checks reject renamed text and mismatched WebM/MP4 files',
   assert.throws(()=>validateVideo(Buffer.from('text'),'video/mp4'));
   assert.throws(()=>validateVideo(mp4,'video/webm'));
 });
+
+test('direct Cloudinary uploads sign fixed fields and verify metadata without trusting the browser',async()=>{
+  let signed,lookedUp,removed=false;
+  const sdk={utils:{api_sign_request(fields,secret){signed={fields,secret};return 'signed';}},api:{async resource(publicId,options){lookedUp={publicId,options};return {public_id:publicId,resource_type:options.resource_type,width:20,height:24,bytes:100,secure_url:'https://res.cloudinary.com/test/file.webp',format:'webp',version:1};}},uploader:{async destroy(){removed=true;}}};
+  const storage=createCloudinaryStorage({env,sdk});
+  const upload=storage.signUpload({id:'known-id',resourceType:'image'});
+  assert.equal(signed.secret,env.CLOUDINARY_API_SECRET);assert.equal(signed.fields.overwrite,false);assert.equal(signed.fields.format,'webp');
+  assert.equal(upload.fields.signature,'signed');assert.equal(upload.fields.api_secret,undefined);assert.equal(upload.fields.public_id,'net-museum/image/known-id');
+  const media=await storage.resolveUpload({id:'known-id',resourceType:'image'});
+  assert.equal(lookedUp.publicId,'net-museum/image/known-id');assert.equal(lookedUp.options.api_secret,env.CLOUDINARY_API_SECRET);assert.equal(media.sizeBytes,100);assert.equal(media.api_secret,undefined);
+  await assert.rejects(storage.resolveUpload({id:'known-id',resourceType:'video'}),e=>e.status===422);assert.equal(removed,true);
+  sdk.api.resource=async()=>{throw Error('secret '+env.CLOUDINARY_API_SECRET);};
+  await assert.rejects(storage.resolveUpload({id:'known-id',resourceType:'image'}),e=>e.status===502&&!e.message.includes(env.CLOUDINARY_API_SECRET));
+});

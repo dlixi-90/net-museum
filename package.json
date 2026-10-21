@@ -10,8 +10,8 @@
     "db:start": "node scripts/start-mongodb.mjs",
     "db:seed": "node database/seed-mongodb.mjs",
     "db:check": "node scripts/check-database.mjs",
-    "check": "node scripts/build-pages.mjs --check && node --check dist/app.js && node --check dist/hero.js && node --check dist/search-redirect.js && node --check dist/manage.js && node --check dist/access.js && node --check server/auth.mjs && node --check server/index.mjs && node --check server/app.mjs && node --check scripts/migrate-cloudinary.mjs && node --test tests/auth.test.mjs tests/core.test.mjs tests/validation.test.mjs tests/mongo-config.test.mjs tests/media-storage.test.mjs",
-    "test:integration": "node --test tests/api.test.mjs tests/authorization.test.mjs",
+    "check": "node scripts/build-pages.mjs --check && node --check dist/app.js && node --check dist/hero.js && node --check dist/search-redirect.js && node --check dist/manage.js && node --check dist/access.js && node --check server/auth.mjs && node --check server/index.mjs && node --check server/app.mjs && node --check api/index.mjs && node --check scripts/migrate-cloudinary.mjs && node --test tests/auth.test.mjs tests/core.test.mjs tests/validation.test.mjs tests/mongo-config.test.mjs tests/media-storage.test.mjs",
+    "test:integration": "node --test tests/api.test.mjs tests/authorization.test.mjs tests/direct-uploads.test.mjs",
     "cloudinary:check": "node scripts/check-cloudinary.mjs",
     "media:migrate": "node scripts/migrate-cloudinary.mjs"
   },
@@ -22,5 +22,8 @@
   },
   "devDependencies": {
     "mongodb-memory-server-core": "^11.3.0"
+  },
+  "engines": {
+    "node": "24.x"
   }
 }
