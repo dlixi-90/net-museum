@@ -539,11 +539,12 @@ h1,h2,h3{font-weight:500;text-wrap:pretty}
 }
 
 /* Shared layout rails: every page uses the same content and outer frame. */
+html{scrollbar-gutter:stable both-edges}
 :root{
- --content-max:1480px;
- --frame-max:1540px;
- --page-gutter:32px;
- --frame-gutter:12px;
+ --content-max:1400px;
+ --frame-max:1480px;
+ --page-gutter:48px;
+ --frame-gutter:32px;
  --grid-gap:24px;
  --section-space:56px;
  --panel-space:48px;
@@ -578,7 +579,7 @@ h1,h2,h3{font-weight:500;text-wrap:pretty}
  .home-featured .home-artworks{grid-column:auto}
 }
 @media(max-width:950px){
- :root{--page-gutter:24px;--section-space:40px;--panel-space:36px}
+ :root{--page-gutter:24px;--frame-gutter:16px;--section-space:40px;--panel-space:36px}
 }
 @media(max-width:760px){
  :root{--page-gutter:18px;--frame-gutter:10px;--grid-gap:18px;--section-space:34px;--panel-space:28px}
