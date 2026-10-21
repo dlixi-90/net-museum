@@ -10,8 +10,9 @@ export function syncAccess(){
   const account=document.querySelector('#account-link');
   if(account){
     account.hidden=admin;
-    account.innerHTML=user?'Đăng xuất <span aria-hidden="true">↗</span>':'Đăng nhập <span aria-hidden="true">↗</span>';
-    account.setAttribute('aria-label',user?'Đăng xuất tài khoản':'Đăng nhập tài khoản');
+    account.href='/tai-khoan/';
+    account.innerHTML=user?'Tài khoản <span aria-hidden="true">↗</span>':'Đăng nhập <span aria-hidden="true">↗</span>';
+    account.setAttribute('aria-label',user?'Tài khoản của bạn':'Đăng nhập hoặc đăng ký tài khoản');
   }
   window.dispatchEvent(new Event('net-access-updated'));
 }
@@ -39,12 +40,6 @@ export function loadSession({refresh=false}={}){
 export function initAccess(){
   syncAccess();
   loadSession().catch(()=>{});
-  document.querySelector('#account-link')?.addEventListener('click',async event=>{
-    if(!session?.user)return;
-    event.preventDefault();
-    try{await api('/auth/logout',{method:'POST'});setSession(null);location.assign('/');}
-    catch{const toast=document.querySelector('#toast');if(toast){toast.textContent='Chưa đăng xuất được. Vui lòng thử lại.';toast.classList.add('visible');}}
-  });
   window.addEventListener('pageshow',event=>{if(event.persisted)loadSession({refresh:true}).catch(()=>{});});
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)loadSession({refresh:true}).catch(()=>{});});
 }

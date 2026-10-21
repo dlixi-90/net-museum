@@ -39,6 +39,20 @@ export function createRequestHandler({db,uploadDir=fileURLToPath(new URL('../upl
       const user=await getSession(req,db,administrators),setupAvailable=allowSetup&&administrators.size>0;
       return json(res,200,{user:user?{name:user.name,email:user.email,role:user.role}:null,directUploads,setupAvailable,setupRequired:setupAvailable&&!await db.collection('users').findOne({email:{$in:[...administrators]}})});
     }
+    if(pathname==='/api/auth/register'&&req.method==='POST'){
+      const raw=await jsonBody(req),body=validateCredentials(raw,{setup:true});
+      if(raw.confirmPassword!==body.password)throw new HttpError(422,'Mật khẩu nhập lại chưa khớp.',{confirmPassword:'Nhập lại đúng mật khẩu đã chọn.'});
+      if(accountRole(body.email,administrators)==='admin')throw new HttpError(403,'Email này dành cho tài khoản quản trị. Vui lòng đăng nhập bằng tài khoản đã được cấp.',{email:'Dùng email khác để tạo tài khoản cá nhân.'});
+      const address=process.env.VERCEL==='1'?String(req.headers['x-forwarded-for']||'').split(',')[0].trim():req.socket.remoteAddress;
+      const windowMs=15*60*1000,windowStart=Math.floor(Date.now()/windowMs)*windowMs;
+      const limitId=createHash('sha256').update(`register:${address}:${windowStart}`).digest('hex');
+      const attempt=await db.collection('auth_limits').findOneAndUpdate({_id:limitId},{$inc:{count:1},$setOnInsert:{expiresAt:new Date(windowStart+windowMs)}},{upsert:true,returnDocument:'after'});
+      if(attempt.count>10)throw new HttpError(429,'Bạn đã thử đăng ký nhiều lần. Vui lòng thử lại sau 15 phút.');
+      const user={_id:randomUUID(),name:body.name,email:body.email,role:'user',passwordHash:await passwordHash(body.password),createdAt:new Date()};
+      try{await db.collection('users').insertOne(user);}catch(error){if(error.code===11000)throw new HttpError(409,'Email đã được sử dụng. Bạn có thể đăng nhập bằng tài khoản này.',{email:'Email đã có tài khoản.'});throw error;}
+      const token=await newSession(db,user);
+      return json(res,201,{user:{name:user.name,email:user.email,role:'user'}},{'Set-Cookie':sessionCookie(token,{secure:secureCookies})});
+    }
     if(pathname==='/api/auth/setup'&&req.method==='POST'){
       if(!allowSetup)throw new HttpError(403,'Thiết lập quản trị ban đầu chỉ được mở trong môi trường cục bộ.');
       const body=validateCredentials(await jsonBody(req),{setup:true});

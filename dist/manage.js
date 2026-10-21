@@ -3,7 +3,7 @@ import {isAdmin,loadSession,setSession,sessionUser} from './access.js';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 let user=null,items=[],selected=null,pendingId=null,imageUrl=null,videoUrl=null,pendingMediaId=null,pendingVideoId=null,videoRemoved=false,unsaved=false,busy=false,setupAvailable=false,directUploads=false;
 function clearPreviews(){if(imageUrl)URL.revokeObjectURL(imageUrl);if(videoUrl)URL.revokeObjectURL(videoUrl);imageUrl=videoUrl=null;$('#editor-video').pause();$('#editor-video').removeAttribute('src');$('#editor-video').load();}
-function message(text,error=false){const node=$('#manage-message');node.textContent=text;node.classList.toggle('error',error);}
+function message(text='',error=false){$('#manage-error').textContent=error?text:'';}
 function setEditorError(text){$('#editor-error').textContent=text;}
 function showManage(){$('#manage-panel').setAttribute('aria-busy','false');}
 function hideEditor(){if(busy)return;if(unsaved&&!window.confirm('Bạn có thay đổi chưa lưu. Đóng biểu mẫu?'))return;$('#editor-dialog').close();clearPreviews();}
@@ -13,7 +13,7 @@ async function openManager(id=null){
   catch{user=null;$('#manage-body').innerHTML='<div class="backend-needed"><h3>Chưa kết nối máy chủ quản lý</h3><p>Bạn vẫn có thể xem bộ sưu tập trên trang này. Để thêm và chỉnh sửa tác phẩm, hãy mở bản website chạy cùng MongoDB trên máy hoặc trên máy chủ của bạn.</p><p>Dữ liệu sẽ chỉ được lưu khi kết nối thành công; biểu mẫu không lưu tạm vào trình duyệt.</p></div>';}
 }
 function showLogin(setup=false){
-  $('#manage-body').innerHTML=`<form id="admin-auth-form" class="auth-form"><h3>${setup?'Thiết lập tài khoản quản trị':'Đăng nhập'}</h3><p>${setup?'Chỉ email được cấu hình trong danh sách quản trị mới có thể tạo tài khoản trên máy này.':'Đăng nhập bằng tài khoản Nét của bạn.'}</p>${setup?'<label>Họ tên<input name="name" autocomplete="name" required maxlength="150"></label>':''}<label>Email<input name="email" type="email" autocomplete="username" required maxlength="254"></label><label>Mật khẩu<input name="password" type="password" autocomplete="${setup?'new-password':'current-password'}" required minlength="${setup?10:1}" maxlength="200"></label>${setup?'<small>Mật khẩu ít nhất 10 ký tự. Thiết lập này chỉ mở trên máy cục bộ.</small>':''}<p id="auth-error" class="form-error" role="alert"></p><button class="button button-dark" type="submit">${setup?'Tạo tài khoản & tiếp tục':'Đăng nhập'} ↗</button>${setupAvailable?`<button id="auth-switch" type="button" class="text-link">${setup?'Đã có tài khoản? Đăng nhập':'Thiết lập tài khoản quản trị trên máy này'}</button>`:''}</form>`;
+  $('#manage-body').innerHTML=`<form id="admin-auth-form" class="auth-form"><h3>${setup?'Thiết lập tài khoản quản trị':'Đăng nhập'}</h3><p>${setup?'Chỉ email được cấu hình trong danh sách quản trị mới có thể tạo tài khoản trên máy này.':'Đăng nhập bằng tài khoản Nét của bạn.'}</p>${setup?'<label>Họ tên<input name="name" autocomplete="name" required maxlength="150"></label>':''}<label>Email<input name="email" type="email" autocomplete="username" required maxlength="254"></label><label>Mật khẩu<input name="password" type="password" autocomplete="${setup?'new-password':'current-password'}" required minlength="${setup?10:1}" maxlength="200"></label>${setup?'<small>Mật khẩu ít nhất 10 ký tự. Thiết lập này chỉ mở trên máy cục bộ.</small>':''}<p id="auth-error" class="form-error" role="alert"></p><button class="button button-dark" type="submit">${setup?'Tạo tài khoản & tiếp tục':'Đăng nhập'} ↗</button>${setupAvailable?`<button id="auth-switch" type="button" class="text-link">${setup?'Đã có tài khoản? Đăng nhập':'Thiết lập tài khoản quản trị trên máy này'}</button>`:''}<a class="manager-register" href="/tai-khoan/?mode=register">Chưa có tài khoản? Đăng ký</a></form>`;
   $('#auth-switch')?.addEventListener('click',()=>showLogin(!setup));
   $('#admin-auth-form').addEventListener('submit',async e=>{e.preventDefault();const form=e.currentTarget,button=form.querySelector('button');button.disabled=true;$('#auth-error').textContent='';try{const body=Object.fromEntries(new FormData(form));const result=await api(setup?'/auth/setup':'/auth/login',{method:'POST',body:JSON.stringify(body)});user=result.user;setSession(user);if(!isAdmin(user))return showDenied();await renderManager();if(pendingId){const a=items.find(a=>a.id===pendingId);pendingId=null;if(a)openEditor(a);}}catch(error){$('#auth-error').textContent=error.message;}finally{button.disabled=false;}});
 }
@@ -34,7 +34,7 @@ async function renderManager(){
   renderRows();$('#manager-query').addEventListener('input',renderRows);
   $('#add-artwork').addEventListener('click',()=>openEditor());
   $('#reload-manager').addEventListener('click',reloadManager);
-  $('#admin-logout').addEventListener('click',async()=>{try{await api('/auth/logout',{method:'POST'});user=null;items=[];setSession(null);showLogin(false);message('Đã đăng xuất.');}catch(e){message(e.message,true);}});
+  $('#admin-logout').addEventListener('click',async()=>{try{await api('/auth/logout',{method:'POST'});user=null;items=[];setSession(null);showLogin(false);}catch(e){message(e.message,true);}});
 }
 async function reloadManager(event){
   const button=event.currentTarget,label=button.querySelector('span');
@@ -109,8 +109,8 @@ $('#artwork-form').addEventListener('submit',async e=>{
     const data=Object.fromEntries(formData);for(const name of ['originalTitle','source','license'])data[name]=selected?.[name]||'';delete data.imageFile;delete data.videoFile;data.year=Number(data.year);data.tags=Array.isArray(selected?.tags)?selected.tags:[];data.imageId=imageId;data.videoId=videoId;if(selected)data.revision=selected.revision;
     const {item}=await api(selected?'/artworks/'+encodeURIComponent(selected.id):'/artworks',{method:selected?'PUT':'POST',body:JSON.stringify(data)});
     unsaved=false;busy=false;$('#editor-dialog').close();clearPreviews();
-    window.dispatchEvent(new CustomEvent('catalog-updated',{detail:{id:item.id}}));await renderManager();message(selected?'Đã lưu thay đổi tác phẩm.':'Đã thêm tác phẩm vào bộ sưu tập.');
-  }catch(error){if(error.status===401){message('Phiên đăng nhập đã hết hạn. Đóng biểu mẫu và đăng nhập lại.',true);}setEditorError(error.message+(error.fields?' '+Object.values(error.fields).join(' '):''));}
+    window.dispatchEvent(new CustomEvent('catalog-updated',{detail:{id:item.id}}));await renderManager();
+  }catch(error){setEditorError(error.message+(error.fields?' '+Object.values(error.fields).join(' '):''));}
   finally{busy=false;controls.forEach((c,i)=>c.disabled=disabled[i]);submit.textContent=selected?'Lưu thay đổi ↗':'Thêm vào bộ sưu tập ↗';}
 });
 document.addEventListener('click',e=>{

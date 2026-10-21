@@ -64,12 +64,19 @@ export const pages = [
     body: `${breadcrumb("Tác phẩm")}<section id="artwork-detail" class="artwork-detail wrap"><p class="loading-message">Đang mở hồ sơ tác phẩm…</p></section><section class="related-section wrap"><div class="section-line"><span>TIẾP TỤC HÀNH TRÌNH</span><a class="text-link" href="/bo-suu-tap/">Toàn bộ bộ sưu tập ↗</a></div><div id="related-artworks" class="home-artworks"></div></section>`,
   },
   {
+    key: "account",
+    path: "tai-khoan/index.html",
+    title: "Tài khoản — Đăng nhập và đăng ký",
+    description: "Tạo tài khoản Nét và tiếp tục hành trình khám phá nghệ thuật của bạn.",
+    body: `${breadcrumb("Tài khoản")}<section class="account-page wrap" aria-label="Tài khoản Nét"><div id="account-body"><p class="loading-message">Đang mở tài khoản…</p></div></section>`,
+  },
+  {
     key: "manage",
     path: "quan-ly/index.html",
     title: "Quản lý tác phẩm",
     description:
       "Không gian quản trị bộ sưu tập — thêm, chỉnh sửa tác phẩm và ảnh đại diện.",
-    body: `${heading("KHÔNG GIAN QUẢN TRỊ")}<section id="manage-panel" class="manager-page wrap" aria-label="Quản lý tác phẩm"><p id="manage-message" class="manage-message" role="status"></p><div id="manage-body"><p class="loading-message">Đang kết nối không gian quản trị…</p></div></section>${editor}`,
+    body: `${heading("KHÔNG GIAN QUẢN TRỊ")}<section id="manage-panel" class="manager-page wrap" aria-label="Quản lý tác phẩm"><p id="manage-error" class="form-error manager-error" role="alert"></p><div id="manage-body"><p class="loading-message">Đang kết nối không gian quản trị…</p></div></section>${editor}`,
   },
   {
     key: "stats",

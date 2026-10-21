@@ -16,8 +16,7 @@ function readStore(key, fallback) {
 }
 const previous = readStore("net.saved", []);
 let saved = new Set(Array.isArray(previous) ? previous.map(String) : []),
-  artworks = [],
-  toastTimer;
+  artworks = [];
 const params = new URLSearchParams(location.search);
 let state = {
   query: params.get("q") || "",
@@ -31,17 +30,14 @@ let state = {
     ? params.get("sort")
     : "curated",
 };
-function toast(text) {
-  clearTimeout(toastTimer);
-  $("#toast").textContent = text;
-  $("#toast").classList.add("visible");
-  toastTimer = setTimeout(() => $("#toast").classList.remove("visible"), 3500);
+function announce(text) {
+  $("#app-status").textContent = text;
 }
 function persist(key, value) {
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch {
-    toast("Trình duyệt chưa cho phép lưu. Thay đổi được giữ trong phiên này.");
+    announce("Trình duyệt chưa cho phép lưu. Thay đổi được giữ trong phiên này.");
   }
 }
 function updateSaved() {
@@ -63,7 +59,7 @@ function toggleSave(id) {
   persist("net.saved", [...saved]);
   updateSaved();
   if (page === "saved") renderGallery();
-  toast(saved.has(id) ? "Đã giữ lại một cảm hứng." : "Đã bỏ lưu tác phẩm.");
+  announce(saved.has(id) ? "Đã giữ lại một cảm hứng." : "Đã bỏ lưu tác phẩm.");
 }
 const artworkUrl = (id) => "/tac-pham/?id=" + encodeURIComponent(id);
 function card(a, index) {

@@ -14,6 +14,7 @@ Website: [net-museum-tau.vercel.app](https://net-museum-tau.vercel.app). Xem [h�
 | Câu chuyện nghệ thuật | `/cau-chuyen/` |
 | Về bảo tàng | `/ve-bao-tang/` |
 | Tác phẩm đã lưu | `/da-luu/` |
+| Đăng nhập, đăng ký và tài khoản cá nhân | `/tai-khoan/` |
 | Chi tiết tác phẩm | `/tac-pham/?id=37557` |
 | Quản lý và thêm/sửa tác phẩm | `/quan-ly/` |
 | Thống kê bộ sưu tập | `/thong-ke/` |
@@ -44,7 +45,7 @@ Terminal thứ hai:
 npm.cmd start
 ```
 
-Mở **http://localhost:3000** → **Đăng nhập** → thiết lập tài khoản có email trong `ADMIN_EMAILS` nếu chưa có → sau khi đăng nhập admin mới thấy **Quản lý** và **Thêm tác phẩm**. Điền thông tin, chọn ảnh và video giới thiệu tùy chọn. Thiết lập Cloudinary theo hướng dẫn bên dưới trước khi tải tệp. Muốn sửa, chọn **Chỉnh sửa** trong bảng quản lý. Khi lưu thành công, danh sách và bộ sưu tập được cập nhật từ MongoDB.
+Mở **http://localhost:3000** → **Đăng nhập** hoặc **Đăng ký** để dùng tài khoản cá nhân. Với tài khoản quản trị chưa được cấp, mở `/quan-ly/` trên máy cục bộ để thiết lập email trong `ADMIN_EMAILS`; sau khi đăng nhập admin mới thấy **Quản lý** và **Thêm tác phẩm**. Điền thông tin, chọn ảnh và video giới thiệu tùy chọn. Thiết lập Cloudinary theo hướng dẫn bên dưới trước khi tải tệp. Muốn sửa, chọn **Chỉnh sửa** trong bảng quản lý. Khi lưu thành công, danh sách và bộ sưu tập được cập nhật từ MongoDB.
 
 Backend tự tạo index và nhập 7 tác phẩm mẫu bằng `$setOnInsert`: khởi động lại không ghi đè tác phẩm đã chỉnh sửa. Muốn chạy seed riêng: `npm.cmd run db:seed`.
 

@@ -8,10 +8,18 @@ ADMIN_EMAILS=admin1@example.com,admin2@example.com
 
 Sau khi thay đổi danh sách, khởi động lại backend bằng `npm.cmd start`. Tài khoản không còn trong danh sách sẽ thành user thường, kể cả khi MongoDB vẫn lưu `role: admin` hoặc phiên cũ chưa hết hạn. Không lấy quyền từ localStorage hay từ trường `role` gửi lên từ trình duyệt.
 
-## Tạo tài khoản và đăng nhập
+## Đăng ký tài khoản cá nhân
+
+Khách mở `/tai-khoan/` và chọn **Đăng ký**, hoặc mở trực tiếp `/tai-khoan/?mode=register`. Nhập họ tên, email, mật khẩu ít nhất 10 ký tự và nhập lại mật khẩu. Đăng ký thành công sẽ tạo phiên đăng nhập và mở trang tài khoản; không hiện banner thông báo.
+
+Đăng ký công khai chỉ tạo user thường, bỏ qua mọi trường giả mạo quyền admin. Các email trong `ADMIN_EMAILS` được dành riêng cho quy trình cấp tài khoản quản trị, không được tự đăng ký công khai. Email trùng không ghi đè tài khoản đã có. Giới hạn đăng ký được lưu trong MongoDB và dùng chung giữa các instance Vercel. Chưa có bước xác minh email qua thư.
+
+Trang tài khoản có liên kết đến bộ sưu tập, tác phẩm đã lưu và nút đăng xuất. Tác phẩm đã lưu vẫn thuộc trình duyệt hiện tại; đăng ký chưa bổ sung đồng bộ giữa các thiết bị.
+
+## Cấp tài khoản quản trị và đăng nhập
 
 1. Chạy bản Node.js đầy đủ trên máy cục bộ với `ALLOW_ADMIN_SETUP=true` và `NODE_ENV=development`.
-2. Bấm **Đăng nhập** ở đầu trang. Nếu chưa có admin, biểu mẫu thiết lập mở sẵn. Nếu đã có tài khoản đầu tiên, chọn **Thiết lập tài khoản quản trị trên máy này** để tạo tài khoản thứ hai.
+2. Mở `/quan-ly/`. Nếu chưa có admin, biểu mẫu thiết lập mở sẵn. Nếu đã có tài khoản đầu tiên, chọn **Thiết lập tài khoản quản trị trên máy này** để tạo tài khoản thứ hai.
 3. Nhập đúng email trong `ADMIN_EMAILS`, họ tên và mật khẩu riêng dài ít nhất 10 ký tự. Mỗi email chỉ tạo được một tài khoản; không ghi đè mật khẩu tài khoản đã có.
 4. Đăng nhập lại bằng mật khẩu Nét đã tạo. Việc thêm email vào `.env` không tự tạo mật khẩu và không phải đăng nhập Google.
 
@@ -25,7 +33,7 @@ Trên production, dùng `ALLOW_ADMIN_SETUP=false`, `NODE_ENV=production`, HTTPS 
 - Chưa đăng nhập: API ghi trả `401`. Đã đăng nhập nhưng không có quyền admin: trả `403`.
 - Khi mất phiên, đổi tài khoản hoặc làm mới quyền sau khi quay lại tab, giao diện ẩn các chức năng quản trị và đóng biểu mẫu đang mở nếu quyền không còn hợp lệ.
 
-Frontend ẩn nút quản trị ngay trong HTML ban đầu. Khi API phiên không kết nối được, nút vẫn ẩn. Bản Sites hiện tại phục vụ website tĩnh; đăng nhập và phân quyền API hoạt động trên bản có backend Node.js cùng origin, không chạy MongoDB trong gói Sites.
+Frontend ẩn nút quản trị ngay trong HTML ban đầu. Khi API phiên không kết nối được, nút vẫn ẩn. Bản Vercel hiện tại chạy cả trang tĩnh và API Node.js cùng origin, kết nối MongoDB Atlas.
 
 ## Kiểm thử
 
