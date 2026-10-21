@@ -608,3 +608,14 @@ html{scrollbar-gutter:stable both-edges}
  .manager-search .manager-reload{width:100%;min-width:0;font-size:14px}
 }
 @media(prefers-reduced-motion:reduce){.manager-reload[aria-busy="true"] svg{animation:none}}
+
+/* Keep image captions readable while making the artwork link clear. */
+.artwork-image-link .card-title{color:#fff;text-shadow:0 2px 12px #0008}
+.artwork-image-link .card-title>span{color:inherit;transition:transform .2s ease,opacity .2s ease}
+.artwork-image-link:is(:hover,:focus-visible) .card-title{color:#fff;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px;text-decoration-skip-ink:auto}
+.artwork-image-link:is(:hover,:focus-visible) .card-title>span{opacity:1;transform:translate(2px,-2px)}
+.artwork-image-link:focus-visible{outline:2px solid #fff;outline-offset:-6px;border-radius:inherit}
+@media(prefers-reduced-motion:reduce){
+ .artwork-image-link img,.artwork-image-link .card-title>span{transition:none}
+ .artwork-image-link:is(:hover,:focus-visible) img,.artwork-image-link:is(:hover,:focus-visible) .card-title>span{transform:none}
+}
