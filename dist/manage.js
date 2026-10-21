@@ -30,7 +30,7 @@ window.addEventListener('net-access-updated',()=>{
 async function renderManager(){
   if(!isAdmin(user))return showDenied();
   const result=await api('/artworks');items=result.items.map(a=>({...a,id:String(a.id)}));
-  $('#manage-body').innerHTML=`<div class="manager-toolbar"><p><strong>${esc(user.name)}</strong><span>Quản trị viên · ${items.length} tác phẩm</span></p><button class="button button-outline" id="admin-logout">Đăng xuất</button><button class="button button-dark" id="add-artwork">+ Thêm tác phẩm</button></div><div class="manager-search"><label>Tìm trong bộ sưu tập<input id="manager-query" type="search" placeholder="Tên tác phẩm, tác giả…"></label><button id="reload-manager" class="text-button">Tải lại danh sách ↻</button></div><div class="manager-table-container"><table class="manager-table"><thead><tr><th>Tác phẩm</th><th>Nhóm nghệ thuật</th><th>Niên đại</th><th>Thao tác</th></tr></thead><tbody id="manager-rows"></tbody></table></div><p class="manager-footnote">Thay đổi được lưu vào MongoDB. Ảnh và video được lưu trên Cloudinary và gắn với hồ sơ tác phẩm.</p>`;
+  $('#manage-body').innerHTML=`<div class="manager-toolbar"><p><strong>${esc(user.name)}</strong></p><button class="button button-outline" id="admin-logout">Đăng xuất</button><button class="button button-dark" id="add-artwork">+ Thêm tác phẩm</button></div><div class="manager-search"><label>Tìm trong bộ sưu tập<input id="manager-query" type="search" placeholder="Tên tác phẩm, tác giả…"></label><button id="reload-manager" class="text-button">Tải lại danh sách ↻</button></div><div class="manager-table-container"><table class="manager-table"><thead><tr><th>Tác phẩm</th><th>Nhóm nghệ thuật</th><th>Niên đại</th><th>Thao tác</th></tr></thead><tbody id="manager-rows"></tbody></table></div>`;
   renderRows();$('#manager-query').addEventListener('input',renderRows);
   $('#add-artwork').addEventListener('click',()=>openEditor());
   $('#reload-manager').addEventListener('click',async()=>{try{await renderManager();message('Đã tải lại danh sách.');}catch(e){message(e.message,true);}});
@@ -44,7 +44,7 @@ function openEditor(artwork=null){
   if(!isAdmin(user))return;
   clearPreviews();selected=artwork;pendingMediaId=pendingVideoId=null;videoRemoved=false;unsaved=false;busy=false;setEditorError('');const form=$('#artwork-form');form.reset();
   $('#editor-title').textContent=artwork?'Chỉnh sửa tác phẩm':'Thêm tác phẩm mới';$('#editor-submit').textContent=artwork?'Lưu thay đổi ↗':'Thêm vào bộ sưu tập ↗';
-  for(const name of ['title','author','category','period','year','material','origin','description','originalTitle','source','license'])form.elements[name].value=artwork?.[name]??({category:'painting',origin:'Việt Nam',author:'Chưa xác định'}[name]||'');
+  for(const name of ['title','author','category','period','year','material','origin','description'])form.elements[name].value=artwork?.[name]??({category:'painting',origin:'Việt Nam',author:'Chưa xác định'}[name]||'');
   form.elements.tags.value=(artwork?.tags||[]).join(', ');$('#editor-image').src=artwork?.image||'/assets/favicon.svg';$('#editor-image').alt=artwork?.title||'Ảnh đại diện đang chờ chọn';$('#image-filename').textContent=artwork?'Ảnh đại diện hiện tại. Chọn tệp để thay ảnh.':'Chọn ảnh JPG, PNG hoặc WebP, tối đa 8 MB.';
   $('#editor-video').hidden=!artwork?.video;if(artwork?.video)$('#editor-video').src=artwork.video;
   $('#video-filename').textContent=artwork?.video?'Video hiện tại. Chọn tệp để thay video.':'Video tùy chọn · MP4, WebM hoặc MOV · tối đa 50 MB.';
@@ -85,7 +85,7 @@ $('#artwork-form').addEventListener('submit',async e=>{
     if(file&&!pendingMediaId){submit.textContent='Đang tải ảnh…';const result=await api('/uploads',{method:'POST',headers:{'Content-Type':file.type},body:file,signal:AbortSignal.timeout(150000)});imageId=result.media.id;pendingMediaId=imageId;}
     const videoFile=formData.get('videoFile');let videoId=videoRemoved?'':pendingVideoId||selected?.videoId||'';
     if(videoFile?.size&&!pendingVideoId){submit.textContent='Đang tải video…';const result=await api('/uploads',{method:'POST',headers:{'Content-Type':videoFile.type},body:videoFile,signal:AbortSignal.timeout(150000)});videoId=result.media.id;pendingVideoId=videoId;}
-    const data=Object.fromEntries(formData);delete data.imageFile;delete data.videoFile;data.year=Number(data.year);data.tags=data.tags.split(',').map(t=>t.trim()).filter(Boolean);data.imageId=imageId;data.videoId=videoId;if(selected)data.revision=selected.revision;
+    const data=Object.fromEntries(formData);for(const name of ['originalTitle','source','license'])data[name]=selected?.[name]||'';delete data.imageFile;delete data.videoFile;data.year=Number(data.year);data.tags=data.tags.split(',').map(t=>t.trim()).filter(Boolean);data.imageId=imageId;data.videoId=videoId;if(selected)data.revision=selected.revision;
     const {item}=await api(selected?'/artworks/'+encodeURIComponent(selected.id):'/artworks',{method:selected?'PUT':'POST',body:JSON.stringify(data)});
     unsaved=false;busy=false;$('#editor-dialog').close();clearPreviews();
     window.dispatchEvent(new CustomEvent('catalog-updated',{detail:{id:item.id}}));await renderManager();message(selected?'Đã lưu thay đổi tác phẩm.':'Đã thêm tác phẩm vào bộ sưu tập.');
