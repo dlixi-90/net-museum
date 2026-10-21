@@ -10,7 +10,7 @@ Website mỹ thuật với giao diện bảo tàng theo ảnh tham khảo. Phiê
 | Bộ sưu tập | `/bo-suu-tap/` |
 | Khám phá theo chủ đề | `/kham-pha/` |
 | Câu chuyện nghệ thuật | `/cau-chuyen/` |
-| Về bảo tàng và nguồn tư liệu | `/ve-bao-tang/` |
+| Về bảo tàng | `/ve-bao-tang/` |
 | Tác phẩm đã lưu | `/da-luu/` |
 | Chi tiết tác phẩm | `/tac-pham/?id=37557` |
 | Quản lý và thêm/sửa tác phẩm | `/quan-ly/` |
