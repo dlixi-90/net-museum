@@ -81,7 +81,7 @@ Xem [hướng dẫn Cloudinary](docs/CLOUDINARY.md). Điền `CLOUDINARY_CLOUD_N
 - Thiết lập từng tài khoản trong `ADMIN_EMAILS` trên máy cục bộ; đăng nhập/đăng xuất. Mật khẩu băm scrypt; phiên cookie HttpOnly lưu hash token trong MongoDB và hết hạn sau 24 giờ.
 - API ghi bắt buộc đăng nhập admin theo `ADMIN_EMAILS`, kiểm tra origin, allowlist trường dữ liệu và loại tệp. Ảnh JPG/PNG/WebP tối đa 8 MB được giải mã thật và chuyển WebP, cạnh dài tối đa 2000 px.
 - Danh mục gốm, hội họa, điêu khắc, đồ họa; tìm theo tên có/không dấu, niên đại và sắp xếp.
-- Chi tiết, phóng ảnh và giọng đọc tổng hợp. Các hàm CBIR cũ trong `core.js` chỉ còn là tiện ích tham khảo, không có giao diện tìm bằng ảnh.
+- Chi tiết tác phẩm với hình ảnh, mô tả và video giới thiệu (nếu có). Các hàm CBIR cũ trong `core.js` chỉ còn là tiện ích tham khảo, không có giao diện tìm bằng ảnh.
 - Yêu thích và lượt mở chi tiết vẫn là dữ liệu trình duyệt; hồ sơ tác phẩm và tài khoản lưu trong MongoDB.
 
 Chưa triển khai xóa tác phẩm, giao diện quản lý tài khoản, nhiều ảnh/tác phẩm, audio/PDF thật, bộ đếm truy cập tập trung và đánh giá CBIR có nhãn.

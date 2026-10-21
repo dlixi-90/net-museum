@@ -55,18 +55,13 @@ function renderDetail(){
   if(!item){$('#artwork-detail').innerHTML='<div class="empty-state"><h1>Chưa tìm thấy tác phẩm này.</h1><p>Tác phẩm có thể đã thay đổi hoặc đường dẫn chưa chính xác.</p><a class="button button-dark" href="/bo-suu-tap/">Trở lại bộ sưu tập ↗</a></div>';return;}
   const views=readStore('net.views',{}),safeViews=views&&typeof views==='object'&&!Array.isArray(views)?views:{};safeViews[item.id]=(Number(safeViews[item.id])||0)+1;persist('net.views',safeViews);
   document.title=item.title+' — Nét';
-  $('#artwork-detail').innerHTML=`<div class="detail-layout"><div class="detail-figure"><div class="zoom-stage"><img id="detail-image" src="${esc(item.image)}" alt="${esc(item.title)}"></div></div><div class="detail-copy"><p class="eyebrow">${esc(categoryNames[item.category]||item.categoryLabel)}</p><h1>${esc(item.title)}</h1><p class="detail-author">${esc(item.author||'Chưa xác định')}</p><p class="detail-description">${esc(item.description)}</p><dl><div><dt>Niên đại</dt><dd>${esc(item.period)}</dd></div><div><dt>Chất liệu</dt><dd>${esc(item.material||item.originalMedium)}</dd></div><div><dt>Xuất xứ</dt><dd>${esc(item.origin)}</dd></div><div><dt>Ảnh số</dt><dd>${esc(item.format||'Ảnh')} · ${(item.sizeBytes/1024).toFixed(1)} KB</dd></div></dl><div class="detail-actions"><button class="button button-dark detail-save" data-save="${esc(item.id)}" aria-pressed="false"></button><button id="speak-description" class="button button-outline">Nghe mô tả ▷</button></div><a data-admin-only hidden class="detail-edit text-link" href="/quan-ly/?edit=${encodeURIComponent(item.id)}">Chỉnh sửa hồ sơ tác phẩm ↗</a></div></div>`;
+  $('#artwork-detail').innerHTML=`<div class="detail-layout"><div class="detail-figure"><div class="zoom-stage"><img id="detail-image" src="${esc(item.image)}" alt="${esc(item.title)}"></div></div><div class="detail-copy"><p class="eyebrow">${esc(categoryNames[item.category]||item.categoryLabel)}</p><h1>${esc(item.title)}</h1><p class="detail-description">${esc(item.description)}</p><dl><div><dt>Niên đại</dt><dd>${esc(item.period)}</dd></div><div><dt>Chất liệu</dt><dd>${esc(item.material||item.originalMedium)}</dd></div><div><dt>Xuất xứ</dt><dd>${esc(item.origin)}</dd></div><div><dt>Ảnh số</dt><dd>${esc(item.format||'Ảnh')} · ${(item.sizeBytes/1024).toFixed(1)} KB</dd></div></dl><div class="detail-actions"><button class="button button-dark detail-save" data-save="${esc(item.id)}" aria-pressed="false"></button></div><a data-admin-only hidden class="detail-edit text-link" href="/quan-ly/?edit=${encodeURIComponent(item.id)}">Chỉnh sửa hồ sơ tác phẩm ↗</a></div></div>`;
   syncAccess();
   if(item.video){
     $('.detail-figure').insertAdjacentHTML('beforeend',`<section class="artwork-video"><p class="eyebrow">VIDEO GIỚI THIỆU</p><video id="artwork-video" controls playsinline preload="metadata" poster="${esc(item.image)}" aria-label="Video giới thiệu: ${esc(item.title)}"><source src="${esc(item.video)}" type="${esc(item.videoMimeType||'video/mp4')}">Trình duyệt chưa hỗ trợ phát video.</video><p id="video-playback-error" class="detail-tip" role="status" hidden>Chưa phát được video. <a href="${esc(item.video)}" target="_blank" rel="noopener noreferrer">Mở video ↗</a></p></section>`);
     const player=$('#artwork-video');player.addEventListener('error',()=>{$('#video-playback-error').hidden=false;});player.querySelector('source').addEventListener('error',()=>{$('#video-playback-error').hidden=false;});
   }
 
-  $('#speak-description').addEventListener('click',()=>{
-    if(!('speechSynthesis'in window))return toast('Thiết bị chưa hỗ trợ giọng đọc. Bạn có thể xem mô tả phía trên.');
-    const button=$('#speak-description');if(speechSynthesis.speaking){speechSynthesis.cancel();button.textContent='Nghe mô tả ▷';return;}
-    const utterance=new SpeechSynthesisUtterance(`${item.title}. ${item.period}. ${item.description}`);utterance.lang='vi-VN';utterance.rate=.88;const voice=speechSynthesis.getVoices().find(v=>v.lang.startsWith('vi'));if(voice)utterance.voice=voice;const end=()=>{button.textContent='Nghe mô tả ▷';};utterance.onend=end;utterance.onerror=()=>{end();toast('Không phát được giọng đọc. Vui lòng xem mô tả văn bản.');};speechSynthesis.speak(utterance);button.textContent='Dừng đọc ■';
-  });
   const related=artworks.filter(a=>a.id!==item.id).sort((a,b)=>(b.category===item.category)-(a.category===item.category)).slice(0,3);$('#related-artworks').innerHTML=related.map((a)=>card(a,artworks.indexOf(a))).join('');updateSaved();
 }
 function renderStats(){
@@ -80,7 +75,6 @@ document.addEventListener('click',e=>{const save=e.target.closest('[data-save]')
 const menu=$('#mobile-menu-toggle');function closeMenu(){$('.museum-header').classList.remove('menu-open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Mở điều hướng');}
 menu.addEventListener('click',()=>{const open=$('.museum-header').classList.toggle('menu-open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Đóng điều hướng':'Mở điều hướng');});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
 window.addEventListener('storage',e=>{if(e.key==='net.saved'){const values=readStore('net.saved',[]);saved=new Set(Array.isArray(values)?values.map(String):[]);updateSaved();if(page==='saved')renderGallery();}});
-window.addEventListener('pagehide',()=>{if('speechSynthesis'in window)speechSynthesis.cancel();});
 updateSaved();
 initHeaderSearch();
 if(['home','collection','saved','artwork','stats'].includes(page)){
