@@ -325,3 +325,203 @@ h1,h2,h3{font-weight:500;text-wrap:pretty}
 @media(min-width:1201px) and (max-width:1450px){.gallery-header nav{gap:28px}}
 @media(max-width:1200px){.gallery-header nav{gap:0}.gallery-header nav a{padding-block:16px}}
 @media(max-width:760px){.breadcrumb{padding-top:18px;margin-bottom:22px}.artwork-detail{padding-top:0}.manager-page{padding-top:20px}.discovery-list{padding-top:0}}
+
+/* Fit the gallery to laptop, tablet and phone viewports at normal browser zoom. */
+.wrap{width:min(1200px,calc(100% - 80px))}
+.gallery-header.wrap{width:min(1320px,calc(100% - 64px));min-height:90px;gap:26px}
+.gallery-brand{font-size:44px;padding-bottom:13px}
+.header-visit{padding:8px 15px;min-height:44px}
+.breadcrumb{padding-top:18px;margin-bottom:22px}
+.gallery-hero{max-width:1440px;height:clamp(440px,calc(100svh - 160px),640px)}
+.gallery-hero-heading{padding:40px 32px 0}
+.gallery-hero h1{font-size:clamp(40px,4.3vw,64px);max-width:1000px;margin-top:18px}
+.gallery-hero-bottom{left:32px;right:32px;bottom:30px;gap:24px}
+.gallery-hero-bottom>p{font-size:15px;line-height:1.8;max-width:330px}
+.gallery-hero-bottom>.button{min-height:46px;font-size:14px}
+.home-featured{gap:40px;padding-block:56px}
+.feature-intro h2,.story-intro h2,.section-heading h2,.gallery-faq h2,.curated-heading h2{font-size:clamp(30px,3vw,42px);line-height:1.4}
+.feature-intro>p,.story-intro>p{font-size:16px;line-height:1.85;margin-top:18px}
+.home-featured .home-artworks,.home-artworks,.artwork-grid{gap:22px}
+.artwork-grid .artwork-image,.home-artworks .artwork-image{aspect-ratio:4/4.6}
+.artwork-card h3{font-size:clamp(20px,1.8vw,25px);line-height:1.4}
+.artwork-caption{left:18px;right:18px;bottom:18px}
+.artwork-index{top:15px;left:15px}
+.artwork-save{top:14px;right:14px}
+.artwork-period{margin-bottom:8px}
+.curated-section{padding-block:46px}
+.curated-tabs{margin-block:24px 28px;gap:24px}
+.home-story{padding-block:56px;gap:56px}
+.home-story .story-image{aspect-ratio:1;max-height:480px}
+.gallery-journeys{padding-bottom:50px}
+.journey-grid{margin-top:26px;gap:20px}
+.journey-grid>a{padding:24px}
+.journey-grid svg{margin-top:22px}
+.journey-grid h3{font-size:21px}
+.gallery-faq{gap:50px;padding-block:30px 56px}
+.faq-list summary{font-size:16px;padding-block:19px}
+.collection-controls{padding:10px 14px;gap:16px}
+.filter-tabs button{padding:7px 15px}
+.results-top{padding-block:18px}
+.results-top>span{max-width:55%;text-align:right}
+.discovery{min-height:0;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.discovery-photo{position:relative;min-height:360px;height:auto}
+.discovery-photo img{position:absolute;inset:0;width:100%;height:100%}
+.discovery-copy,.discovery:nth-child(even) .discovery-copy{min-width:0;min-height:0;padding:36px 40px}
+.discovery-copy h2{font-size:clamp(30px,3vw,42px);line-height:1.35;margin-top:16px}
+.discovery-copy>p:not(.eyebrow){font-size:16px;line-height:1.85;max-width:340px;margin-top:18px}
+.discovery-link{margin-top:24px}
+.discovery-number{font-size:60px}
+.story-cover>img{height:clamp(300px,58svh,500px)}
+.article-body{margin-block:38px}
+.article-body .article-lead{font-size:24px;line-height:1.8}
+.article-body h2,.article-body blockquote{font-size:30px}
+.article-detail{height:clamp(260px,50svh,400px)}
+.about-spread{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;margin-bottom:44px}
+.about-image{aspect-ratio:auto;height:clamp(360px,62svh,520px)}
+.about-symbol{font-size:84px;letter-spacing:-.07em;line-height:1.25}
+.about-copy h2{font-size:32px;line-height:1.45;margin-top:12px}
+.about-copy>p{max-width:100%;font-size:16px;line-height:1.85;margin-top:20px}
+.about-copy .text-link{margin-top:20px}
+.about-principles{padding:28px;gap:32px;margin-bottom:50px}
+.about-principles h3{font-size:27px}
+.detail-layout{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:40px}
+.zoom-stage{height:clamp(340px,65svh,560px)}
+.detail-copy{min-width:0}
+.detail-copy h1{font-size:clamp(30px,3vw,42px);line-height:1.4}
+.detail-description{font-size:16px;line-height:1.85}
+.detail-copy dl{margin-block:20px}
+.detail-copy dl>div{padding-block:10px}
+.stats-summary{padding:24px}
+.stats-summary strong{font-size:52px}
+.stats-columns{margin-top:36px;gap:40px}
+.stats-columns h2{font-size:30px}
+.footer-art{padding-block:38px}
+.footer-art>p{font-size:36px;line-height:1.5}
+.footer-info{padding-block:28px;gap:36px}
+.footer-info .wordmark{font-size:48px}
+.footer-bottom{padding-block:18px 22px}
+
+@media(min-width:761px) and (max-width:1200px){
+ .gallery-header.wrap{min-height:86px}
+ .gallery-header nav{top:80px}
+ .gallery-hero h1{font-size:clamp(40px,4.8vw,54px)}
+ .gallery-hero-bottom{gap:18px}
+ .gallery-hero-bottom>p{max-width:530px}
+ .home-featured{grid-template-columns:minmax(0,.85fr) minmax(0,1.4fr);gap:28px}
+ .home-featured .home-artworks{gap:18px}
+ .home-featured .artwork-card:nth-child(2){margin-top:20px}
+ .home-featured .artwork-image{aspect-ratio:4/5.5}
+ .home-featured .artwork-caption{left:13px;right:13px}
+ .home-featured .artwork-card h3{font-size:20px}
+ .home-featured .artwork-period{font-size:11px}
+ .home-featured .card-author{font-size:12px}
+ .home-story{gap:36px}
+ .discovery-copy,.discovery:nth-child(even) .discovery-copy{padding:30px}
+ .about-spread{gap:32px}
+ .about-copy h2{font-size:28px}
+ .about-symbol{font-size:72px}
+ .detail-layout{gap:28px}
+}
+@media(min-width:761px) and (max-width:950px){
+ .wrap{width:calc(100% - 48px)}
+ .home-featured{grid-template-columns:1fr;gap:26px}
+ .feature-intro{max-width:600px}
+ .home-featured .artwork-image{aspect-ratio:4/4.6}
+ .artwork-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .curated-section .home-artworks{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .curated-section .artwork-card:last-child{display:none}
+ .curated-heading{display:block}
+ .curated-heading>p{text-align:left;max-width:100%;margin-top:18px}
+ .about-spread{grid-template-columns:1fr 1.1fr;gap:26px;align-items:start}
+ .about-image{height:440px}
+ .about-copy h2{font-size:25px}
+ .about-copy>p{font-size:15px}
+ .about-principles{gap:22px;padding:24px}
+ .about-principles h3{font-size:24px}
+ .about-principles p{font-size:15px}
+ .journey-grid{gap:14px}
+ .journey-grid>a{padding:20px}
+ .journey-grid h3{font-size:19px}
+ .journey-grid p{font-size:15px}
+ .gallery-faq{gap:30px}
+}
+@media(max-width:760px){
+ .wrap{width:calc(100% - 36px)}
+ .gallery-header.wrap{width:calc(100% - 36px);min-height:136px;padding-block:12px 62px;gap:16px}
+ .gallery-brand{font-size:39px}
+ .gallery-header .header-search{bottom:10px;min-height:44px}
+ .gallery-header nav{top:calc(100% - 3px)}
+ .header-search input{padding-block:8px}
+ .breadcrumb{padding-top:14px;margin-bottom:18px;font-size:12px}
+ .gallery-hero{height:auto;min-height:clamp(420px,calc(100svh - 160px),600px);display:flex;flex-direction:column;gap:40px;justify-content:space-between}
+ .gallery-hero-heading{padding:28px 20px 0}
+ .gallery-hero h1{font-size:clamp(30px,8vw,42px);line-height:1.4;margin-top:18px}
+ .gallery-hero-bottom{position:relative;inset:auto;padding:0 20px 26px;gap:20px 12px}
+ .gallery-hero-bottom>p{font-size:14px;line-height:1.85}
+ .gallery-hero-bottom>.button{font-size:13px;min-height:44px;padding:9px 13px;gap:8px}
+ .slider-arrow{width:32px;height:32px}
+ .hero-navigation{gap:6px}
+ .home-featured{padding-block:34px;gap:24px}
+ .feature-intro h2,.story-intro h2,.section-heading h2,.gallery-faq h2,.curated-heading h2{font-size:30px}
+ .feature-intro>.button,.story-intro>.button{margin-top:22px}
+ .home-featured .home-artworks,.home-artworks,.artwork-grid{gap:18px}
+ .home-featured .artwork-card:nth-child(2){margin-top:0}
+ .artwork-grid .artwork-image,.home-artworks .artwork-image,.home-featured .artwork-image,.related-section .artwork-image{aspect-ratio:4/4.6}
+ .artwork-card h3{font-size:22px}
+ .artwork-caption{left:18px;right:18px;bottom:18px}
+ .artwork-period{font-size:12px}
+ .card-author{font-size:13px}
+ .curated-section{padding-block:32px}
+ .curated-tabs{gap:12px 20px;margin-block:22px}
+ .curated-tabs a{font-size:13px}
+ .curated-section .artwork-image{aspect-ratio:4/4.6}
+ .home-story{gap:24px;padding-block:34px}
+ .home-story .story-image{aspect-ratio:4/3;max-height:360px}
+ .gallery-journeys{padding-bottom:34px}
+ .gallery-faq{gap:24px;padding-block:26px 36px}
+ .journey-grid{gap:14px}
+ .journey-grid>a{padding:22px}
+ .collection-controls{padding:8px;gap:6px}
+ .filter-tabs{gap:4px}
+ .filter-tabs button{font-size:13px;padding:6px 10px}
+ .filter-toggle{min-width:30px;width:30px;padding-inline:4px}
+ .results-top{padding-block:14px}
+ .discovery,.discovery:nth-child(even){grid-template-columns:1fr}
+ .discovery .discovery-photo,.discovery:nth-child(even) .discovery-photo{height:clamp(220px,35svh,300px);min-height:0}
+ .discovery-copy,.discovery:nth-child(even) .discovery-copy{padding:26px;min-height:0}
+ .discovery-copy h2{font-size:32px;line-height:1.4}
+ .discovery-copy>p:not(.eyebrow){font-size:15px;margin-top:16px}
+ .discovery-link{margin-top:20px;font-size:14px}
+ .story-cover>img{height:clamp(240px,42svh,340px)}
+ .article-body{margin-block:28px;width:calc(100% - 40px)}
+ .article-body .article-lead{font-size:21px}
+ .article-body h2,.article-body blockquote{font-size:27px}
+ .article-detail{height:280px}
+ .about-spread{grid-template-columns:1fr;gap:24px;margin-bottom:30px}
+ .about-image{height:clamp(250px,40svh,340px)}
+ .about-symbol{font-size:64px}
+ .about-copy h2{font-size:28px;margin-top:10px}
+ .about-copy>p{font-size:16px;margin-top:18px}
+ .about-principles{padding:8px 22px;gap:0;margin-bottom:34px}
+ .about-principles h3{font-size:25px}
+ .detail-layout{grid-template-columns:1fr;gap:24px}
+ .zoom-stage{height:clamp(260px,52svh,440px)}
+ .detail-copy h1{font-size:32px}
+ .detail-description{font-size:16px}
+ .stats-summary{padding:20px 14px}
+ .stats-summary strong{font-size:36px}
+ .stats-columns{margin-top:28px;gap:28px}
+ .stats-columns h2{font-size:28px}
+ .footer-art{padding-block:28px}
+ .footer-art>p{font-size:26px}
+ .footer-info{gap:22px;padding-block:24px}
+ .footer-info .wordmark{font-size:42px}
+ .footer-bottom{padding-block:16px 20px}
+}
+@media(max-width:540px){
+ .artwork-grid,.home-featured .home-artworks,.curated-section .home-artworks,.related-section .home-artworks{grid-template-columns:minmax(0,1fr)}
+ .artwork-grid .artwork-image,.home-artworks .artwork-image,.home-featured .artwork-image,.related-section .artwork-image{aspect-ratio:1/1.05}
+ .home-featured .artwork-card h3{font-size:23px}
+ .home-featured .card-author{font-size:13px}
+ .related-section .artwork-card:last-child{display:block}
+}
