@@ -5,11 +5,12 @@ import path from 'node:path';
 import {randomUUID,createHash} from 'node:crypto';
 import sharp from 'sharp';
 import {HttpError,validateArtwork} from './validation.mjs';
-import {getSession,newSession,sessionCookie,passwordHash,passwordMatches,validateCredentials} from './auth.mjs';
+import {getSession,newSession,sessionCookie,passwordHash,passwordMatches,validateCredentials,parseAdminEmails,accountRole} from './auth.mjs';
 import {createCloudinaryStorage,IMAGE_LIMIT,VIDEO_LIMIT,imageTypes,videoTypes,validateVideo} from './media-storage.mjs';
 const publicDir=fileURLToPath(new URL('../dist/',import.meta.url));
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.jpg':'image/jpeg','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.woff2':'font/woff2'};
-export function createApp({db,uploadDir=fileURLToPath(new URL('../uploads/',import.meta.url)),mediaStorage=createCloudinaryStorage(),allowSetup=false,publicOrigin='',secureCookies=false,onError=()=>{}}){
+export function createApp({db,uploadDir=fileURLToPath(new URL('../uploads/',import.meta.url)),mediaStorage=createCloudinaryStorage(),allowSetup=false,adminEmails=parseAdminEmails(),publicOrigin='',secureCookies=false,onError=()=>{}}){
+  const administrators=parseAdminEmails(adminEmails);
   const attempts=new Map();
   const json=(res,status,body,headers={})=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store',...headers});res.end(JSON.stringify(body));};
   async function bodyBuffer(req,limit){
@@ -27,7 +28,7 @@ export function createApp({db,uploadDir=fileURLToPath(new URL('../uploads/',impo
     if(!local&&(!publicOrigin||new URL(publicOrigin).host!==host))throw new HttpError(403,'Máy chủ truy cập không hợp lệ.');
     if(req.headers['sec-fetch-site']==='cross-site'||(req.headers.origin&&!allowed.has(req.headers.origin)))throw new HttpError(403,'Nguồn gửi yêu cầu không được phép.');
   }
-  async function admin(req){const user=await getSession(req,db);if(!user)throw new HttpError(401,'Vui lòng đăng nhập để quản lý tác phẩm.');return user;}
+  async function admin(req){const user=await getSession(req,db,administrators);if(!user)throw new HttpError(401,'Vui lòng đăng nhập để quản lý tác phẩm.');if(user.role!=='admin')throw new HttpError(403,'Tài khoản không có quyền quản trị.');return user;}
   const clean=a=>{const {_id,...result}=a;return result;};
   async function audit(user,action,artwork){try{await db.collection('audit_logs').insertOne({userId:user.id,action,artworkId:artwork.id,revision:artwork.revision,createdAt:new Date()});}catch(e){onError(e);}}
   async function route(req,res,url){
@@ -35,25 +36,27 @@ export function createApp({db,uploadDir=fileURLToPath(new URL('../uploads/',impo
     if(req.method!=='GET'&&req.method!=='HEAD')checkOrigin(req);
     if(pathname==='/api/health'&&req.method==='GET'){await db.command({ping:1});return json(res,200,{database:'mongodb',connected:true});}
     if(pathname==='/api/session'&&req.method==='GET'){
-      const user=await getSession(req,db);return json(res,200,{user:user?{name:user.name,email:user.email,role:user.role}:null,setupRequired:allowSetup&&!await db.collection('users').findOne({_id:'admin'})});
+      const user=await getSession(req,db,administrators),setupAvailable=allowSetup&&administrators.size>0;
+      return json(res,200,{user:user?{name:user.name,email:user.email,role:user.role}:null,setupAvailable,setupRequired:setupAvailable&&!await db.collection('users').findOne({email:{$in:[...administrators]}})});
     }
     if(pathname==='/api/auth/setup'&&req.method==='POST'){
       if(!allowSetup)throw new HttpError(403,'Thiết lập quản trị ban đầu chỉ được mở trong môi trường cục bộ.');
       const body=validateCredentials(await jsonBody(req),{setup:true});
-      const user={_id:'admin',name:body.name,email:body.email,role:'admin',passwordHash:await passwordHash(body.password),createdAt:new Date()};
+      if(accountRole(body.email,administrators)!=='admin')throw new HttpError(403,'Email này không được phép thiết lập tài khoản quản trị.');
+      const user={_id:randomUUID(),name:body.name,email:body.email,role:'admin',passwordHash:await passwordHash(body.password),createdAt:new Date()};
       try{await db.collection('users').insertOne(user);}catch(e){if(e.code===11000)throw new HttpError(409,'Tài khoản quản trị đã được thiết lập. Vui lòng đăng nhập.');throw e;}
       const token=await newSession(db,user);return json(res,201,{user:{name:user.name,email:user.email,role:'admin'}},{'Set-Cookie':sessionCookie(token,{secure:secureCookies})});
     }
     if(pathname==='/api/auth/login'&&req.method==='POST'){
       const ip=req.socket.remoteAddress;const record=attempts.get(ip);if(record&&record.until>Date.now()&&record.count>=8)throw new HttpError(429,'Đã thử đăng nhập quá nhiều lần. Hãy thử lại sau 15 phút.');
-      const body=validateCredentials(await jsonBody(req));const user=await db.collection('users').findOne({email:body.email,role:'admin'});
+      const body=validateCredentials(await jsonBody(req));const user=await db.collection('users').findOne({email:body.email});
       if(!user||!await passwordMatches(body.password,user.passwordHash)){
         const current=record?.until>Date.now()?record:{count:0,until:Date.now()+900000};current.count++;attempts.set(ip,current);throw new HttpError(401,'Email hoặc mật khẩu chưa đúng.');
       }
-      attempts.delete(ip);const token=await newSession(db,user);return json(res,200,{user:{name:user.name,email:user.email,role:'admin'}},{'Set-Cookie':sessionCookie(token,{secure:secureCookies})});
+      attempts.delete(ip);const token=await newSession(db,user);return json(res,200,{user:{name:user.name,email:user.email,role:accountRole(user.email,administrators)}},{'Set-Cookie':sessionCookie(token,{secure:secureCookies})});
     }
     if(pathname==='/api/auth/logout'&&req.method==='POST'){
-      const user=await getSession(req,db);if(user)await db.collection('sessions').deleteOne({_id:user.sessionId});return json(res,200,{ok:true},{'Set-Cookie':sessionCookie('',{secure:secureCookies,clear:true})});
+      const user=await getSession(req,db,administrators);if(user)await db.collection('sessions').deleteOne({_id:user.sessionId});return json(res,200,{ok:true},{'Set-Cookie':sessionCookie('',{secure:secureCookies,clear:true})});
     }
     if(pathname==='/api/artworks'&&req.method==='GET'){
       const items=await db.collection('artworks').find({},{projection:{_id:0}}).sort({createdAt:1,id:1}).toArray();return json(res,200,{items,database:'mongodb'});

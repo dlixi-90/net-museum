@@ -42,7 +42,7 @@ Terminal thứ hai:
 npm.cmd start
 ```
 
-Mở **http://localhost:3000** → **Quản lý tác phẩm** → lần đầu tạo tài khoản quản trị → **Thêm tác phẩm**. Điền thông tin, chọn ảnh và video giới thiệu tùy chọn. Thiết lập Cloudinary theo hướng dẫn bên dưới trước khi tải tệp. Muốn sửa, chọn **Chỉnh sửa** trong bảng quản lý. Khi lưu thành công, danh sách và bộ sưu tập được cập nhật từ MongoDB.
+Mở **http://localhost:3000** → **Đăng nhập** → thiết lập tài khoản có email trong `ADMIN_EMAILS` nếu chưa có → sau khi đăng nhập admin mới thấy **Quản lý** và **Thêm tác phẩm**. Điền thông tin, chọn ảnh và video giới thiệu tùy chọn. Thiết lập Cloudinary theo hướng dẫn bên dưới trước khi tải tệp. Muốn sửa, chọn **Chỉnh sửa** trong bảng quản lý. Khi lưu thành công, danh sách và bộ sưu tập được cập nhật từ MongoDB.
 
 Backend tự tạo index và nhập 7 tác phẩm mẫu bằng `$setOnInsert`: khởi động lại không ghi đè tác phẩm đã chỉnh sửa. Muốn chạy seed riêng: `npm.cmd run db:seed`.
 
@@ -53,6 +53,10 @@ Backend tự tạo index và nhập 7 tác phẩm mẫu bằng `$setOnInsert`: k
 Sao chép `.env.example` thành `.env`, điền `MONGODB_URI` và `MONGODB_DB` trên máy bạn. Không đưa URI chứa mật khẩu vào mã trình duyệt hoặc Git. Sau đó chạy `npm.cmd start`; không cần `db:start`. `.env` đã được loại khỏi Git và thư mục phát web.
 
 Khi triển khai thật, phục vụ **cả frontend và backend Node.js trên cùng origin**, cấu hình `PUBLIC_ORIGIN=https://...`, TLS, `NODE_ENV=production`, `ALLOW_ADMIN_SETUP=false`, MongoDB đã có tài khoản quản trị và các biến Cloudinary. Khởi tạo admin trong môi trường cục bộ an toàn trước khi công bố. Sao lưu MongoDB và quản lý tài sản trong Cloudinary Media Library. Tệp upload mới không lưu trên ổ đĩa máy chủ.
+
+## Phân quyền quản trị
+
+Cấu hình `ADMIN_EMAILS` trong `di-san-viet/.env`; chỉ các tài khoản đã đăng nhập có email trong danh sách mới được quản trị. Khách và user thường không thấy nút quản lý hoặc chỉnh sửa; API ghi vẫn kiểm tra quyền độc lập. Danh sách thay đổi cần khởi động lại backend. Xem [hướng dẫn đăng nhập và thiết lập hai tài khoản](docs/ACCESS.md).
 
 ## Lưu ảnh và video trên Cloudinary
 
@@ -66,7 +70,7 @@ Xem [hướng dẫn Cloudinary](docs/CLOUDINARY.md). Điền `CLOUDINARY_CLOUD_N
 
 - `npm.cmd start`: frontend + API + MongoDB; thêm/sửa và upload hoạt động.
 - `npm.cmd run preview`: chỉ website tĩnh; hiện snapshot mẫu, không lưu tác phẩm.
-- Link Sites hiện tại triển khai từ `dist/`, vẫn là hosting tĩnh. MongoDB không chạy bên trong gói này. Nút quản lý sẽ giải thích khi chưa có backend, không báo lưu thành công giả và không dùng localStorage để thay thế MongoDB.
+- Link Sites hiện tại triển khai từ `dist/`, vẫn là hosting tĩnh. MongoDB không chạy bên trong gói này. Các nút quản trị luôn ẩn khi chưa được backend xác nhận. Trang đăng nhập sẽ giải thích khi chưa kết nối backend; không lưu thay đổi vào localStorage để thay thế MongoDB.
 
 Để có thêm/sửa trực tuyến, cần triển khai backend Node.js với MongoDB lên máy chủ hỗ trợ Node/TCP và cấu hình Cloudinary. Chỉ đưa URI Atlas vào frontend không đủ và sẽ làm lộ mật khẩu.
 
@@ -74,13 +78,13 @@ Xem [hướng dẫn Cloudinary](docs/CLOUDINARY.md). Điền `CLOUDINARY_CLOUD_N
 
 - Thêm tác phẩm với ảnh, tên, tác giả, niên đại, năm bắt đầu, nhóm nghệ thuật, chất liệu, xuất xứ, mô tả, từ khóa và nguồn.
 - Sửa metadata hoặc thay ảnh; kiểm tra revision để trả lỗi 409 khi có cập nhật mới từ cửa sổ khác.
-- Thiết lập admin lần đầu trên máy cục bộ; đăng nhập/đăng xuất. Mật khẩu băm scrypt; phiên cookie HttpOnly lưu hash token trong MongoDB và hết hạn sau 24 giờ.
-- API ghi bắt buộc đăng nhập, kiểm tra origin, allowlist trường dữ liệu và loại tệp. Ảnh JPG/PNG/WebP tối đa 8 MB được giải mã thật và chuyển WebP, cạnh dài tối đa 2000 px.
+- Thiết lập từng tài khoản trong `ADMIN_EMAILS` trên máy cục bộ; đăng nhập/đăng xuất. Mật khẩu băm scrypt; phiên cookie HttpOnly lưu hash token trong MongoDB và hết hạn sau 24 giờ.
+- API ghi bắt buộc đăng nhập admin theo `ADMIN_EMAILS`, kiểm tra origin, allowlist trường dữ liệu và loại tệp. Ảnh JPG/PNG/WebP tối đa 8 MB được giải mã thật và chuyển WebP, cạnh dài tối đa 2000 px.
 - Danh mục gốm, hội họa, điêu khắc, đồ họa; tìm theo tên có/không dấu, niên đại và sắp xếp.
 - Chi tiết, phóng ảnh và giọng đọc tổng hợp. Các hàm CBIR cũ trong `core.js` chỉ còn là tiện ích tham khảo, không có giao diện tìm bằng ảnh.
 - Yêu thích và lượt mở chi tiết vẫn là dữ liệu trình duyệt; hồ sơ tác phẩm và tài khoản lưu trong MongoDB.
 
-Chưa triển khai xóa tác phẩm, quản lý nhiều tài khoản, nhiều ảnh/tác phẩm, audio/PDF thật, bộ đếm truy cập tập trung và đánh giá CBIR có nhãn.
+Chưa triển khai xóa tác phẩm, giao diện quản lý tài khoản, nhiều ảnh/tác phẩm, audio/PDF thật, bộ đếm truy cập tập trung và đánh giá CBIR có nhãn.
 
 ## Cấu trúc và kiểm thử
 
@@ -90,6 +94,7 @@ dist/                     Giao diện và snapshot chỉ đọc cho hosting tĩn
 web/                      Template chung và nội dung 9 trang riêng
 scripts/build-pages.mjs   Sinh HTML tĩnh; không cần framework mới
 dist/manage.js            Đăng nhập và biểu mẫu thêm/sửa
+dist/access.js            Phiên và hiển thị các điều khiển theo quyền
 scripts/start-mongodb.mjs  MongoDB cục bộ với thư mục dữ liệu bền vững
 database/seed-mongodb.mjs  Seed không ghi đè dữ liệu đã sửa
 database/queries.mongodb.js  15 truy vấn MongoDB chỉ đọc

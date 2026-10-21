@@ -1,8 +1,10 @@
 import {loadCatalog,categoryNames,escapeHtml as esc} from './catalog.js';
 import {filterArtworks} from './core.js';
 import {initHero} from './hero.js';
+import {initAccess,syncAccess} from './access.js';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const page=document.body.dataset.page;
+initAccess();
 if(page==='home')initHero();
 function readStore(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fallback;}catch{return fallback;}}
 const previous=readStore('net.saved',[]);
@@ -53,7 +55,8 @@ function renderDetail(){
   if(!item){$('#artwork-detail').innerHTML='<div class="empty-state"><h1>Chưa tìm thấy tác phẩm này.</h1><p>Tác phẩm có thể đã thay đổi hoặc đường dẫn chưa chính xác.</p><a class="button button-dark" href="/bo-suu-tap/">Trở lại bộ sưu tập ↗</a></div>';return;}
   const views=readStore('net.views',{}),safeViews=views&&typeof views==='object'&&!Array.isArray(views)?views:{};safeViews[item.id]=(Number(safeViews[item.id])||0)+1;persist('net.views',safeViews);
   document.title=item.title+' — Nét';
-  $('#artwork-detail').innerHTML=`<div class="detail-layout"><div class="detail-figure"><div class="zoom-stage"><img id="detail-image" src="${esc(item.image)}" alt="${esc(item.title)}"></div></div><div class="detail-copy"><p class="eyebrow">${esc(categoryNames[item.category]||item.categoryLabel)}</p><h1>${esc(item.title)}</h1><p class="detail-author">${esc(item.author||'Chưa xác định')}</p><p class="detail-description">${esc(item.description)}</p><dl><div><dt>Niên đại</dt><dd>${esc(item.period)}</dd></div><div><dt>Chất liệu</dt><dd>${esc(item.material||item.originalMedium)}</dd></div><div><dt>Xuất xứ</dt><dd>${esc(item.origin)}</dd></div><div><dt>Ảnh số</dt><dd>${esc(item.format||'Ảnh')} · ${(item.sizeBytes/1024).toFixed(1)} KB</dd></div></dl><div class="detail-actions"><button class="button button-dark detail-save" data-save="${esc(item.id)}" aria-pressed="false"></button><button id="speak-description" class="button button-outline">Nghe mô tả ▷</button></div><a class="detail-edit text-link" href="/quan-ly/?edit=${encodeURIComponent(item.id)}">Chỉnh sửa hồ sơ tác phẩm ↗</a></div></div>`;
+  $('#artwork-detail').innerHTML=`<div class="detail-layout"><div class="detail-figure"><div class="zoom-stage"><img id="detail-image" src="${esc(item.image)}" alt="${esc(item.title)}"></div></div><div class="detail-copy"><p class="eyebrow">${esc(categoryNames[item.category]||item.categoryLabel)}</p><h1>${esc(item.title)}</h1><p class="detail-author">${esc(item.author||'Chưa xác định')}</p><p class="detail-description">${esc(item.description)}</p><dl><div><dt>Niên đại</dt><dd>${esc(item.period)}</dd></div><div><dt>Chất liệu</dt><dd>${esc(item.material||item.originalMedium)}</dd></div><div><dt>Xuất xứ</dt><dd>${esc(item.origin)}</dd></div><div><dt>Ảnh số</dt><dd>${esc(item.format||'Ảnh')} · ${(item.sizeBytes/1024).toFixed(1)} KB</dd></div></dl><div class="detail-actions"><button class="button button-dark detail-save" data-save="${esc(item.id)}" aria-pressed="false"></button><button id="speak-description" class="button button-outline">Nghe mô tả ▷</button></div><a data-admin-only hidden class="detail-edit text-link" href="/quan-ly/?edit=${encodeURIComponent(item.id)}">Chỉnh sửa hồ sơ tác phẩm ↗</a></div></div>`;
+  syncAccess();
   if(item.video){
     $('.detail-figure').insertAdjacentHTML('beforeend',`<section class="artwork-video"><p class="eyebrow">VIDEO GIỚI THIỆU</p><video id="artwork-video" controls playsinline preload="metadata" poster="${esc(item.image)}" aria-label="Video giới thiệu: ${esc(item.title)}"><source src="${esc(item.video)}" type="${esc(item.videoMimeType||'video/mp4')}">Trình duyệt chưa hỗ trợ phát video.</video><p id="video-playback-error" class="detail-tip" role="status" hidden>Chưa phát được video. <a href="${esc(item.video)}" target="_blank" rel="noopener noreferrer">Mở video ↗</a></p></section>`);
     const player=$('#artwork-video');player.addEventListener('error',()=>{$('#video-playback-error').hidden=false;});player.querySelector('source').addEventListener('error',()=>{$('#video-playback-error').hidden=false;});

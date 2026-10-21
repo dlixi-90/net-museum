@@ -17,7 +17,7 @@ test('MongoDB integration: auth, Cloudinary media, video references, conflicts a
   // Cloudinary boundary is stubbed: integration checks MongoDB and HTTP without using a real account.
   const mediaStorage={assertConfigured(){},async upload(buffer,{id,resourceType}){if(uploadFailure)throw new HttpError(502,'Cloudinary unavailable');const asset={url:`https://res.cloudinary.com/test/${resourceType}/upload/${id}.${resourceType==='image'?'webp':'mp4'}`,storage:'cloudinary',publicId:`net-museum/${id}`,resourceType,mimeType:resourceType==='image'?'image/webp':'video/mp4',format:resourceType==='image'?'WEBP':'MP4',sizeBytes:buffer.length,width:24,height:20,...(resourceType==='video'?{duration:1.5}:{})};uploadedAssets.push(asset);return asset;},async remove(asset){removedAssets.push(asset);}};
   const appDb={collection(name){const collection=db.collection(name);if(name==='media'&&insertFailure)return {insertOne:async()=>{throw new Error('Simulated database failure');}};return collection;},command:command=>db.command(command)};
-  const start=async()=>{server=createApp({db:appDb,uploadDir,mediaStorage,allowSetup:true});await new Promise(r=>server.listen(0,'127.0.0.1',r));base=`http://127.0.0.1:${server.address().port}`;};
+  const start=async()=>{server=createApp({db:appDb,uploadDir,mediaStorage,allowSetup:true,adminEmails:'curator@example.test'});await new Promise(r=>server.listen(0,'127.0.0.1',r));base=`http://127.0.0.1:${server.address().port}`;};
   const stop=()=>new Promise(r=>server.close(r));
   const call=async(route,{method='GET',body,headers={},authenticated=true}={})=>{
     const response=await fetch(base+route,{method,headers:{...(authenticated&&cookie?{Cookie:cookie}:{}),...(body&&typeof body==='object'&&!Buffer.isBuffer(body)?{'Content-Type':'application/json'}:{}),...headers},body:body?(Buffer.isBuffer(body)?body:JSON.stringify(body)):undefined});
@@ -31,8 +31,8 @@ test('MongoDB integration: auth, Cloudinary media, video references, conflicts a
     const password=randomUUID()+'A!';
     const setup=await call('/api/auth/setup',{method:'POST',body:{name:'Test curator',email:'curator@example.test',password}});
     assert.equal(setup.status,201);cookie=setup.response.headers.get('set-cookie').split(';')[0];assert.match(setup.response.headers.get('set-cookie'),/HttpOnly/);
-    const persistedUser=await db.collection('users').findOne({_id:'admin'});assert.notEqual(persistedUser.passwordHash,password);assert.equal(persistedUser.password,undefined);
-    assert.equal((await call('/api/auth/setup',{method:'POST',body:{name:'Second',email:'second@example.test',password}})).status,409);
+    const persistedUser=await db.collection('users').findOne({email:'curator@example.test'});assert.notEqual(persistedUser.passwordHash,password);assert.equal(persistedUser.password,undefined);
+    assert.equal((await call('/api/auth/setup',{method:'POST',body:{name:'Second',email:'curator@example.test',password}})).status,409);
     assert.equal((await call('/api/uploads',{method:'POST',body:Buffer.from('<svg></svg>'),headers:{'Content-Type':'image/png'}})).status,422);
     assert.equal((await call('/api/uploads',{method:'POST',body:Buffer.alloc(9*1024*1024),headers:{'Content-Type':'image/png'}})).status,413);
     const image=await sharp({create:{width:24,height:20,channels:3,background:'#b36549'}}).png().toBuffer();
