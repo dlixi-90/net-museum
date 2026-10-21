@@ -76,7 +76,7 @@ Xem [hướng dẫn Cloudinary](docs/CLOUDINARY.md). Điền `CLOUDINARY_CLOUD_N
 
 ## Chức năng đã có
 
-- Thêm tác phẩm với ảnh, tên, tác giả, niên đại, năm bắt đầu, nhóm nghệ thuật, chất liệu, xuất xứ, mô tả, từ khóa và nguồn.
+- Thêm tác phẩm với ảnh, tên, tác giả, niên đại, năm bắt đầu, nhóm nghệ thuật, chất liệu, xuất xứ và mô tả; video giới thiệu tùy chọn.
 - Sửa metadata hoặc thay ảnh; kiểm tra revision để trả lỗi 409 khi có cập nhật mới từ cửa sổ khác.
 - Thiết lập từng tài khoản trong `ADMIN_EMAILS` trên máy cục bộ; đăng nhập/đăng xuất. Mật khẩu băm scrypt; phiên cookie HttpOnly lưu hash token trong MongoDB và hết hạn sau 24 giờ.
 - API ghi bắt buộc đăng nhập admin theo `ADMIN_EMAILS`, kiểm tra origin, allowlist trường dữ liệu và loại tệp. Ảnh JPG/PNG/WebP tối đa 8 MB được giải mã thật và chuyển WebP, cạnh dài tối đa 2000 px.
