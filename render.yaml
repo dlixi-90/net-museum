@@ -1,0 +1,35 @@
+# Repository root is the directory containing package.json.
+# Free web service: all new media goes to Cloudinary, metadata goes to Neon.
+services:
+  - type: web
+    name: net-digital-museum
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: UPLOAD_STORAGE
+        value: cloudinary
+      - key: CLOUD_UPLOAD_MAX_MIB
+        value: 100
+      - key: PG_SCHEMA
+        value: net_museum_import
+      - key: PG_POOL_MAX
+        value: 3
+      - key: PG_CONNECT_TIMEOUT_MS
+        value: 15000
+      - key: ALLOW_ADMIN_SETUP
+        value: false
+      - key: DATABASE_URL
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false

@@ -1,0 +1,271 @@
+{
+  "generatedAt": "2026-10-23T05:13:44.920Z",
+  "featureVersion": "rgb4x4x4-128-v2",
+  "protocol": "Leave-one-out on seven original covers; labels are ceramic categories; detail crops excluded; singleton excluded from macro averages.",
+  "queries": 7,
+  "answerableQueries": 6,
+  "macroPrecisionAt5": 0.39999999999999997,
+  "macroRecallAt5": 1,
+  "meanQueryMs": 16.41857142857143,
+  "rows": [
+    {
+      "query": "37557",
+      "title": "Bình hoa điểu",
+      "category": "blue",
+      "relevant": 2,
+      "found": 2,
+      "precisionAt5": 0.4,
+      "recallAt5": 1,
+      "elapsedMs": 23.11,
+      "hits": [
+        {
+          "id": "met-37450",
+          "category": "blue",
+          "score": 0.881568
+        },
+        {
+          "id": "met-75915",
+          "category": "brown",
+          "score": 0.785552
+        },
+        {
+          "id": "met-37451",
+          "category": "blue",
+          "score": 0.571409
+        },
+        {
+          "id": "met-37563",
+          "category": "brown",
+          "score": 0.535401
+        },
+        {
+          "id": "met-37449",
+          "category": "brown",
+          "score": 0.11659
+        }
+      ]
+    },
+    {
+      "query": "37451",
+      "title": "Đĩa hoa mẫu đơn",
+      "category": "blue",
+      "relevant": 2,
+      "found": 2,
+      "precisionAt5": 0.4,
+      "recallAt5": 1,
+      "elapsedMs": 15.87,
+      "hits": [
+        {
+          "id": "met-37450",
+          "category": "blue",
+          "score": 0.809601
+        },
+        {
+          "id": "met-75915",
+          "category": "brown",
+          "score": 0.755419
+        },
+        {
+          "id": "met-37563",
+          "category": "brown",
+          "score": 0.573292
+        },
+        {
+          "id": "met-37557",
+          "category": "blue",
+          "score": 0.571409
+        },
+        {
+          "id": "met-37449",
+          "category": "brown",
+          "score": 0.188261
+        }
+      ]
+    },
+    {
+      "query": "37563",
+      "title": "Chum men nâu khắc hoa văn",
+      "category": "brown",
+      "relevant": 2,
+      "found": 2,
+      "precisionAt5": 0.4,
+      "recallAt5": 1,
+      "elapsedMs": 15.32,
+      "hits": [
+        {
+          "id": "met-75915",
+          "category": "brown",
+          "score": 0.719494
+        },
+        {
+          "id": "met-37451",
+          "category": "blue",
+          "score": 0.573292
+        },
+        {
+          "id": "met-37557",
+          "category": "blue",
+          "score": 0.535401
+        },
+        {
+          "id": "met-37450",
+          "category": "blue",
+          "score": 0.394472
+        },
+        {
+          "id": "met-37449",
+          "category": "brown",
+          "score": 0.22568
+        }
+      ]
+    },
+    {
+      "query": "38546",
+      "title": "Bình gốm men trắng",
+      "category": "white",
+      "relevant": 0,
+      "found": 0,
+      "precisionAt5": 0,
+      "recallAt5": null,
+      "elapsedMs": 15.08,
+      "hits": [
+        {
+          "id": "met-37449",
+          "category": "brown",
+          "score": 0.679327
+        },
+        {
+          "id": "met-75915",
+          "category": "brown",
+          "score": 0.244566
+        },
+        {
+          "id": "met-37563",
+          "category": "brown",
+          "score": 0.18943
+        },
+        {
+          "id": "met-37451",
+          "category": "blue",
+          "score": 0.09044
+        },
+        {
+          "id": "met-37557",
+          "category": "blue",
+          "score": 0.055841
+        }
+      ]
+    },
+    {
+      "query": "37450",
+      "title": "Bình sóng nước và cát tường",
+      "category": "blue",
+      "relevant": 2,
+      "found": 2,
+      "precisionAt5": 0.4,
+      "recallAt5": 1,
+      "elapsedMs": 15.9,
+      "hits": [
+        {
+          "id": "met-37557",
+          "category": "blue",
+          "score": 0.881568
+        },
+        {
+          "id": "met-37451",
+          "category": "blue",
+          "score": 0.809601
+        },
+        {
+          "id": "met-75915",
+          "category": "brown",
+          "score": 0.786207
+        },
+        {
+          "id": "met-37563",
+          "category": "brown",
+          "score": 0.394472
+        },
+        {
+          "id": "met-37449",
+          "category": "brown",
+          "score": 0.176539
+        }
+      ]
+    },
+    {
+      "query": "75915",
+      "title": "Thạp gốm tráng men",
+      "category": "brown",
+      "relevant": 2,
+      "found": 2,
+      "precisionAt5": 0.4,
+      "recallAt5": 1,
+      "elapsedMs": 15.72,
+      "hits": [
+        {
+          "id": "met-37450",
+          "category": "blue",
+          "score": 0.786207
+        },
+        {
+          "id": "met-37557",
+          "category": "blue",
+          "score": 0.785552
+        },
+        {
+          "id": "met-37451",
+          "category": "blue",
+          "score": 0.755419
+        },
+        {
+          "id": "met-37563",
+          "category": "brown",
+          "score": 0.719494
+        },
+        {
+          "id": "met-37449",
+          "category": "brown",
+          "score": 0.40651
+        }
+      ]
+    },
+    {
+      "query": "37449",
+      "title": "Hũ gốm có chân",
+      "category": "brown",
+      "relevant": 2,
+      "found": 2,
+      "precisionAt5": 0.4,
+      "recallAt5": 1,
+      "elapsedMs": 13.93,
+      "hits": [
+        {
+          "id": "met-38546",
+          "category": "white",
+          "score": 0.679327
+        },
+        {
+          "id": "met-75915",
+          "category": "brown",
+          "score": 0.40651
+        },
+        {
+          "id": "met-37563",
+          "category": "brown",
+          "score": 0.22568
+        },
+        {
+          "id": "met-37451",
+          "category": "blue",
+          "score": 0.188261
+        },
+        {
+          "id": "met-37450",
+          "category": "blue",
+          "score": 0.176539
+        }
+      ]
+    }
+  ]
+}

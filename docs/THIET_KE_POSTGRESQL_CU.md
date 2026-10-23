@@ -1,6 +1,6 @@
 # Định hướng: Nét — Bảo tàng nghệ thuật số
 
-> Tài liệu lịch sử của phiên bản PostgreSQL. Phiên bản hiện tại dùng MongoDB; xem `DINH_HUONG.md`. Các script SQL tương ứng nằm trong `database/legacy-postgresql/` và không được dùng bởi runtime.
+> Tài liệu thiết kế lịch sử với 18 bảng. Backend hiện đã dùng PostgreSQL với lược đồ 23 bảng tại `database/schema.sql`; xem `DINH_HUONG.md` và `POSTGRESQL.md`. Các script trong `database/legacy-postgresql/` không được runtime mới dùng để khởi tạo.
 
 ## 1. Mục tiêu và giới hạn
 

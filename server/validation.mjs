@@ -12,7 +12,7 @@ export function validateArtwork(input) {
   };
   text('title','Tên tác phẩm',200,true);text('description','Mô tả',5000,true);
   text('author','Tác giả',200,false,'Chưa xác định');text('period','Niên đại',100,true);
-  text('material','Chất liệu',300,true);text('origin','Xuất xứ',150,false,'Việt Nam');
+  text('material','Chất liệu',300,true);text('origin','Xuất xứ',150,false,'Việt Nam');text('topic','Chủ đề',100,false,'Nghệ thuật');
   text('originalTitle','Tên gốc',250);text('license','Nguồn/quyền sử dụng',500);
   text('imageId','Ảnh đại diện',80,true);
   text('videoId','Video giới thiệu',80);
@@ -22,6 +22,10 @@ export function validateArtwork(input) {
   else result.year = input.year;
   if (!Array.isArray(input.tags) || input.tags.length>20 || input.tags.some(t=>typeof t!=='string'||t.trim().length>60)) fields.tags='Tối đa 20 từ khóa, mỗi từ khóa tối đa 60 ký tự.';
   else result.tags=[...new Set(input.tags.map(t=>t.trim()).filter(Boolean))];
+  if(input.resourceIds!==undefined){
+    if(!Array.isArray(input.resourceIds)||input.resourceIds.length>50||input.resourceIds.some(id=>typeof id!=='string'||!/^[a-zA-Z0-9-]{1,80}$/.test(id)))fields.resourceIds='Tối đa 50 tài nguyên có mã hợp lệ.';
+    else result.resourceIds=[...new Set(input.resourceIds)];
+  }
   text('source','Đường dẫn nguồn',1500);
   if(result.source)try{if(!['https:','http:'].includes(new URL(result.source).protocol))throw new Error();}catch{fields.source='Nguồn cần là URL http hoặc https hợp lệ.';}
   if(Object.keys(fields).length)throw new HttpError(422,'Kiểm tra lại các trường thông tin.',fields);

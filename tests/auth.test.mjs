@@ -1,6 +1,13 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {parseAdminEmails,accountRole,getSession,passwordHash,passwordMatches} from '../server/auth.mjs';
+import {clientAddress} from '../server/request-client.mjs';
+
+test('Forwarded client addresses are used only behind a trusted platform proxy',()=>{
+  const req={headers:{'x-forwarded-for':'198.51.100.1, 203.0.113.7'},socket:{remoteAddress:'127.0.0.1'}};
+  assert.equal(clientAddress(req,{trustedProxy:false}),'127.0.0.1');assert.equal(clientAddress(req,{trustedProxy:true}),'203.0.113.7');
+  req.headers['x-forwarded-for']='forged';assert.equal(clientAddress(req,{trustedProxy:true}),'127.0.0.1');
+});
 
 test('admin allowlist normalizes spaces/case and grants no access when empty',()=>{
   const emails=parseAdminEmails(' first@example.test, SECOND@example.test, ,first@example.test');
@@ -11,16 +18,18 @@ test('admin allowlist normalizes spaces/case and grants no access when empty',()
   assert.equal(accountRole('first@example.test',parseAdminEmails('')),'user');
 });
 
-test('sessions derive admin access from current email policy, never a stored admin role',async()=>{
+test('sessions use current database roles and reject inactive accounts',async()=>{
   let query;const account={_id:'existing',name:'Reader',email:'old@example.test',role:'admin'};
-  const db={collection(name){return {async findOne(filter){if(name==='sessions')return {userId:account._id,_id:'session'};query=filter;return account;}};}};
+  const db={async getSession(){return {userId:account._id,_id:'session'};},async getUser(id){query={_id:id};return account;}};
   const req={headers:{cookie:'net_session='+'a'.repeat(64)}};
   const emails=parseAdminEmails('new@example.test');
-  assert.equal((await getSession(req,db,emails)).role,'user');
+  assert.equal((await getSession(req,db,emails)).role,'admin');
   assert.deepEqual(query,{_id:'existing'});
   account.email='new@example.test';account.role='user';
-  assert.equal((await getSession(req,db,emails)).role,'admin');
+  assert.equal((await getSession(req,db,emails)).role,'user');
   assert.equal((await getSession(req,db,parseAdminEmails(''))).role,'user');
+  account.active=false;
+  assert.equal(await getSession(req,db,emails),null);
   assert.equal(await getSession({headers:{}},db,emails),null);
   assert.equal(await getSession({headers:{cookie:'net_session=forged'}},db,emails),null);
 });

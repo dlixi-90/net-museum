@@ -1,36 +1,19 @@
-# Triển khai Nét trên Vercel
+> Đích triển khai hiện tại: [Render Free + Neon + Cloudinary](RENDER_NEON.md). Tài liệu này chỉ giữ cho phương án Vercel khác; chưa kiểm chứng toàn bộ chức năng trên Vercel.
 
-Thư mục gốc của dự án là `di-san-viet`. `vercel.json` chạy `npm run build`, phục vụ các trang trong `dist` và chuyển `/api/*` đến backend Node.js 24 ở `api/index.mjs`.
+# Triển khai backend PostgreSQL lên Vercel
 
-## Cấu hình production
+Mã nguồn cục bộ hiện dùng PostgreSQL. Môi trường online chưa được cập nhật trong lần chuyển đổi này.
 
-Thêm các biến sau vào Vercel → Project → Settings → Environment Variables → Production. Sao chép giá trị từ `.env` trên máy; không đưa file `.env` vào Git hoặc thư mục `dist`.
+## Chuẩn bị database online
 
-- `MONGODB_URI`
-- `MONGODB_DB`
-- `CLOUDINARY_CLOUD_NAME`
-- `CLOUDINARY_API_KEY`
-- `CLOUDINARY_API_SECRET`
-- `ADMIN_EMAILS`
+PostgreSQL trong Docker Desktop chỉ dùng cục bộ. 127.0.0.1 trong Vercel là máy của function, không phải máy cá nhân. Cần một PostgreSQL cloud hoặc máy chủ có kết nối phù hợp, dùng TLS theo nhà cung cấp và chọn giới hạn pool cho serverless.
 
-Backend tự dùng hostname production do Vercel cung cấp để kiểm tra nguồn yêu cầu. Nếu dùng tên miền riêng, đặt `PUBLIC_ORIGIN=https://ten-mien-cua-ban` rồi triển khai lại. Không sao chép địa chỉ localhost vào `PUBLIC_ORIGIN` trên Vercel.
+Đặt các biến môi trường trên Vercel: DATABASE_URL, PG_SCHEMA, PG_POOL_MAX, CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, ADMIN_EMAILS và PUBLIC_ORIGIN nếu có tên miền riêng. Không đưa secret vào dist hoặc Git.
 
-MongoDB Atlas phải cho phép kết nối từ môi trường Vercel. Tài khoản admin đã tạo trong database hiện tại được giữ nguyên. Chức năng tạo tài khoản quản trị ban đầu luôn bị tắt trên Vercel.
+Chạy schema/seed hoặc migration vào database online trước khi dùng. api/index.mjs khởi tạo schema nhưng seed=false. Tài khoản quản trị cần được cấp qua môi trường khởi tạo được phép trước khi công bố; setup luôn tắt trên Vercel.
 
-## Cách hoạt động
+## Hoạt động
 
-Các lần gọi API trong cùng một instance dùng chung kết nối MongoDB. Backend khởi tạo index nhưng không chèn lại dữ liệu mẫu trên production.
+Frontend ở dist; rewrite /api/* vào api/index.mjs. Các request trong một instance dùng chung pool PostgreSQL. Upload video/ảnh có chữ ký đi từ trình duyệt tới Cloudinary rồi server xác minh trước khi ghi metadata. Không đổi giao diện để chứa URI CSDL.
 
-Ảnh và video đi từ trình duyệt lên Cloudinary bằng chữ ký do backend cấp sau khi kiểm tra quyền admin. Backend xác nhận tệp qua Cloudinary trước khi lưu metadata vào MongoDB. File lớn không đi qua Vercel Function. API secret chỉ nằm trong biến môi trường của backend.
-
-## Triển khai lại
-
-Trong PowerShell tại thư mục `di-san-viet`:
-
-```powershell
-npm.cmd run build
-npm.cmd run check
-vercel.cmd --prod
-```
-
-Kiểm tra `/api/health` trả về `connected: true`, mở bộ sưu tập và thử đăng nhập bằng tài khoản hiện có. Không dùng bản build Vercel tạo trên Windows để deploy bằng `--prebuilt`: bản triển khai cần build trên Vercel để lấy đúng thư viện Sharp cho Linux.
+Sau triển khai, kiểm tra /api/health trả database=postgresql, connected=true; kiểm tra catalogue từ API, đăng nhập và thêm/sửa bằng tài khoản demo. Không xem dữ liệu hiển thị từ snapshot là bằng chứng API thành công.

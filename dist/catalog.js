@@ -7,6 +7,6 @@ export async function api(path,options={}){
   return result;
 }
 export async function loadCatalog(){
-  try{const result=await api('/artworks');return {items:result.items,mode:'mongodb'};}
+  try{const result=await api('/artworks');return {items:result.items,mode:result.database||'postgresql'};}
   catch(error){const response=await fetch('/assets/artworks.json');if(!response.ok)throw error;return {items:await response.json(),mode:'snapshot'};}
 }

@@ -1,7 +1,8 @@
-import { loadCatalog, categoryNames, escapeHtml as esc } from "./catalog.js";
+import {enhanceArtwork,renderStatistics} from './multimedia.js';
+import { api, loadCatalog, categoryNames, escapeHtml as esc } from "./catalog.js";
 import { filterArtworks } from "./core.js";
 import { initHero } from "./hero.js";
-import { initAccess, syncAccess } from "./access.js";
+import { initAccess, syncAccess, sessionUser } from "./access.js";
 const $ = (s) => document.querySelector(s),
   $$ = (s) => [...document.querySelectorAll(s)];
 const page = document.body.dataset.page;
@@ -54,9 +55,16 @@ function updateSaved() {
       button.innerHTML = `<svg><use href="#icon-heart"/></svg>${active ? "Đã lưu tác phẩm" : "Lưu tác phẩm"}`;
   });
 }
+let favoritesQueue=Promise.resolve(),favoritesGeneration=0,favoritesOwner=null;
+window.addEventListener("net-access-updated",async()=>{
+  const user=sessionUser(),owner=user?.id||user?.email||null;if(owner===favoritesOwner)return;favoritesOwner=owner;const generation=++favoritesGeneration;
+  if(!user){saved=new Set();persist("net.saved",[]);persist("net.saved.owner",null);updateSaved();if(page==="saved")renderGallery();return;}
+  try{const previousOwner=readStore("net.saved.owner",null),guest=previousOwner?[]:[...saved];const result=await api("/favorites");if(generation!==favoritesGeneration)return;const serverIds=new Set(result.ids);for(const id of guest)if(!serverIds.has(id)){try{await api("/favorites/"+encodeURIComponent(id),{method:"PUT"});serverIds.add(id);}catch{}}if(generation!==favoritesGeneration)return;saved=serverIds;persist("net.saved",[...saved]);persist("net.saved.owner",owner);updateSaved();if(page==="saved")renderGallery();}catch(error){announce(error.message);}
+});
 function toggleSave(id) {
   saved.has(id) ? saved.delete(id) : saved.add(id);
   persist("net.saved", [...saved]);
+  if(sessionUser()){const active=saved.has(id),generation=favoritesGeneration;favoritesQueue=favoritesQueue.then(()=>generation===favoritesGeneration?api("/favorites/"+encodeURIComponent(id),{method:active?"PUT":"DELETE"}):null).catch(error=>announce("Chưa đồng bộ mục đã lưu: "+error.message));}
   updateSaved();
   if (page === "saved") renderGallery();
   announce(saved.has(id) ? "Đã giữ lại một cảm hứng." : "Đã bỏ lưu tác phẩm.");
@@ -212,33 +220,8 @@ function renderDetail() {
     .join("");
   updateSaved();
 }
-function renderStats() {
-  const raw = readStore("net.views", {}),
-    views = raw && typeof raw === "object" && !Array.isArray(raw) ? raw : {};
-  const totalViews = artworks.reduce(
-    (sum, a) => sum + (Number(views[a.id]) || 0),
-    0,
-  );
-  const top = artworks
-    .filter((a) => Number(views[a.id]) > 0)
-    .sort((a, b) => views[b.id] - views[a.id])
-    .slice(0, 5);
-  const bytes = artworks.reduce(
-    (sum, a) => sum + (Number(a.sizeBytes) || 0),
-    0,
-  );
-  $("#stats-content").innerHTML =
-    `<div class="stats-summary"><div><strong>${artworks.length}</strong><span>TÁC PHẨM</span></div><div><strong>${artworks.filter((a) => a.image).length}</strong><span>ẢNH ĐẠI DIỆN</span></div><div><strong>${(bytes / 1024 / 1024).toFixed(2)}</strong><span>MB HÌNH ẢNH</span></div></div><div class="stats-columns"><div><p class="eyebrow">CÁC NHÓM NGHỆ THUẬT</p><h2>Những sắc thái<br>của bộ sưu tập.</h2><div class="category-bars">${Object.entries(
-      categoryNames,
-    )
-      .map(([key, name]) => {
-        const count = artworks.filter((a) => a.category === key).length;
-        return `<div class="category-bar"><span>${name}</span><div><span style="width:${artworks.length ? (count / artworks.length) * 100 : 0}%"></span></div><strong>${count}</strong></div>`;
-      })
-      .join(
-        "",
-      )}</div></div><div><p class="eyebrow">HÀNH TRÌNH CỦA RIÊNG BẠN</p><h2>Những tác phẩm<br>bạn dừng lại lâu hơn.</h2><p class="stats-personal"><strong>${totalViews}</strong> lượt mở chi tiết · <strong>${saved.size}</strong> tác phẩm đã lưu</p>${top.length ? top.map((a, i) => `<a class="stats-viewed" href="${artworkUrl(a.id)}"><span>0${i + 1}</span><p>${esc(a.title)}<small>${Number(views[a.id])} lượt mở</small></p><span>↗</span></a>`).join("") : '<p class="stats-empty">Hãy mở một tác phẩm để bắt đầu hành trình khám phá của bạn.</p>'}<p class="stats-disclaimer">Lượt mở và yêu thích chỉ phản ánh trình duyệt này, không phải số liệu khách tham quan toàn hệ thống. Bộ sưu tập hiện có ${artworks.filter((a) => a.video).length} video giới thiệu.</p></div></div>`;
-}
+function renderStats(){return renderStatistics($("#stats-content"));}
+
 document.addEventListener("click", (e) => {
   const save = e.target.closest("[data-save]");
   if (save) return toggleSave(save.dataset.save);
@@ -288,7 +271,7 @@ if (["home", "collection", "saved", "artwork", "stats"].includes(page)) {
       updateSaved();
     }
     if (["collection", "saved"].includes(page)) initGallery();
-    if (page === "artwork") renderDetail();
+    if (page === "artwork") {renderDetail();await enhanceArtwork(params.get("id"));}
     if (page === "stats") renderStats();
   } catch {
     const target =

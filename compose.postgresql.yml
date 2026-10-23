@@ -1,0 +1,21 @@
+name: net-museum
+services:
+  postgres:
+    image: postgres:17
+    container_name: net-museum-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: net_museum
+      POSTGRES_USER: net_museum
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run npm run db:docker:setup first}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U net_museum -d net_museum"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+volumes:
+  postgres_data:

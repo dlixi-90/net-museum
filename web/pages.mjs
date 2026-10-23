@@ -1,4 +1,5 @@
 import { home } from "./home.mjs";
+import {featurePages} from './features.mjs';
 import {
   heading,
   breadcrumb,
@@ -7,6 +8,7 @@ import {
   editor,
 } from "./layout.mjs";
 export const pages = [
+  ...featurePages,
   {
     key: "home",
     path: "index.html",
