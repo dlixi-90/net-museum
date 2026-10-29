@@ -29,11 +29,13 @@ npm.cmd run db:seed
 npm.cmd start
 ```
 
-Mở http://localhost:3000. PostgreSQL 17 chạy trong container `net-museum-postgres`, mặc định ở `127.0.0.1:5433`, database/user `net_museum`. Lệnh setup tạo mật khẩu ngẫu nhiên trong `.env.postgresql` và kết nối trong `.env`; không ghi đè `DATABASE_URL` đã có.
+Mở http://localhost:3000. PostgreSQL 17 chạy trong container `net-museum-postgres`, mặc định ở `127.0.0.1:5433`, database/user `net_museum`. Docker và ứng dụng dùng chung một tệp `.env`. Lệnh setup bổ sung `POSTGRES_PASSWORD`, `POSTGRES_PORT` và `DATABASE_URL` còn thiếu; giữ kết nối đã có và dùng lại mật khẩu trong URI Docker cục bộ khi phù hợp.
 
 Với database mới, thêm `ADMIN_EMAILS=dia-chi-email-cua-ban` và `ALLOW_ADMIN_SETUP=true` vào `.env`, rồi khởi động lại. Trang tài khoản sẽ cho thiết lập admin đầu tiên khi chưa có admin. Tắt thiết lập sau khi tạo xong. Dự án không kèm tài khoản hoặc mật khẩu quản trị.
 
-Nếu dùng PostgreSQL sẵn có, tạo database UTF-8 và cấu hình `.env` theo [.env.example](.env.example). `PG_SCHEMA` mặc định là `net_museum`; giữ đúng schema của database đang chạy. Seed giữ các hồ sơ đã chỉnh sửa. Với `UPLOAD_STORAGE=local`, sao lưu cả PostgreSQL và thư mục `uploads/`; dừng container bằng `npm.cmd run db:stop` để giữ volume.
+Nếu dùng PostgreSQL sẵn có, tạo database UTF-8 và điền `DATABASE_URL` trong `.env` theo [.env.example](.env.example). `PG_SCHEMA` mặc định là `net_museum`; giữ đúng schema của database đang chạy. Seed giữ các hồ sơ đã chỉnh sửa. Với `UPLOAD_STORAGE=local`, sao lưu cả PostgreSQL và thư mục `uploads/`; dừng container bằng `npm.cmd run db:stop` để giữ volume.
+
+`.env` là tệp cấu hình thật duy nhất trên máy; `.env.example` chỉ là mẫu công khai. Nếu lưu kết nối Neon trong cùng tệp, dùng `NEON_DATABASE_URL` và `NEON_PG_SCHEMA` làm thông tin triển khai; ứng dụng vẫn chọn kết nối qua `DATABASE_URL` và `PG_SCHEMA`. Các giá trị production còn lại nằm trong `render.yaml` và Environment của Render.
 
 ## Phát triển và kiểm tra
 

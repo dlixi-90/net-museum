@@ -8,6 +8,8 @@ Render chạy Node.js 24 và phục vụ cả giao diện/API. Neon PostgreSQL l
 
 `render.yaml` là cấu hình hiện hành: root directory để trống, build `npm ci && npm run build`, start `npm start`, health check `/api/health`. Có thể dùng Blueprint này cho một service mới.
 
+Trên máy chỉ dùng `.env`, chứa cấu hình ứng dụng, Docker và khóa Cloudinary. Có thể lưu Neon Direct URI trong `NEON_DATABASE_URL`, schema trong `NEON_PG_SCHEMA`; khi cấu hình Render, nhập hai giá trị này vào `DATABASE_URL` và `PG_SCHEMA` của dịch vụ. Backend không tự chuyển từ database cục bộ sang Neon. Các thiết lập production khác lấy từ `render.yaml`; không nhập toàn bộ `.env` cục bộ vào Render vì có thể ghi đè bằng kết nối localhost.
+
 | Biến môi trường | Thiết lập |
 |---|---|
 | `DATABASE_URL` | Neon Direct connection URI có TLS; nhập riêng trên Render |
