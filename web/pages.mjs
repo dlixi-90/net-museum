@@ -1,6 +1,7 @@
 import { home } from "./home.mjs";
 import {featurePages} from './features.mjs';
 import {
+  brand,
   heading,
   breadcrumb,
   galleryTools,
@@ -47,7 +48,7 @@ export const pages = [
     title: "Về bảo tàng",
     description:
       "Nét — một dự án bảo tàng nghệ thuật số mở ra những cách nhìn và kết nối mới.",
-    body: `${heading("VỀ NÉT")}<section class="about-spread wrap"><div class="about-image"><img src="/assets/75915.jpg" alt="Thạp gốm tráng men Việt Nam" fetchpriority="high"><span>DI SẢN / NHỮNG GÓC NHÌN TIẾP NỐI</span></div><div class="about-copy"><span class="about-symbol" aria-hidden="true">nét.</span><h2>Giữ một nét xưa.<br>Mở một góc nhìn mới.</h2><p>Chúng mình tạo nên một không gian để tác phẩm được ngắm nhìn kỹ hơn, thông tin được tìm thấy dễ hơn và những câu chuyện có cơ hội được tiếp tục.</p><p>Bộ sưu tập khởi đầu giới thiệu gốm nghệ thuật Việt từ nguồn mở của The Met. Nét cũng dành chỗ cho hội họa, điêu khắc và đồ họa khi có tư liệu được bổ sung.</p><a class="text-link" href="/bo-suu-tap/">Bắt đầu khám phá ↗</a></div></section><section class="about-principles wrap"><div><span>01</span><h3>Ngắm nhìn.</h3><p>Đến gần hình khối, bề mặt và những chi tiết thường bị bỏ qua.</p></div><div><span>02</span><h3>Lắng nghe.</h3><p>Đọc mô tả, theo một câu chuyện, dành thời gian cho một tác phẩm.</p></div><div><span>03</span><h3>Kết nối.</h3><p>Lưu cảm hứng và tìm lại những tác phẩm bạn yêu thích.</p></div></section>`,
+    body: `${heading("VỀ NÉT")}<section class="about-spread wrap"><div class="about-image"><img src="/assets/75915.jpg" alt="Thạp gốm tráng men Việt Nam" fetchpriority="high"><span>DI SẢN / NHỮNG GÓC NHÌN TIẾP NỐI</span></div><div class="about-copy">${brand("about-brand")}<h2>Giữ một nét xưa.<br>Mở một góc nhìn mới.</h2><p>Chúng mình tạo nên một không gian để tác phẩm được ngắm nhìn kỹ hơn, thông tin được tìm thấy dễ hơn và những câu chuyện có cơ hội được tiếp tục.</p><p>Bộ sưu tập khởi đầu giới thiệu gốm nghệ thuật Việt từ nguồn mở của The Met. Nét cũng dành chỗ cho hội họa, điêu khắc và đồ họa khi có tư liệu được bổ sung.</p><a class="text-link" href="/bo-suu-tap/">Bắt đầu khám phá ↗</a></div></section><section class="about-principles wrap"><div><span>01</span><h3>Ngắm nhìn.</h3><p>Đến gần hình khối, bề mặt và những chi tiết thường bị bỏ qua.</p></div><div><span>02</span><h3>Lắng nghe.</h3><p>Đọc mô tả, theo một câu chuyện, dành thời gian cho một tác phẩm.</p></div><div><span>03</span><h3>Kết nối.</h3><p>Lưu cảm hứng và tìm lại những tác phẩm bạn yêu thích.</p></div></section>`,
   },
   {
     key: "saved",
