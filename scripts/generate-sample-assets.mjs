@@ -1,6 +1,8 @@
 /**
  * Real, reproducible supplementary files for the seven museum objects.
  * node scripts/generate-sample-assets.mjs --prepare
+ * docker build -f scripts/neural-tts.Dockerfile -t net-museum-neural-tts:local scripts
+ * Generate WAV narration with the neural TTS container before rendering media.
  * docker build -f scripts/sample-assets.Dockerfile -t net-museum-sample-media:local .
  * docker run --rm --mount type=bind,source=<absolute dist/assets/samples>,target=/samples net-museum-sample-media:local
  * node scripts/generate-sample-assets.mjs --finalize
@@ -22,17 +24,18 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const samples = path.join(root, 'dist/assets/samples');
 const artworks = JSON.parse(await fs.readFile(path.join(root, 'dist/assets/artworks.json'), 'utf8'));
 const voicePeriods = { '37557': 'thế kỷ mười lăm', '37451': 'thế kỷ mười lăm', '37563': 'thế kỷ mười lăm đến mười sáu', '38546': 'thế kỷ mười lăm đến mười sáu', '37450': 'thế kỷ mười bốn', '75915': 'khoảng thế kỷ mười ba', '37449': 'thế kỷ mười một đến mười hai' };
+const narrationVoice='Minh Đức';
 const escapeXml = (s) => String(s).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 const paragraphs = (a) => [
   `BẢO TÀNG SỐ NÉT — ${a.title}`,
   `Mã hiện vật: ${a.id}. Niên đại: ${a.period}. Xuất xứ: ${a.origin}.`,
   a.description,
   `Tác giả hiện vật: ${a.author}. Chất liệu theo nguồn gốc: ${a.material}.`,
-  `Thuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.`,
+  `Thuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc AI ${narrationVoice}, tiếng Việt miền Bắc, được tạo bằng VieNeu-TTS; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.`,
   `Nguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. ${a.source}`,
   `Quyền sử dụng ảnh: ${a.license}. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét.`,
 ];
-const narration = (a) => `Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật ${a.title}, có niên đại ${voicePeriods[a.id]}, xuất xứ Việt Nam. ${a.description} Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.`;
+const narration = (a) => `Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật ${a.title}, có niên đại ${voicePeriods[a.id]}, xuất xứ Việt Nam. ${a.description.replace(/\bcobalt\b/gi,'cô ban')} Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.`;
 
 async function loadFont() {
   const candidates = [process.env.SAMPLE_ASSET_FONT, 'C:/Windows/Fonts/arial.ttf', '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'].filter(Boolean);
@@ -81,7 +84,7 @@ function createDocx(a) {
 async function prepare() {
   await fs.mkdir(samples, { recursive: true });
   const fontBytes = await loadFont(); const stats = {};
-  const commands = ['#!/bin/sh', 'set -eu', 'cd /samples', 'espeak-ng --voices=vi', 'espeak-ng --voices=vi | grep -q Vietnamese'];
+  const commands = ['#!/bin/sh', 'set -eu', 'cd /samples'];
   for (const a of artworks) {
     const image = await fs.readFile(path.join(root, 'dist', a.image));
     const meta = await sharp(image).metadata();
@@ -95,13 +98,14 @@ async function prepare() {
     stats[a.id] = { pageCount: await createPdf(a, fontBytes) };
     await fs.writeFile(path.join(samples, `${a.id}-video-title.txt`), `${a.title}\nMINH HỌA TỪ ẢNH HIỆN VẬT · THUYẾT MINH TIẾNG VIỆT`, 'utf8');
     commands.push(
-      `espeak-ng -v vi -s 142 -f ${a.id}-transcript.txt -w ${a.id}-audio.wav`,
-      `ffmpeg -hide_banner -loglevel error -y -i ${a.id}-audio.wav -codec:a libmp3lame -b:a 96k ${a.id}-audio.mp3`,
+      `test -s ${a.id}-audio.wav`,
+      `ffmpeg -hide_banner -loglevel error -y -i ${a.id}-audio.wav -af loudnorm=I=-16:TP=-1.5:LRA=11 -ar 48000 -ac 1 -codec:a libmp3lame -b:a 128k ${a.id}-audio.mp3`,
       `ffmpeg -hide_banner -loglevel error -y -loop 1 -i ${a.id}-video-source.jpg -i ${a.id}-audio.mp3 -vf "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2:color=0x151310,drawbox=x=0:y=620:w=iw:h=100:color=black@0.8:t=fill,drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:textfile=${a.id}-video-title.txt:fontcolor=white:fontsize=22:line_spacing=8:x=32:y=640" -r 15 -c:v libx264 -preset fast -tune stillimage -crf 26 -pix_fmt yuv420p -c:a aac -b:a 96k -shortest -movflags +faststart ${a.id}-video.mp4`,
       `ffmpeg -hide_banner -loglevel error -i ${a.id}-audio.mp3 -f null -`,
       `ffmpeg -hide_banner -loglevel error -i ${a.id}-video.mp4 -f null -`,
     );
   }
+  commands.push('sha256sum '+artworks.flatMap(a=>[`${a.id}-audio.wav`,`${a.id}-audio.mp3`,`${a.id}-video.mp4`]).join(' ')+' > rendered-media.sha256');
   await fs.writeFile(path.join(samples, 'render-media.sh'), commands.join('\n') + '\n', 'utf8');
   await fs.writeFile(path.join(samples, 'document-stats.json'), JSON.stringify(stats, null, 2));
   console.log(`Prepared ${artworks.length} sets of Vietnamese text, PDF, DOCX and detail images. Render media with the Docker command in the script header.`);
@@ -115,8 +119,14 @@ function probe(file) {
 
 async function finalize() {
   const stats = JSON.parse(await fs.readFile(path.join(samples, 'document-stats.json'), 'utf8'));
+  const profile=JSON.parse(await fs.readFile(path.join(samples,'narration-profile.json'),'utf8'));
+  if(profile.voice!==narrationVoice||profile.language!=='vi-VN')throw new Error('Generate the configured Vietnamese narration voice first.');
+  const rendered=new Map((await fs.readFile(path.join(samples,'rendered-media.sha256'),'utf8')).trim().split(/\r?\n/).map(line=>{const match=/^([a-f0-9]{64})\s+\*?(.+)$/.exec(line);if(!match)throw new Error('Invalid render checksum');return [match[2],match[1]];}));
   const resources = [];
   for (const a of artworks) {
+    const input=await fs.readFile(path.join(samples,`${a.id}-transcript.txt`)),wave=await fs.readFile(path.join(samples,`${a.id}-audio.wav`));
+    const voice=profile.items[a.id],inputHash=createHash('sha256').update(input).digest('hex'),waveHash=createHash('sha256').update(wave).digest('hex');
+    if(voice?.voice!==narrationVoice||voice.precision!==profile.precision||voice.sdkVersion!==profile.sdkVersion||voice.inputSha256!==inputHash||voice.wavSha256!==waveHash||rendered.get(`${a.id}-audio.wav`)!==waveHash)throw new Error('Narration or rendered media is stale: '+a.id);
     const formats = [
       ['detail', 'jpg', 'image', 'image/jpeg', `Ảnh chi tiết — ${a.title}`],
       ['audio', 'mp3', 'audio', 'audio/mpeg', `Thuyết minh tiếng Việt — ${a.title}`],
@@ -131,10 +141,11 @@ async function finalize() {
         author: kind === 'image' ? a.author : kind === 'audio' || kind === 'video' ? 'Nét — thuyết minh tổng hợp' : 'Bảo tàng số Nét', source: a.source,
         license: kind === 'image' ? a.license : '',
         topic: a.categoryLabel, tags: [...a.tags, 'tài nguyên học tập', ...(kind === 'audio' || kind === 'video' ? ['tiếng Việt', 'giọng tổng hợp'] : [])],
-        description: kind === 'image' ? '' : kind === 'video' ? 'Video minh họa tĩnh từ ảnh hiện vật với nhãn minh họa và giọng đọc tổng hợp tiếng Việt. Không phải phim tư liệu lịch sử.' : kind === 'audio' ? 'Bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp eSpeak NG (vi); nội dung biên soạn phục vụ học tập.' : 'Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.',
+        description: kind === 'image' ? '' : kind === 'video' ? `Video minh họa hiện vật, thuyết minh bằng giọng AI ${narrationVoice}, tiếng Việt miền Bắc. Không phải phim tư liệu lịch sử.` : kind === 'audio' ? `Thuyết minh tiếng Việt bằng giọng ${narrationVoice}, nam miền Bắc; giọng đọc AI phục vụ tham quan và học tập.` : 'Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.',
         language: 'vi-VN', content: kind === 'image' ? a.description : paragraphs(a).join('\n\n'),
       };
       if (kind === 'audio' || kind === 'video') {
+        if(rendered.get(filename)!==record.sha256)throw new Error('Rendered media checksum mismatch: '+filename);
         const metadata = probe(file); const video = metadata.streams.find(s => s.codec_type === 'video');
         if (!metadata.streams.some(s => s.codec_type === 'audio')) throw new Error(`${filename} has no audio track`);
         record.duration = Number(metadata.format.duration); record.transcript = narration(a);
@@ -145,7 +156,7 @@ async function finalize() {
       resources.push(record);
     }
   }
-  await fs.writeFile(path.join(samples, 'manifest.json'), JSON.stringify({ generatedAt: new Date().toISOString(), provenance: 'Nội dung và giọng đọc tổng hợp tiếng Việt do Bảo tàng số Nét biên soạn; video minh họa tĩnh, không phải tư liệu lịch sử.', resources }, null, 2) + '\n');
+  await fs.writeFile(path.join(samples, 'manifest.json'), JSON.stringify({ generatedAt: new Date().toISOString(), narration:{engine:profile.engine,voice:profile.voice,language:profile.language,sdkVersion:profile.sdkVersion}, provenance: 'Nội dung thuyết minh tiếng Việt do Bảo tàng số Nét biên soạn; giọng AI Minh Đức (VieNeu-TTS). Video minh họa tĩnh, không phải tư liệu lịch sử.', resources }, null, 2) + '\n');
   console.log(`Verified ${resources.length} real resources; wrote ${path.join(samples, 'manifest.json')}`);
 }
 

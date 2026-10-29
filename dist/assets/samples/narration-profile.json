@@ -1,0 +1,68 @@
+{
+  "items": {
+    "37449": {
+      "voice": "Minh Đức",
+      "precision": "fp32",
+      "sdkVersion": "3.8.3",
+      "inputSha256": "d79bbc077ec0485303262bfac12ae5dcdb17860daafea8944501d7f9c6206d02",
+      "wavSha256": "e771643b1c2206a5150d4495c9e8fcffd30a584e0d5a6b6dbc91c3c42ef08eaf",
+      "duration": 31.23
+    },
+    "37450": {
+      "voice": "Minh Đức",
+      "precision": "fp32",
+      "sdkVersion": "3.8.3",
+      "inputSha256": "17c8d42f965e67d0432aed52399b46cf2f71094234162b8d49a814344031cc58",
+      "wavSha256": "a135c6ef3e2ef8ea30705f70d4d52bc7a382e35621a4c6d0e4aff21f5cda6ca7",
+      "duration": 30.78
+    },
+    "37451": {
+      "voice": "Minh Đức",
+      "precision": "fp32",
+      "sdkVersion": "3.8.3",
+      "inputSha256": "84c2c9a29300ee431569b1b15d1a0cf810be4fbd84a5f3ee5db4cbb7c28e7453",
+      "wavSha256": "951923dd41ad62e9e50900ea85c93b9815c28f89e8345d78e0b9bd916ebf8dcd",
+      "duration": 30.41
+    },
+    "37557": {
+      "voice": "Minh Đức",
+      "precision": "fp32",
+      "sdkVersion": "3.8.3",
+      "inputSha256": "ae826d9feb1e77cc3ad981a6e8b06f1406595c338f5378064f7a1a4c494fd393",
+      "wavSha256": "3c42e4d43abede2219c929369a0e15f43b7d4cdcc1cc8d0f75e4582bef50c7b6",
+      "duration": 31.76
+    },
+    "37563": {
+      "voice": "Minh Đức",
+      "precision": "fp32",
+      "sdkVersion": "3.8.3",
+      "inputSha256": "cf156b656d2ef8b9574dcc2462c61bdf91a8b4fd7a3b34504ad60b61bf0d1137",
+      "wavSha256": "00ad59c36132573e51b36551d88ac3a794e30d2c7570bcd82dba274f9a86fca2",
+      "duration": 31.43
+    },
+    "38546": {
+      "voice": "Minh Đức",
+      "precision": "fp32",
+      "sdkVersion": "3.8.3",
+      "inputSha256": "5ebf5ba24702501e5b3c9d697e7d2560950cc3d0afddcdc22284ecce0cde4376",
+      "wavSha256": "289cf7717fad11803baee64c958a81735470b034ec8fa7bd76051f43fe4763ed",
+      "duration": 30.28
+    },
+    "75915": {
+      "voice": "Minh Đức",
+      "precision": "fp32",
+      "sdkVersion": "3.8.3",
+      "inputSha256": "2d9ba92caefb564ec3cfb64b675666afb7548a64ca3cb0519c83736b7f6d6859",
+      "wavSha256": "4865104f662020b5a510c6a2ed936c1ce7ea84decf59a33193012de7c82f8e9a",
+      "duration": 31.68
+    }
+  },
+  "engine": "VieNeu-TTS v3 Turbo",
+  "sdkVersion": "3.8.3",
+  "voice": "Minh Đức",
+  "language": "vi-VN",
+  "precision": "fp32",
+  "sampleRate": 48000,
+  "model": "pnnbao-ump/VieNeu-TTS-v3-Turbo",
+  "license": "Apache-2.0"
+}

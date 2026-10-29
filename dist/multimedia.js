@@ -3,7 +3,12 @@ export const kindNames={image:'Hình ảnh',video:'Video',audio:'Audio tiếng V
 export const adminNav='<nav class="admin-subnav" aria-label="Quản trị"><a href="/quan-ly/">Tác phẩm</a><a href="/tai-nguyen/quan-ly/">Kho tài nguyên</a><a href="/nguoi-dung/">Người dùng</a><a href="/thong-ke/">Thống kê</a></nav>';
 export const bytes=n=>Number(n||0)<1048576?(Number(n||0)/1024).toFixed(1)+' KiB':(Number(n||0)/1048576).toFixed(2)+' MiB';
 export function visitor(){try{let id=localStorage.getItem('net.visitor');if(!id){id=crypto.randomUUID();localStorage.setItem('net.visitor',id);}return id;}catch{return 'session';}}
-export const fileURL=(r,download=false)=>'/api/resources/'+encodeURIComponent(r.id)+'/file'+(download?'?download=1&visitor='+visitor():'');
+export function fileURL(r,download=false){
+  const query=new URLSearchParams();
+  if(download){query.set('download','1');query.set('visitor',visitor());}
+  if(r.sha256)query.set('v',r.sha256.slice(0,16));
+  return '/api/resources/'+encodeURIComponent(r.id)+'/file'+(query.size?'?'+query:'');
+}
 export function resourceCard(r){
   const kind=Object.hasOwn(kindNames,r.resourceType)?r.resourceType:'document';
   const format=String(r.format||({image:'Ảnh',audio:'Audio',video:'Video',text:'TXT'}[kind]||'Tài liệu')).toUpperCase();

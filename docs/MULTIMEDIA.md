@@ -29,7 +29,7 @@ Mở http://localhost:3000. Đăng nhập bằng tài khoản cũ; quyền admin
 
 ## Audio tiếng Việt
 
-Bộ mẫu có **7 MP3 tiếng Việt**, mỗi bản khoảng 31–34 giây, kèm lời đọc để đối chiếu. Đây là giọng tổng hợp eSpeak NG, được ghi rõ trong giao diện; không phải bản thu hướng dẫn viên. Bảy video minh họa cũng có phần thuyết minh tiếng Việt.
+Bộ mẫu có **7 MP3 tiếng Việt** bằng giọng AI **Minh Đức**, nam miền Bắc, tạo bằng VieNeu-TTS v3 Turbo miễn phí trên máy. Lời đọc có trong `transcript`; thời lượng hiển thị theo từng tệp. Bảy video dùng cùng phần thuyết minh với audio. Website phát tệp đã tạo sẵn, không cần tài khoản hay API tạo giọng lúc người dùng nghe.
 
 Để thay bằng giọng thu của bạn: vào kho tài nguyên, tải MP3 hoặc WAV, sửa tên/tác giả/nguồn/quyền/lời thuyết minh, chọn tác phẩm để gắn. Sau đó gỡ audio cũ trong biểu mẫu chỉnh sửa tác phẩm. Trường ngôn ngữ của audio dùng `vi-VN`; ứng dụng không tự nhận diện hoặc dịch tiếng nói của tệp người dùng tải lên.
 

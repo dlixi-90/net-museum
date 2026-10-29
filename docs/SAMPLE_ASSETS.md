@@ -4,7 +4,9 @@ Bộ mẫu trong `dist/assets/samples/` bổ sung tài nguyên có thể mở, n
 
 Video là ảnh hiện vật được dựng thành phim minh họa với nhãn ghi rõ trên khung hình và phần thuyết minh. Video không phải phim tư liệu lịch sử. Nội dung bổ sung dùng tiếng Việt, ghi nguồn và quyền sử dụng trong từng hồ sơ.
 
-Audio dùng giọng tổng hợp tiếng Việt miền Bắc `vi` của eSpeak NG; đây là giọng máy, không phải bản thu của hướng dẫn viên. Tệp MP3 và rãnh âm thanh trong MP4 có cùng nội dung. Nội dung đọc cũng có trong trường `transcript` của manifest và các tệp `*-transcript.txt` để đọc đối chiếu.
+Audio dùng giọng AI **Minh Đức**, nam miền Bắc, của **VieNeu-TTS v3 Turbo** (`vieneu==3.8.3`). Giọng được tạo trên máy, không cần tài khoản hoặc API trả phí. Đây là giọng tổng hợp, không phải bản thu hướng dẫn viên. MP3 và âm thanh trong MP4 có cùng nội dung; `transcript` và các tệp `*-transcript.txt` chứa lời đọc để đối chiếu.
+
+Mô hình và giọng dựng sẵn được tác giả phát hành theo Apache-2.0, cho phép sử dụng audio tạo ra trong sản phẩm. [Thông tin mô hình và quyền sử dụng](https://huggingface.co/pnnbao-ump/VieNeu-TTS-v3-Turbo), [mã nguồn VieNeu-TTS](https://github.com/pnnbao97/VieNeu-TTS). Dự án chỉ triển khai các tệp âm thanh/video đã tạo, không đưa mô hình lên Render.
 
 ## Tái tạo bộ mẫu
 
@@ -14,14 +16,17 @@ Chạy tại thư mục `di-san-viet` trong PowerShell:
 
 ```powershell
 node scripts/generate-sample-assets.mjs --prepare
+New-Item -ItemType Directory -Force .local/tts-cache | Out-Null
+docker build -f scripts/neural-tts.Dockerfile -t net-museum-neural-tts:local scripts
+docker run --rm --cpus=4 --memory=3g --mount "type=bind,source=$((Get-Location).Path)/dist/assets/samples,target=/samples" --mount "type=bind,source=$((Get-Location).Path)/.local/tts-cache,target=/cache" net-museum-neural-tts:local
 docker build -f scripts/sample-assets.Dockerfile -t net-museum-sample-media:local .
 docker run --rm --network none --mount "type=bind,source=$((Get-Location).Path)/dist/assets/samples,target=/samples" net-museum-sample-media:local
 node scripts/generate-sample-assets.mjs --finalize
 ```
 
-Bước build tải Debian, eSpeak NG và FFmpeg. Bước render chạy container tạm không có mạng, chỉ gắn thư mục `samples`; container PostgreSQL không bị sửa hay khởi động lại. Không cần cài phần mềm đọc giọng tiếng Việt lên Windows.
+Bước tạo WAV chạy VieNeu-TTS trong container riêng. Lần đầu tải mô hình vào cache; các lần sau tái sử dụng. Mặc định dùng `fp32` để giữ chất lượng trên CPU không có VNNI; không tự chuyển sang giọng dự phòng. Khi cache đã đủ, có thể thêm `--network none -e HF_HUB_OFFLINE=1` cho container tạo giọng. Bước render MP3/MP4 chạy FFmpeg trong container không có mạng.
 
-`--prepare` tạo TXT, DOCX, PDF, ảnh chi tiết và lệnh render. `--finalize` kiểm tra tệp MP3/MP4 bằng FFprobe, lấy thời lượng/kích thước và ghi manifest. Lệnh render kiểm tra giọng Việt được cài và giải mã toàn bộ MP3/MP4 bằng FFmpeg; lỗi sẽ dừng quá trình.
+`--prepare` tạo TXT, DOCX, PDF, ảnh chi tiết và lệnh render. Bộ tạo giọng ghi `narration-profile.json`, kiểm tra âm thanh hữu hạn, có tín hiệu và ghi WAV theo từng bản; chạy lại sẽ bỏ qua bản đã hoàn tất nếu lời đọc/giọng/mã băm khớp. FFmpeg chuẩn hóa mức âm lượng MP3 và tạo video từ cùng audio. `--finalize` đối chiếu lời đọc/WAV/MP3/MP4 bằng SHA-256, kiểm tra luồng âm thanh và thời lượng bằng FFprobe rồi ghi manifest. Dữ liệu cũ được cập nhật một lần khi máy chủ khởi động; ID và liên kết tư liệu được giữ nguyên.
 
 Các tệp WAV, ảnh nguồn video và script render nằm trong thư mục mẫu để có thể kiểm tra và tái tạo. Tài nguyên đưa vào kho qua manifest chỉ gồm 42 tệp hoàn chỉnh (sáu tệp cho mỗi hiện vật); không nhập các tệp trung gian vào danh mục.
 
