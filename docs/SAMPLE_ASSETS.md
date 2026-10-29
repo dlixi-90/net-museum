@@ -28,6 +28,6 @@ Bước tạo WAV chạy VieNeu-TTS trong container riêng. Lần đầu tải m
 
 `--prepare` tạo TXT, DOCX, PDF, ảnh chi tiết và lệnh render. Bộ tạo giọng ghi `narration-profile.json`, kiểm tra âm thanh hữu hạn, có tín hiệu và ghi WAV theo từng bản; chạy lại sẽ bỏ qua bản đã hoàn tất nếu lời đọc/giọng/mã băm khớp. FFmpeg chuẩn hóa mức âm lượng MP3 và tạo video từ cùng audio. `--finalize` đối chiếu lời đọc/WAV/MP3/MP4 bằng SHA-256, kiểm tra luồng âm thanh và thời lượng bằng FFprobe rồi ghi manifest. Dữ liệu cũ được cập nhật một lần khi máy chủ khởi động; ID và liên kết tư liệu được giữ nguyên.
 
-Các tệp WAV, ảnh nguồn video và script render nằm trong thư mục mẫu để có thể kiểm tra và tái tạo. Tài nguyên đưa vào kho qua manifest chỉ gồm 42 tệp hoàn chỉnh (sáu tệp cho mỗi hiện vật); không nhập các tệp trung gian vào danh mục.
+Các tệp WAV, ảnh nguồn video, nhãn video và script render được tạo cục bộ trong thư mục mẫu, được Git bỏ qua và không đưa lên bản triển khai. Chạy đủ quy trình trên để tái tạo chúng. Repository giữ lời đọc, hồ sơ giọng và manifest để đối chiếu nguồn. Tài nguyên đưa vào kho qua manifest gồm 42 tệp hoàn chỉnh (sáu tệp cho mỗi hiện vật); không nhập các tệp trung gian vào danh mục.
 
 Đây là bộ mẫu cho chức năng đa phương tiện. Tư liệu do bảo tàng cung cấp trong tương lai có thể thay thế từng tệp mà không thay đổi các hiện vật gốc.

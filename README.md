@@ -1,19 +1,27 @@
 # Nét — Bảo tàng nghệ thuật số
 
-Backend hiện sử dụng **Node.js + PostgreSQL + Cloudinary**. PostgreSQL lưu dữ liệu quan hệ trong 27 bảng; ảnh/video nằm ngoài CSDL. Giao diện và URL tác phẩm được giữ nguyên.
+Ứng dụng giới thiệu gốm nghệ thuật Việt, quản lý hiện vật và tư liệu đa phương tiện. Bản đang triển khai: **https://net-museum.onrender.com**.
 
-## Neon + Render Free
+Node.js 24 phục vụ giao diện và API cùng origin; PostgreSQL lưu dữ liệu trong 27 bảng và hai view. Bản online dùng Render, Neon PostgreSQL và Cloudinary. Tệp mẫu được đóng gói cùng mã nguồn.
 
-Dữ liệu đã được sao chép sang Neon: 1 tài khoản, 7 hiện vật, 49 tài nguyên. Cấu hình `render.yaml` dùng Web Service Free và Cloudinary cho mọi tệp tải mới. Xem [hướng dẫn triển khai từng bước](docs/RENDER_NEON.md). File `.env.render` riêng đã có cấu hình để nhập vào Render Environment; không commit file này. Chưa tạo/deploy service trong tài khoản Render.
+## Phạm vi chức năng hiện tại
 
-Xem trước bằng `npm.cmd run start:neon`; `.env` Docker được giữ cho phát triển và kiểm thử.
+- Duyệt bộ sưu tập, khám phá, đọc câu chuyện; tìm kiếm metadata kết hợp bộ lọc và tìm ảnh có màu sắc tương tự.
+- Chi tiết tác phẩm trên một trang: ảnh, ảnh chi tiết và video trong cùng khung; thuyết minh cạnh nút lưu; tải xuống qua hộp thoại có tab theo loại tệp.
+- Lưu tác phẩm, đăng ký và đăng nhập bằng email hoặc tên tài khoản.
+- Admin quản lý tác phẩm, tài nguyên, tài khoản và thống kê. Thao tác sửa/xóa dùng biểu tượng bút chì/thùng rác; liên kết quản trị nằm trong khu vực quản lý.
+- Tải lên theo khối, xác minh định dạng thực, phát audio/video và tải tệp; phân quyền được kiểm tra ở API.
 
-## Chạy với Docker Desktop trên Windows
+Bộ mẫu có bảy hiện vật và 49 tài nguyên: 14 ảnh, bảy audio tiếng Việt, bảy video, bảy PDF, bảy DOCX và bảy TXT. Thuyết minh dùng giọng AI Minh Đức của VieNeu-TTS, được tạo sẵn miễn phí trên máy.
 
-Mở Docker Desktop, đợi Engine chạy, mở PowerShell trong thư mục di-san-viet:
+Đây là phạm vi được giữ sau đợt dọn mã nguồn. Các trang đang có đều còn được sử dụng; danh sách và cách dùng nằm trong [hướng dẫn chức năng](docs/MULTIMEDIA.md).
+
+## Chạy trên máy
+
+Cần Node.js 24 và Docker Desktop đang chạy Linux containers. Trong thư mục chứa `package.json`:
 
 ```powershell
-npm.cmd install
+npm.cmd ci
 npm.cmd run db:docker:setup
 npm.cmd run db:start
 npm.cmd run db:check
@@ -21,57 +29,43 @@ npm.cmd run db:seed
 npm.cmd start
 ```
 
-Mở **http://localhost:3000**. Container PostgreSQL của dự án tên **net-museum-postgres**, cổng **127.0.0.1:5433**, database/user **net_museum**. Mật khẩu ngẫu nhiên lưu trong .env.postgresql; DATABASE_URL lưu trong .env. Hai file được Git bỏ qua. Lệnh setup không ghi đè DATABASE_URL đã có.
+Mở http://localhost:3000. PostgreSQL 17 chạy trong container `net-museum-postgres`, mặc định ở `127.0.0.1:5433`, database/user `net_museum`. Lệnh setup tạo mật khẩu ngẫu nhiên trong `.env.postgresql` và kết nối trong `.env`; không ghi đè `DATABASE_URL` đã có.
 
-Xem [hướng dẫn Docker Desktop, pgAdmin, sao lưu và phục hồi](docs/POSTGRESQL.md).
+Với database mới, thêm `ADMIN_EMAILS=dia-chi-email-cua-ban` và `ALLOW_ADMIN_SETUP=true` vào `.env`, rồi khởi động lại. Trang tài khoản sẽ cho thiết lập admin đầu tiên khi chưa có admin. Tắt thiết lập sau khi tạo xong. Dự án không kèm tài khoản hoặc mật khẩu quản trị.
 
-## Dữ liệu PostgreSQL
+Nếu dùng PostgreSQL sẵn có, tạo database UTF-8 và cấu hình `.env` theo [.env.example](.env.example). `PG_SCHEMA` mặc định là `net_museum`; giữ đúng schema của database đang chạy. Seed giữ các hồ sơ đã chỉnh sửa. Với `UPLOAD_STORAGE=local`, sao lưu cả PostgreSQL và thư mục `uploads/`; dừng container bằng `npm.cmd run db:stop` để giữ volume.
 
-Cấu hình hiện tại dùng schema **net_museum_import**. Tài khoản, mật khẩu đã băm, ID hiện vật và URL ảnh hiện có được giữ. Backend chỉ dùng DATABASE_URL và PG_SCHEMA để truy cập PostgreSQL. Lệnh seed không thay thế hồ sơ đã chỉnh sửa trong schema đang chọn.
-
-## Sử dụng PostgreSQL khác
-
-Tạo database UTF-8 và điền DATABASE_URL trong .env. PG_SCHEMA mặc định net_museum; ứng dụng chỉ tạo/ghi trong schema riêng, không sửa bảng ở public. Tài khoản DB cần quyền tạo schema/bảng trong database của dự án. Xem .env.example.
-
-## Chức năng hiện có
-
-- CRUD hiện vật và tài nguyên; nhiều ảnh, audio tiếng Việt, video, PDF, TXT, DOCX.
-- Quản trị người dùng, tên tài khoản, phân quyền lưu trong PostgreSQL, khóa và thu hồi phiên.
-- Kho tài nguyên, biên tập đầy đủ metadata, gắn nhiều tư liệu vào một hiện vật.
-- Tìm kiếm kết hợp metadata, loại, dung lượng và khoảng ngày; tìm ảnh tương tự bằng histogram/cosine.
-- Upload chia khối 6 MiB, tiếp tục trong 24 giờ, video tối đa 1 GiB; HTTP Range.
-- Yêu thích theo tài khoản; thống kê xem/tải, đủ năm loại, chủ đề và hiện vật quan tâm.
-
-Bộ mẫu gồm 7 hiện vật, 49 tài nguyên: 14 ảnh, 7 audio tiếng Việt, 7 video minh họa có thuyết minh, 14 PDF/DOCX và 7 TXT. [Hướng dẫn sử dụng](docs/MULTIMEDIA.md), [nguồn/giọng đọc mẫu](docs/SAMPLE_ASSETS.md), [đối chiếu đề bài](../DANH_GIA_MUC_DO_DAP_UNG_DE_BAI.md).
-
-Với UPLOAD_STORAGE=local, tệp mới lưu trong uploads/; với cloudinary, trình duyệt tải trực tiếp lên Cloudinary và metadata lưu PostgreSQL. [Phân quyền hiện hành](docs/ACCESS.md). Luồng Cloudinary cũ vẫn giữ cho tài sản hiện có; upload chia khối không hỗ trợ Vercel serverless.
-
-## Kiểm tra
+## Phát triển và kiểm tra
 
 ```powershell
+npm.cmd run build
 npm.cmd run check
 npm.cmd run test:integration
 npm.cmd run db:queries
 ```
 
-Đã chạy đạt 19 unit test, 9 integration test trên PostgreSQL thật và đủ 15 SQL. Integration test dùng schema net_test_* riêng, tự dọn đúng schema của bài test, dùng giả lập Cloudinary. Xem [kết quả kiểm tra](docs/KIEM_THU.md).
+Sửa template trong `web/`, rồi build lại HTML trong `dist/`. `check` kiểm tra bản build, cú pháp, liên kết/tệp phụ thuộc và unit test. Integration test dùng PostgreSQL thật với schema `net_test_*` riêng, tự dọn schema test; luồng Cloudinary dùng giả lập. Cấu hình test bằng database phát triển, tách khỏi database nghiệp vụ. `db:queries` chạy 15 truy vấn của mô hình hiện tại.
 
-## Cấu trúc chính
+`npm.cmd run preview` chỉ phục vụ giao diện tĩnh; đăng nhập, ghi dữ liệu và tìm kiếm API cần backend. `npm.cmd run media:index` lập chỉ mục ảnh; `npm.cmd run test:cbir` ghi báo cáo cục bộ vào `.local/reports/`.
 
-- database/schema.sql: lược đồ PostgreSQL đang chạy, 23 bảng nền; multimedia.sql bổ sung thành 27 bảng và 2 view.
-- database/queries.sql: 15 truy vấn của mô hình hiện tại.
-- database/seed-postgresql.mjs: seed từ JSON UTF-8, giữ nguyên ID.
-- server/repository.mjs: SQL có tham số, transaction và ánh xạ API.
-- server/db.mjs, server/pg-config.mjs: pool, khởi tạo và kiểm tra kết nối.
-- web/: template; dist/: frontend; server/app.mjs: HTTP API.
-- database/legacy-postgresql/: thiết kế cũ, không dùng để khởi tạo runtime mới.
+## Cấu trúc
 
-Sau khi sửa template chạy npm.cmd run build. npm.cmd run preview chỉ phục vụ giao diện tĩnh/snapshot. Chức năng ghi cần backend Node.js và PostgreSQL.
+| Thư mục/tệp | Vai trò |
+|---|---|
+| `web/` | Template của 14 trang, layout và biểu mẫu dùng chung |
+| `dist/` | HTML được build, JavaScript, CSS, phông chữ và tư liệu đang sử dụng |
+| `server/` | HTTP API, xác thực, phân quyền, PostgreSQL và kho tệp |
+| `database/` | Schema hiện hành, seed và truy vấn |
+| `scripts/` | Build, kiểm tra, vận hành và tái tạo bộ mẫu |
+| `tests/` | Unit test và integration test |
+| `render.yaml` | Cấu hình triển khai Render |
 
-## Triển khai trực tuyến
+## Triển khai và tài liệu
 
-Đích triển khai hiện tại là Neon + Render Free; database Neon đã nạp và kiểm chứng, service Render cần được tạo theo hướng dẫn. Vercel/Sites chưa được triển khai lại. PostgreSQL trong Docker trên máy cá nhân không thể được Vercel truy cập qua localhost. Triển khai online cần PostgreSQL cloud hoặc máy chủ backend/DB có kết nối phù hợp và DATABASE_URL riêng trên host. Xem [Vercel](docs/VERCEL.md).
+- [Render + Neon + Cloudinary](docs/RENDER_NEON.md): cấu hình, cập nhật và sao lưu.
+- [Chức năng và phân quyền](docs/MULTIMEDIA.md): các màn hình, upload, metadata, thống kê.
+- [Nguồn tư liệu và tái tạo giọng đọc](docs/SAMPLE_ASSETS.md): nguồn ảnh, quyền sử dụng và công cụ dựng mẫu.
 
-## Nguồn ảnh
+Các tệp `.env*` thật, bản sao lưu, upload cá nhân, cache và báo cáo cục bộ được Git bỏ qua. Chỉ `.env.example` chứa giá trị minh họa được công khai. Không đưa dữ liệu tài khoản, phiên đăng nhập hoặc khóa dịch vụ vào repository.
 
-Bộ 7 hiện vật gốm Việt dùng tư liệu The Met Open Access; metadata và giấy phép trong dist/assets/sources.json. Ảnh không gian, kiến trúc và phông chữ có thông tin nguồn trong dist/assets/. Việc chuyển DB không thay ảnh, nguồn hoặc quyền sử dụng.
+Ảnh hiện vật dùng The Met Open Access; thông tin nguồn và quyền nằm trong [sources.json](dist/assets/sources.json). Phông chữ Be Vietnam Pro có giấy phép trong [OFL.txt](dist/assets/fonts/OFL.txt). Quyền của tư liệu bên ngoài được giữ theo từng nguồn; repository không cấp lại quyền cho các tài sản đó.

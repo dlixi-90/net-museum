@@ -13,18 +13,12 @@
     "db:seed": "node database/seed-postgresql.mjs",
     "db:queries": "node scripts/run-queries.mjs",
     "db:check": "node scripts/check-database.mjs",
-    "check": "node scripts/build-pages.mjs --check && node scripts/check-syntax.mjs && node --test tests/auth.test.mjs tests/core.test.mjs tests/validation.test.mjs tests/pg-config.test.mjs tests/media-storage.test.mjs tests/cloud-media.test.mjs",
+    "check": "node scripts/build-pages.mjs --check && node scripts/check-syntax.mjs && node scripts/check-references.mjs && node --test tests/auth.test.mjs tests/core.test.mjs tests/validation.test.mjs tests/pg-config.test.mjs tests/media-storage.test.mjs tests/cloud-media.test.mjs",
     "test:integration": "node --test tests/postgresql.test.mjs tests/multimedia.test.mjs tests/cloud-uploads.test.mjs tests/sample-content.test.mjs",
     "cloudinary:check": "node scripts/check-cloudinary.mjs",
-    "media:migrate": "node scripts/migrate-cloudinary.mjs",
     "media:index": "node scripts/index-images.mjs",
     "test:cbir": "node scripts/evaluate-cbir.mjs",
-    "db:neon:check": "node scripts/neon.mjs check",
-    "db:neon:export": "node scripts/neon.mjs export",
-    "db:neon:migrate": "node scripts/neon.mjs migrate",
-    "media:publish": "node scripts/publish-uploads.mjs",
-    "render:env": "node scripts/render-env.mjs",
-    "start:neon": "node scripts/start-neon.mjs"
+    "media:publish": "node scripts/publish-uploads.mjs"
   },
   "dependencies": {
     "@pdf-lib/fontkit": "^1.1.1",

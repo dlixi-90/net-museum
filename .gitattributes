@@ -1,0 +1,11 @@
+# Keep templates and generated pages identical across Windows and Linux.
+* text=auto eol=lf
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.webp binary
+*.woff2 binary
+*.mp3 binary
+*.mp4 binary
+*.pdf binary
+*.docx binary

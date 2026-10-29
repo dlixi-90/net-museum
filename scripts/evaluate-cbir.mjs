@@ -15,5 +15,5 @@ try{
   }
   const answerable=rows.filter(r=>r.relevant>0),mean=key=>answerable.reduce((sum,r)=>sum+r[key],0)/answerable.length;
   const result={generatedAt:new Date().toISOString(),featureVersion:FEATURE_VERSION,protocol:'Leave-one-out on seven original covers; labels are ceramic categories; detail crops excluded; singleton excluded from macro averages.',queries:rows.length,answerableQueries:answerable.length,macroPrecisionAt5:mean('precisionAt5'),macroRecallAt5:mean('recallAt5'),meanQueryMs:rows.reduce((sum,r)=>sum+r.elapsedMs,0)/rows.length,rows};
-  await mkdir(new URL('../docs/results/',import.meta.url),{recursive:true});await writeFile(new URL('../docs/results/cbir-evaluation.json',import.meta.url),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
+  await mkdir(new URL('../.local/reports/',import.meta.url),{recursive:true});await writeFile(new URL('../.local/reports/cbir-evaluation.json',import.meta.url),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
 }finally{await client.close();}

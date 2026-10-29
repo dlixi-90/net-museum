@@ -16,6 +16,6 @@ try{
     const asset=await cloud.publishFile(filename,{id:media.id,mimeType:media.mimeType});
     await db.transaction(async tx=>{await tx.migrateMediaAsset(media.id,media.url,asset);if(asset.colorVector)await tx.setImageVector(media.id,asset.colorVector,asset.featureVersion,asset.sha256);});published++;
   }
-  console.log(JSON.stringify({localFiles:rows.length,published,applied:apply,originalFilesPreserved:true,next:apply?'npm run db:neon:migrate':'npm run media:publish -- --apply'}));
+  console.log(JSON.stringify({localFiles:rows.length,published,applied:apply,originalFilesPreserved:true,...(!apply?{next:'npm run media:publish -- --apply'}:{})}));
 }catch(error){console.error(error.code?'Chưa chuyển được tệp. Kiểm tra cấu hình, file nguồn và kết nối; file gốc được giữ.':error.message);process.exitCode=1;}
 finally{await client.close();}

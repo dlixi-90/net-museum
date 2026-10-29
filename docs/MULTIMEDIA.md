@@ -1,6 +1,6 @@
 # Hướng dẫn các chức năng đa phương tiện
 
-Đã chuẩn bị bản online [Render Free + Neon + Cloudinary](RENDER_NEON.md). Chọn `UPLOAD_STORAGE=cloudinary` để tải tệp ra kho ngoài; phiên cloud một giờ, video tối đa100 MiB theo cấu hình mặc định và quota tài khoản. Phần dưới mô tả thêm luồng cục bộ.
+Bản online dùng [Render + Neon + Cloudinary](RENDER_NEON.md). Chọn `UPLOAD_STORAGE=cloudinary` để tải tệp ra kho ngoài; phiên cloud một giờ, video tối đa 100 MiB theo cấu hình mặc định và quota tài khoản. Phần dưới mô tả thêm luồng cục bộ.
 
 Bản cục bộ dùng Node.js, PostgreSQL 17 trong Docker Desktop và kho tệp bên ngoài CSDL. Khởi động trong thư mục `di-san-viet`:
 
@@ -10,16 +10,20 @@ npm.cmd run db:seed
 npm.cmd start
 ```
 
-Mở http://localhost:3000. Đăng nhập bằng tài khoản cũ; quyền admin đã được giữ trong PostgreSQL.
+Mở http://localhost:3000. Cách cài đặt và cấp admin đầu tiên nằm trong [README](../README.md).
 
 ## Các màn hình
 
 | Địa chỉ | Sử dụng |
 |---|---|
+| `/` | Trang chủ và các lối vào bộ sưu tập |
+| `/kham-pha/` | Khám phá các nhóm nghệ thuật |
+| `/cau-chuyen/` | Câu chuyện về hiện vật |
+| `/ve-bao-tang/` | Giới thiệu Nét |
 | `/tai-khoan/` | Đăng ký, đăng nhập bằng email hoặc tên tài khoản, đăng xuất |
 | `/bo-suu-tap/` | Duyệt hiện vật theo bộ sưu tập và niên đại |
 | `/tim-kiem/` | Kết hợp tên/nội dung, tác giả, chủ đề, thời kỳ hiện vật, từ khóa, loại, dung lượng và ngày thêm |
-| `/tac-pham/?id=37557` | Nhiều ảnh, audio tiếng Việt, video minh họa và hồ sơ PDF/DOCX/TXT |
+| `/tac-pham/?id=37557` | Một trang chi tiết: ảnh/ảnh chi tiết/video chung khung, thuyết minh cạnh nút lưu, nút tải mở hộp thoại có tab Audio/Video/PDF/DOCX/TXT/Ảnh |
 | `/tai-nguyen/?id=...` | Xem/phát/đọc một tư liệu, metadata đầy đủ, tải tệp |
 | `/quan-ly/` | Admin thêm/sửa/xóa hiện vật; chọn nhiều tệp đính kèm trong cùng biểu mẫu |
 | `/tai-nguyen/quan-ly/` | Admin tải tệp, sửa metadata, gắn tư liệu vào hồ sơ, xóa tư liệu chưa sử dụng |
@@ -47,7 +51,7 @@ Tệp tải lên được chia thành khối tối đa 6 MiB. Tiến độ đã 
 
 FFprobe kiểm tra stream và thời lượng audio/video; PDF được đọc số trang; DOCX được đọc văn bản với giới hạn giải nén; TXT được kiểm tra UTF-8. Tệp lớn được ghi theo khối và phát qua HTTP Range; không nạp toàn bộ video vào RAM. Đã thử tải tiếp một MP4 lớn hơn 50 MiB. Chưa đo tải thực tế với video sát 1 GiB hoặc nhiều người phát đồng thời.
 
-Khi UPLOAD_STORAGE=local, tệp mới được lưu trên ổ đĩa máy chạy Node.js trong `uploads/`; Render Free dùng cloudinary và không giữ tệp mới ở đây. Cần sao lưu thư mục này cùng PostgreSQL. Video MOV có thể cần đổi sang MP4 H.264/AAC để trình duyệt hỗ trợ; hệ thống chưa có worker chuyển mã hay HLS. Ảnh cũ trên Cloudinary vẫn được giữ. Luồng chia khối cần ổ đĩa bền vững, không chạy trên Vercel serverless.
+Khi UPLOAD_STORAGE=local, tệp mới được lưu trên ổ đĩa máy chạy Node.js trong `uploads/`; bản Render dùng cloudinary và không giữ tệp mới ở đây. Cần sao lưu thư mục này cùng PostgreSQL. Video MOV có thể cần đổi sang MP4 H.264/AAC để trình duyệt hỗ trợ; hệ thống chưa có worker chuyển mã hay HLS. Ảnh cũ trên Cloudinary vẫn được giữ. Luồng tải cục bộ cần ổ đĩa bền vững.
 
 ## Metadata và xóa
 
@@ -66,10 +70,14 @@ npm.cmd run media:index
 npm.cmd run test:cbir
 ```
 
-Kết quả thực nghiệm ghi tại `docs/results/cbir-evaluation.json`: trên bảy ảnh bìa gốc, sáu truy vấn có ảnh cùng nhóm khác, macro P@5 = 0,40 và macro R@5 = 1,00. Một ảnh men trắng không có ảnh liên quan khác nên loại khỏi trung bình. Tập nhỏ, k=5 trong sáu ứng viên; kết quả không chứng minh chất lượng tổng quát và không nhận diện cùng hiện vật.
+Kết quả mỗi lần chạy được ghi tại `.local/reports/cbir-evaluation.json`, không đưa lên Git. Phép đo dùng bảy ảnh bìa, bỏ ảnh chi tiết và loại truy vấn không có ảnh cùng nhóm khỏi trung bình. Tập mẫu nhỏ; phép đo màu sắc không nhận diện cùng hiện vật và không chứng minh chất lượng tổng quát.
 
 ## Thống kê và quyền truy cập
 
 Xem tư liệu, phát audio/video và tải tệp ghi sự kiện trong PostgreSQL. Mỗi trình duyệt/tư liệu/hành động ghi một lần trong một giờ. Lượt tải là số yêu cầu tải, không xác nhận hoàn tất. Một tư liệu có nhiều chủ đề có thể xuất hiện ở nhiều dòng thống kê.
 
 Chỉ admin quản trị nội dung và tài khoản. Tệp chưa gắn với hồ sơ công khai chỉ admin truy cập được. Đổi quyền, khóa hoặc đổi mật khẩu thu hồi phiên hiện có; hệ thống giữ ít nhất một admin hoạt động.
+
+Vai trò `admin`/`user` được lưu trong PostgreSQL. Đăng ký công khai chỉ tạo `user`; `ADMIN_EMAILS` dành cho khởi tạo và bảo vệ email quản trị, không tự đổi vai trò tài khoản đã có. Mật khẩu được băm bằng scrypt và salt; phiên dùng cookie HttpOnly, SameSite=Strict, Secure trong production. Hiện chưa có xác minh email hoặc khôi phục mật khẩu qua email; admin đặt lại mật khẩu trong màn hình người dùng.
+
+Khách và tài khoản thường được xem tư liệu gắn với tác phẩm công khai; tài nguyên chưa công khai chỉ admin được truy cập qua API. Thống kê chỉ xuất hiện trong khu vực quản lý. Liên kết kho tài nguyên, người dùng và thống kê được giữ trong điều hướng quản trị, không đặt ở footer.
