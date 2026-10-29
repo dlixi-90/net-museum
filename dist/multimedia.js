@@ -4,7 +4,30 @@ export const adminNav='<nav class="admin-subnav" aria-label="Quản trị"><a hr
 export const bytes=n=>Number(n||0)<1048576?(Number(n||0)/1024).toFixed(1)+' KiB':(Number(n||0)/1048576).toFixed(2)+' MiB';
 export function visitor(){try{let id=localStorage.getItem('net.visitor');if(!id){id=crypto.randomUUID();localStorage.setItem('net.visitor',id);}return id;}catch{return 'session';}}
 export const fileURL=(r,download=false)=>'/api/resources/'+encodeURIComponent(r.id)+'/file'+(download?'?download=1&visitor='+visitor():'');
-export function resourceCard(r){return `<article class="resource-card"><a class="resource-thumb" href="/tai-nguyen/?id=${encodeURIComponent(r.id)}">${r.resourceType==='image'?`<img src="${esc(r.url)}" alt="${esc(r.title)}" loading="lazy">`:`<span>${esc(kindNames[r.resourceType]||r.resourceType)}</span>`}</a><div class="resource-copy"><span class="type-badge">${esc(r.format?.toUpperCase()||kindNames[r.resourceType])} · ${bytes(r.sizeBytes)}</span><h3><a href="/tai-nguyen/?id=${encodeURIComponent(r.id)}">${esc(r.title||r.originalName||'Tư liệu')}</a></h3><p>${esc(r.author||'Nét — bảo tàng số')}</p>${r.similarity!==undefined?`<p class="score-note">Tương đồng màu: ${(r.similarity*100).toFixed(1)}%</p>`:''}</div></article>`;}
+export function resourceCard(r){
+  const kind=Object.hasOwn(kindNames,r.resourceType)?r.resourceType:'document';
+  const format=String(r.format||({image:'Ảnh',audio:'Audio',video:'Video',text:'TXT'}[kind]||'Tài liệu')).toUpperCase();
+  const title=r.title||r.originalName||'Tư liệu';
+  const icon={image:'image',audio:'audio',video:'video',document:'document',text:'document'}[kind];
+  const label={image:'Hình ảnh',audio:'Thuyết minh',video:'Video',document:'Tài liệu',text:'Văn bản'}[kind];
+  const duration=Number(r.duration);
+  const detail=Number.isFinite(duration)&&duration>0?`${Math.floor(duration/60)}:${String(Math.floor(duration%60)).padStart(2,'0')}`:r.pageCount?`${Number(r.pageCount)} trang`:'';
+  const waveform='<span class="resource-waveform" aria-hidden="true">'+[12,22,34,18,42,28,54,36,22,46,30,16,38,52,24,40,18,30,44,22,14].map(height=>`<i style="--bar-height:${height}px"></i>`).join('')+'</span>';
+  return `<article class="resource-card" data-resource-kind="${kind}" data-resource-format="${esc(format.toLowerCase())}">
+    <a class="resource-card-main" href="/tai-nguyen/?id=${encodeURIComponent(r.id)}" aria-label="${esc(label+': '+title)}">
+      <div class="resource-thumb">
+        <span class="resource-preview-label">${esc(label)}</span>
+        ${kind==='image'?`<img src="${esc(r.url)}" alt="${esc(title)}" loading="lazy">`:''}
+        <div class="resource-preview" aria-hidden="true">${kind==='audio'?waveform:`<span class="resource-file-icon"><svg><use href="#icon-${icon}"/></svg>${['document','text'].includes(kind)?`<span>${esc(format)}</span>`:''}</span>`}</div>
+        ${kind==='image'?'<span class="resource-image-fallback" aria-hidden="true"><svg><use href="#icon-image"/></svg><span>Chưa có ảnh xem trước</span></span>':''}
+        ${detail?`<span class="resource-preview-detail">${esc(detail)}</span>`:''}
+        <span class="resource-preview-open" aria-hidden="true">↗</span>
+      </div>
+      <div class="resource-copy"><span class="type-badge">${esc(format)}</span><h3 title="${esc(title)}">${esc(title)}</h3><p class="resource-author" title="${esc(r.author||'Nét — bảo tàng số')}">${esc(r.author||'Nét — bảo tàng số')}</p>${r.similarity!==undefined?`<p class="score-note">Tương đồng màu: ${(r.similarity*100).toFixed(1)}%</p>`:''}</div>
+    </a>
+    <div class="resource-card-footer"><span>${bytes(r.sizeBytes)}</span><a class="resource-download" href="${esc(fileURL(r,true))}" download aria-label="Tải xuống: ${esc(title)}">Tải xuống <svg aria-hidden="true"><use href="#icon-download"/></svg></a></div>
+  </article>`;
+}
 export function trackView(id){api('/resources/'+encodeURIComponent(id)+'/events?visitor='+visitor(),{method:'POST',body:JSON.stringify({action:'view'})}).catch(()=>{});}
 export function player(r){const url=esc(fileURL(r));if(r.resourceType==='image')return `<img src="${url}" alt="${esc(r.title)}">`;if(['audio','video'].includes(r.resourceType))return `<${r.resourceType} controls preload="metadata" ${r.resourceType==='video'?`playsinline ${r.poster?'poster="'+esc(r.poster)+'"':''}`:''} src="${url}" aria-label="${esc(r.title)}"></${r.resourceType}>${r.resourceType==='audio'?'<p class="subtle-note">Thuyết minh tiếng Việt · giọng đọc tổng hợp trong tư liệu mẫu.</p>':''}${r.transcript?`<details><summary>Nội dung thuyết minh</summary><p>${esc(r.transcript)}</p></details>`:''}`;if(r.format?.toLowerCase()==='pdf')return `<iframe src="${url}" title="${esc(r.title)}"></iframe>`;return `<pre>${esc(r.content||'Tải tệp để đọc toàn bộ nội dung.')}</pre>`;}
 export function bindPlayer(container,r){if(['audio','video'].includes(r.resourceType))container.querySelector(r.resourceType)?.addEventListener('play',()=>trackView(r.id),{once:true});else trackView(r.id);}
