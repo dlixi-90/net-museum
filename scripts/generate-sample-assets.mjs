@@ -11,6 +11,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import sharp from 'sharp';
 import { PDFDocument, rgb } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
@@ -27,12 +28,11 @@ const paragraphs = (a) => [
   `Mã hiện vật: ${a.id}. Niên đại: ${a.period}. Xuất xứ: ${a.origin}.`,
   a.description,
   `Tác giả hiện vật: ${a.author}. Chất liệu theo nguồn gốc: ${a.material}.`,
-  `Gợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.`,
   `Thuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.`,
   `Nguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. ${a.source}`,
   `Quyền sử dụng ảnh: ${a.license}. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét.`,
 ];
-const narration = (a) => `Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật ${a.title}, có niên đại ${voicePeriods[a.id]}, xuất xứ Việt Nam. ${a.description} Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.`;
+const narration = (a) => `Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật ${a.title}, có niên đại ${voicePeriods[a.id]}, xuất xứ Việt Nam. ${a.description} Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.`;
 
 async function loadFont() {
   const candidates = [process.env.SAMPLE_ASSET_FONT, 'C:/Windows/Fonts/arial.ttf', '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'].filter(Boolean);
@@ -127,11 +127,11 @@ async function finalize() {
     ];
     for (const [suffix, ext, kind, mimeType, title] of formats) {
       const filename = `${a.id}-${suffix}.${ext}`; const file = path.join(samples, filename); const stat = await fs.stat(file);
-      const record = { artifactId: a.id, id: `sample-${a.id}-${suffix}-${ext}`, kind, mimeType, url: `/assets/samples/${filename}`, sizeBytes: stat.size, title,
+      const record = { artifactId: a.id, id: `sample-${a.id}-${suffix}-${ext}`, kind, mimeType, url: `/assets/samples/${filename}`, sizeBytes: stat.size, sha256: createHash('sha256').update(await fs.readFile(file)).digest('hex'), title,
         author: kind === 'image' ? a.author : kind === 'audio' || kind === 'video' ? 'Nét — thuyết minh tổng hợp' : 'Bảo tàng số Nét', source: a.source,
-        license: kind === 'image' ? a.license : 'CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access',
+        license: kind === 'image' ? a.license : '',
         topic: a.categoryLabel, tags: [...a.tags, 'tài nguyên học tập', ...(kind === 'audio' || kind === 'video' ? ['tiếng Việt', 'giọng tổng hợp'] : [])],
-        description: kind === 'image' ? 'Vùng cắt trung tâm từ ảnh gốc để quan sát bề mặt và đường nét; không phải ảnh chụp độc lập.' : kind === 'video' ? 'Video minh họa tĩnh từ ảnh hiện vật với nhãn minh họa và giọng đọc tổng hợp tiếng Việt. Không phải phim tư liệu lịch sử.' : kind === 'audio' ? 'Bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp eSpeak NG (vi); nội dung biên soạn phục vụ học tập.' : 'Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.',
+        description: kind === 'image' ? '' : kind === 'video' ? 'Video minh họa tĩnh từ ảnh hiện vật với nhãn minh họa và giọng đọc tổng hợp tiếng Việt. Không phải phim tư liệu lịch sử.' : kind === 'audio' ? 'Bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp eSpeak NG (vi); nội dung biên soạn phục vụ học tập.' : 'Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.',
         language: 'vi-VN', content: kind === 'image' ? a.description : paragraphs(a).join('\n\n'),
       };
       if (kind === 'audio' || kind === 'video') {
@@ -145,7 +145,7 @@ async function finalize() {
       resources.push(record);
     }
   }
-  await fs.writeFile(path.join(samples, 'manifest.json'), JSON.stringify({ generatedAt: new Date().toISOString(), provenance: 'Ảnh gốc từ The Met Open Access. Nội dung và giọng đọc tổng hợp tiếng Việt do Bảo tàng số Nét biên soạn; video minh họa tĩnh, không phải tư liệu lịch sử.', resources }, null, 2) + '\n');
+  await fs.writeFile(path.join(samples, 'manifest.json'), JSON.stringify({ generatedAt: new Date().toISOString(), provenance: 'Nội dung và giọng đọc tổng hợp tiếng Việt do Bảo tàng số Nét biên soạn; video minh họa tĩnh, không phải tư liệu lịch sử.', resources }, null, 2) + '\n');
   console.log(`Verified ${resources.length} real resources; wrote ${path.join(samples, 'manifest.json')}`);
 }
 

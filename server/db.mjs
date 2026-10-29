@@ -7,6 +7,7 @@ import {validateConnectionUri,validateSchema} from './pg-config.mjs';
 import {MuseumRepository} from './repository.mjs';
 import {imageFeatures,FEATURE_VERSION} from './files.mjs';
 import {createHash} from 'node:crypto';
+import {refreshSampleContent} from './sample-content.mjs';
 export async function connectDatabase({uri=process.env.DATABASE_URL,schema=process.env.PG_SCHEMA||'net_museum',max=Number(process.env.PG_POOL_MAX)||5}={}) {
   validateConnectionUri(uri);validateSchema(schema);
   const parsedUri=new URL(uri);if(parsedUri.hostname.endsWith('.neon.tech')){parsedUri.searchParams.set('sslmode','verify-full');uri=parsedUri.href;}
@@ -52,5 +53,6 @@ export async function initializeDatabase(db,{seed=true}={}) {
     await tx.query("UPDATE resources r SET title=a.title FROM artifact_resources ar JOIN artifacts a ON a.id=ar.artifact_id WHERE ar.resource_id=r.id AND r.title=''");
     await tx.query("INSERT INTO app_settings(key,value) VALUES('sample_seed_v2','complete') ON CONFLICT(key) DO NOTHING");
   });
+  if(seed)await refreshSampleContent(db);
   await db.cleanupExpired();
 }

@@ -2,7 +2,7 @@
 
 Bộ mẫu trong `dist/assets/samples/` bổ sung tài nguyên có thể mở, nghe và tải thật cho bảy hiện vật hiện có. Mỗi hiện vật có một ảnh chi tiết, một bản thuyết minh MP3 tiếng Việt, một video MP4 có âm thanh, một hồ sơ PDF, một bản TXT và một bản DOCX. `manifest.json` chứa siêu dữ liệu và mã ổn định để nhập vào PostgreSQL.
 
-Ảnh chi tiết được cắt từ ảnh gốc The Met Open Access; ảnh gốc được giữ nguyên. Video là ảnh hiện vật được dựng thành phim minh họa với nhãn ghi rõ trên khung hình và phần thuyết minh. Video không phải phim tư liệu lịch sử. Nội dung bổ sung dùng tiếng Việt, ghi nguồn và quyền sử dụng trong từng hồ sơ.
+Video là ảnh hiện vật được dựng thành phim minh họa với nhãn ghi rõ trên khung hình và phần thuyết minh. Video không phải phim tư liệu lịch sử. Nội dung bổ sung dùng tiếng Việt, ghi nguồn và quyền sử dụng trong từng hồ sơ.
 
 Audio dùng giọng tổng hợp tiếng Việt miền Bắc `vi` của eSpeak NG; đây là giọng máy, không phải bản thu của hướng dẫn viên. Tệp MP3 và rãnh âm thanh trong MP4 có cùng nội dung. Nội dung đọc cũng có trong trường `transcript` của manifest và các tệp `*-transcript.txt` để đọc đối chiếu.
 

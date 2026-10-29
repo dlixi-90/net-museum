@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-23T04:44:46.589Z",
-  "provenance": "Ảnh gốc từ The Met Open Access. Nội dung và giọng đọc tổng hợp tiếng Việt do Bảo tàng số Nét biên soạn; video minh họa tĩnh, không phải tư liệu lịch sử.",
+  "generatedAt": "2026-10-29T13:36:22.252Z",
+  "provenance": "Nội dung và giọng đọc tổng hợp tiếng Việt do Bảo tàng số Nét biên soạn; video minh họa tĩnh, không phải tư liệu lịch sử.",
   "resources": [
     {
       "artifactId": "37557",
@@ -9,6 +9,7 @@
       "mimeType": "image/jpeg",
       "url": "/assets/samples/37557-detail.jpg",
       "sizeBytes": 43219,
+      "sha256": "17cb89fe7b132cdc67a4b2c68dc11a88a497402865ae3e8e1ac430bc5fb7c0dd",
       "title": "Ảnh chi tiết — Bình hoa điểu",
       "author": "Chưa xác định",
       "source": "https://www.metmuseum.org/art/collection/search/37557",
@@ -20,7 +21,7 @@
         "men lam",
         "tài nguyên học tập"
       ],
-      "description": "Vùng cắt trung tâm từ ảnh gốc để quan sát bề mặt và đường nét; không phải ảnh chụp độc lập.",
+      "description": "",
       "language": "vi-VN",
       "content": "Sắc lam cobalt phác họa những cánh chim và dây hoa mẫu đơn trên thân bình. Những lớp họa tiết chia bề mặt gốm thành từng khoảng nhịp nhàng, để ánh nhìn chậm rãi đi từ cổ bình xuống chân đế.",
       "width": 290,
@@ -32,11 +33,12 @@
       "kind": "audio",
       "mimeType": "audio/mpeg",
       "url": "/assets/samples/37557-audio.mp3",
-      "sizeBytes": 460218,
+      "sizeBytes": 402226,
+      "sha256": "e9f23683bb266db87063677679ced6cb8d09ee218d52d25453e149a99929bf21",
       "title": "Thuyết minh tiếng Việt — Bình hoa điểu",
       "author": "Nét — thuyết minh tổng hợp",
       "source": "https://www.metmuseum.org/art/collection/search/37557",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men lam",
       "tags": [
         "chim",
@@ -48,9 +50,9 @@
       ],
       "description": "Bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp eSpeak NG (vi); nội dung biên soạn phục vụ học tập.",
       "language": "vi-VN",
-      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình hoa điểu, có niên đại thế kỷ mười lăm, xuất xứ Việt Nam. Sắc lam cobalt phác họa những cánh chim và dây hoa mẫu đơn trên thân bình. Những lớp họa tiết chia bề mặt gốm thành từng khoảng nhịp nhàng, để ánh nhìn chậm rãi đi từ cổ bình xuống chân đế. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
-      "duration": 38.321633,
-      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình hoa điểu, có niên đại thế kỷ mười lăm, xuất xứ Việt Nam. Sắc lam cobalt phác họa những cánh chim và dây hoa mẫu đơn trên thân bình. Những lớp họa tiết chia bề mặt gốm thành từng khoảng nhịp nhàng, để ánh nhìn chậm rãi đi từ cổ bình xuống chân đế. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập."
+      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình hoa điểu, có niên đại thế kỷ mười lăm, xuất xứ Việt Nam. Sắc lam cobalt phác họa những cánh chim và dây hoa mẫu đơn trên thân bình. Những lớp họa tiết chia bề mặt gốm thành từng khoảng nhịp nhàng, để ánh nhìn chậm rãi đi từ cổ bình xuống chân đế. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "duration": 33.48898,
+      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình hoa điểu, có niên đại thế kỷ mười lăm, xuất xứ Việt Nam. Sắc lam cobalt phác họa những cánh chim và dây hoa mẫu đơn trên thân bình. Những lớp họa tiết chia bề mặt gốm thành từng khoảng nhịp nhàng, để ánh nhìn chậm rãi đi từ cổ bình xuống chân đế. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập."
     },
     {
       "artifactId": "37557",
@@ -58,11 +60,12 @@
       "kind": "video",
       "mimeType": "video/mp4",
       "url": "/assets/samples/37557-video.mp4",
-      "sizeBytes": 767557,
+      "sizeBytes": 700749,
+      "sha256": "f666d1ae34dacfb56e2cece52b01738bc97d56841ff850a820cc3684ba2192f5",
       "title": "Video minh họa — Bình hoa điểu",
       "author": "Nét — thuyết minh tổng hợp",
       "source": "https://www.metmuseum.org/art/collection/search/37557",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men lam",
       "tags": [
         "chim",
@@ -74,9 +77,9 @@
       ],
       "description": "Video minh họa tĩnh từ ảnh hiện vật với nhãn minh họa và giọng đọc tổng hợp tiếng Việt. Không phải phim tư liệu lịch sử.",
       "language": "vi-VN",
-      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình hoa điểu, có niên đại thế kỷ mười lăm, xuất xứ Việt Nam. Sắc lam cobalt phác họa những cánh chim và dây hoa mẫu đơn trên thân bình. Những lớp họa tiết chia bề mặt gốm thành từng khoảng nhịp nhàng, để ánh nhìn chậm rãi đi từ cổ bình xuống chân đế. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
-      "duration": 42.134,
-      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình hoa điểu, có niên đại thế kỷ mười lăm, xuất xứ Việt Nam. Sắc lam cobalt phác họa những cánh chim và dây hoa mẫu đơn trên thân bình. Những lớp họa tiết chia bề mặt gốm thành từng khoảng nhịp nhàng, để ánh nhìn chậm rãi đi từ cổ bình xuống chân đế. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình hoa điểu, có niên đại thế kỷ mười lăm, xuất xứ Việt Nam. Sắc lam cobalt phác họa những cánh chim và dây hoa mẫu đơn trên thân bình. Những lớp họa tiết chia bề mặt gốm thành từng khoảng nhịp nhàng, để ánh nhìn chậm rãi đi từ cổ bình xuống chân đế. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "duration": 37.267,
+      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình hoa điểu, có niên đại thế kỷ mười lăm, xuất xứ Việt Nam. Sắc lam cobalt phác họa những cánh chim và dây hoa mẫu đơn trên thân bình. Những lớp họa tiết chia bề mặt gốm thành từng khoảng nhịp nhàng, để ánh nhìn chậm rãi đi từ cổ bình xuống chân đế. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
       "width": 1280,
       "height": 720
     },
@@ -86,11 +89,12 @@
       "kind": "document",
       "mimeType": "application/pdf",
       "url": "/assets/samples/37557-document.pdf",
-      "sizeBytes": 32126,
+      "sizeBytes": 31397,
+      "sha256": "10f52bf183dae140a11a532a61793e9a412f7195db6a5e9c4baaef7fe710d732",
       "title": "Hồ sơ PDF — Bình hoa điểu",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/37557",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men lam",
       "tags": [
         "chim",
@@ -100,7 +104,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Bình hoa điểu\n\nMã hiện vật: 37557. Niên đại: Thế kỷ XV. Xuất xứ: Việt Nam.\n\nSắc lam cobalt phác họa những cánh chim và dây hoa mẫu đơn trên thân bình. Những lớp họa tiết chia bề mặt gốm thành từng khoảng nhịp nhàng, để ánh nhìn chậm rãi đi từ cổ bình xuống chân đế.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37557\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét.",
+      "content": "BẢO TÀNG SỐ NÉT — Bình hoa điểu\n\nMã hiện vật: 37557. Niên đại: Thế kỷ XV. Xuất xứ: Việt Nam.\n\nSắc lam cobalt phác họa những cánh chim và dây hoa mẫu đơn trên thân bình. Những lớp họa tiết chia bề mặt gốm thành từng khoảng nhịp nhàng, để ánh nhìn chậm rãi đi từ cổ bình xuống chân đế.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37557\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét.",
       "pageCount": 1
     },
     {
@@ -109,11 +113,12 @@
       "kind": "text",
       "mimeType": "text/plain",
       "url": "/assets/samples/37557-document.txt",
-      "sizeBytes": 1346,
+      "sizeBytes": 1094,
+      "sha256": "cde7e8f666b5dcb2b7897eba65149b2d0da53c6c036c80849fddc65cd5775c6c",
       "title": "Hồ sơ TXT — Bình hoa điểu",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/37557",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men lam",
       "tags": [
         "chim",
@@ -123,7 +128,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Bình hoa điểu\n\nMã hiện vật: 37557. Niên đại: Thế kỷ XV. Xuất xứ: Việt Nam.\n\nSắc lam cobalt phác họa những cánh chim và dây hoa mẫu đơn trên thân bình. Những lớp họa tiết chia bề mặt gốm thành từng khoảng nhịp nhàng, để ánh nhìn chậm rãi đi từ cổ bình xuống chân đế.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37557\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
+      "content": "BẢO TÀNG SỐ NÉT — Bình hoa điểu\n\nMã hiện vật: 37557. Niên đại: Thế kỷ XV. Xuất xứ: Việt Nam.\n\nSắc lam cobalt phác họa những cánh chim và dây hoa mẫu đơn trên thân bình. Những lớp họa tiết chia bề mặt gốm thành từng khoảng nhịp nhàng, để ánh nhìn chậm rãi đi từ cổ bình xuống chân đế.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37557\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
     },
     {
       "artifactId": "37557",
@@ -131,11 +136,12 @@
       "kind": "document",
       "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "url": "/assets/samples/37557-document.docx",
-      "sizeBytes": 1783,
+      "sizeBytes": 1658,
+      "sha256": "41a948a06b1709d9b227342d74aaddc0afddf85f46f72d51d2591744a844eb70",
       "title": "Hồ sơ DOCX — Bình hoa điểu",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/37557",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men lam",
       "tags": [
         "chim",
@@ -145,7 +151,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Bình hoa điểu\n\nMã hiện vật: 37557. Niên đại: Thế kỷ XV. Xuất xứ: Việt Nam.\n\nSắc lam cobalt phác họa những cánh chim và dây hoa mẫu đơn trên thân bình. Những lớp họa tiết chia bề mặt gốm thành từng khoảng nhịp nhàng, để ánh nhìn chậm rãi đi từ cổ bình xuống chân đế.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37557\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
+      "content": "BẢO TÀNG SỐ NÉT — Bình hoa điểu\n\nMã hiện vật: 37557. Niên đại: Thế kỷ XV. Xuất xứ: Việt Nam.\n\nSắc lam cobalt phác họa những cánh chim và dây hoa mẫu đơn trên thân bình. Những lớp họa tiết chia bề mặt gốm thành từng khoảng nhịp nhàng, để ánh nhìn chậm rãi đi từ cổ bình xuống chân đế.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37557\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
     },
     {
       "artifactId": "37451",
@@ -154,6 +160,7 @@
       "mimeType": "image/jpeg",
       "url": "/assets/samples/37451-detail.jpg",
       "sizeBytes": 55197,
+      "sha256": "d6a34adbf0109ff96842dfb598af345ae1ecd4ceb5c4b9b222f2a0500e772249",
       "title": "Ảnh chi tiết — Đĩa hoa mẫu đơn",
       "author": "Chưa xác định",
       "source": "https://www.metmuseum.org/art/collection/search/37451",
@@ -165,7 +172,7 @@
         "men lam",
         "tài nguyên học tập"
       ],
-      "description": "Vùng cắt trung tâm từ ảnh gốc để quan sát bề mặt và đường nét; không phải ảnh chụp độc lập.",
+      "description": "",
       "language": "vi-VN",
       "content": "Hoa mẫu đơn và những đường vẽ màu lam trải trên lòng đĩa. Nhìn gần, các khoảng đậm nhạt và đường cong cho thấy sự sinh động của nét vẽ trên gốm.",
       "width": 348,
@@ -177,11 +184,12 @@
       "kind": "audio",
       "mimeType": "audio/mpeg",
       "url": "/assets/samples/37451-audio.mp3",
-      "sizeBytes": 428557,
+      "sizeBytes": 370565,
+      "sha256": "d9c48e749d1ddb7366228c52aaf37b7f17c6d1dbc0a2ccda99974f8c1c15a94a",
       "title": "Thuyết minh tiếng Việt — Đĩa hoa mẫu đơn",
       "author": "Nét — thuyết minh tổng hợp",
       "source": "https://www.metmuseum.org/art/collection/search/37451",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men lam",
       "tags": [
         "đĩa",
@@ -193,9 +201,9 @@
       ],
       "description": "Bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp eSpeak NG (vi); nội dung biên soạn phục vụ học tập.",
       "language": "vi-VN",
-      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Đĩa hoa mẫu đơn, có niên đại thế kỷ mười lăm, xuất xứ Việt Nam. Hoa mẫu đơn và những đường vẽ màu lam trải trên lòng đĩa. Nhìn gần, các khoảng đậm nhạt và đường cong cho thấy sự sinh động của nét vẽ trên gốm. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
-      "duration": 35.683265,
-      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Đĩa hoa mẫu đơn, có niên đại thế kỷ mười lăm, xuất xứ Việt Nam. Hoa mẫu đơn và những đường vẽ màu lam trải trên lòng đĩa. Nhìn gần, các khoảng đậm nhạt và đường cong cho thấy sự sinh động của nét vẽ trên gốm. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập."
+      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Đĩa hoa mẫu đơn, có niên đại thế kỷ mười lăm, xuất xứ Việt Nam. Hoa mẫu đơn và những đường vẽ màu lam trải trên lòng đĩa. Nhìn gần, các khoảng đậm nhạt và đường cong cho thấy sự sinh động của nét vẽ trên gốm. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "duration": 30.850612,
+      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Đĩa hoa mẫu đơn, có niên đại thế kỷ mười lăm, xuất xứ Việt Nam. Hoa mẫu đơn và những đường vẽ màu lam trải trên lòng đĩa. Nhìn gần, các khoảng đậm nhạt và đường cong cho thấy sự sinh động của nét vẽ trên gốm. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập."
     },
     {
       "artifactId": "37451",
@@ -203,11 +211,12 @@
       "kind": "video",
       "mimeType": "video/mp4",
       "url": "/assets/samples/37451-video.mp4",
-      "sizeBytes": 861773,
+      "sizeBytes": 779812,
+      "sha256": "556e62585109f9e54e322cd4b4e92cf9218f41984b7d24603a616a839ed6f10b",
       "title": "Video minh họa — Đĩa hoa mẫu đơn",
       "author": "Nét — thuyết minh tổng hợp",
       "source": "https://www.metmuseum.org/art/collection/search/37451",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men lam",
       "tags": [
         "đĩa",
@@ -219,9 +228,9 @@
       ],
       "description": "Video minh họa tĩnh từ ảnh hiện vật với nhãn minh họa và giọng đọc tổng hợp tiếng Việt. Không phải phim tư liệu lịch sử.",
       "language": "vi-VN",
-      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Đĩa hoa mẫu đơn, có niên đại thế kỷ mười lăm, xuất xứ Việt Nam. Hoa mẫu đơn và những đường vẽ màu lam trải trên lòng đĩa. Nhìn gần, các khoảng đậm nhạt và đường cong cho thấy sự sinh động của nét vẽ trên gốm. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
-      "duration": 39.467,
-      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Đĩa hoa mẫu đơn, có niên đại thế kỷ mười lăm, xuất xứ Việt Nam. Hoa mẫu đơn và những đường vẽ màu lam trải trên lòng đĩa. Nhìn gần, các khoảng đậm nhạt và đường cong cho thấy sự sinh động của nét vẽ trên gốm. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Đĩa hoa mẫu đơn, có niên đại thế kỷ mười lăm, xuất xứ Việt Nam. Hoa mẫu đơn và những đường vẽ màu lam trải trên lòng đĩa. Nhìn gần, các khoảng đậm nhạt và đường cong cho thấy sự sinh động của nét vẽ trên gốm. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "duration": 34.6,
+      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Đĩa hoa mẫu đơn, có niên đại thế kỷ mười lăm, xuất xứ Việt Nam. Hoa mẫu đơn và những đường vẽ màu lam trải trên lòng đĩa. Nhìn gần, các khoảng đậm nhạt và đường cong cho thấy sự sinh động của nét vẽ trên gốm. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
       "width": 1280,
       "height": 720
     },
@@ -231,11 +240,12 @@
       "kind": "document",
       "mimeType": "application/pdf",
       "url": "/assets/samples/37451-document.pdf",
-      "sizeBytes": 32922,
+      "sizeBytes": 32081,
+      "sha256": "9255a69722800102d998350c44915d5b3dd2a37518896b291bd7abfe1ebb2370",
       "title": "Hồ sơ PDF — Đĩa hoa mẫu đơn",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/37451",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men lam",
       "tags": [
         "đĩa",
@@ -245,7 +255,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Đĩa hoa mẫu đơn\n\nMã hiện vật: 37451. Niên đại: Thế kỷ XV. Xuất xứ: Việt Nam.\n\nHoa mẫu đơn và những đường vẽ màu lam trải trên lòng đĩa. Nhìn gần, các khoảng đậm nhạt và đường cong cho thấy sự sinh động của nét vẽ trên gốm.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37451\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét.",
+      "content": "BẢO TÀNG SỐ NÉT — Đĩa hoa mẫu đơn\n\nMã hiện vật: 37451. Niên đại: Thế kỷ XV. Xuất xứ: Việt Nam.\n\nHoa mẫu đơn và những đường vẽ màu lam trải trên lòng đĩa. Nhìn gần, các khoảng đậm nhạt và đường cong cho thấy sự sinh động của nét vẽ trên gốm.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37451\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét.",
       "pageCount": 1
     },
     {
@@ -254,11 +264,12 @@
       "kind": "text",
       "mimeType": "text/plain",
       "url": "/assets/samples/37451-document.txt",
-      "sizeBytes": 1297,
+      "sizeBytes": 1045,
+      "sha256": "cab7622647bd1fd557891cafd041677ec5ed284f8d6d0fb2b69e61e3071123fc",
       "title": "Hồ sơ TXT — Đĩa hoa mẫu đơn",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/37451",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men lam",
       "tags": [
         "đĩa",
@@ -268,7 +279,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Đĩa hoa mẫu đơn\n\nMã hiện vật: 37451. Niên đại: Thế kỷ XV. Xuất xứ: Việt Nam.\n\nHoa mẫu đơn và những đường vẽ màu lam trải trên lòng đĩa. Nhìn gần, các khoảng đậm nhạt và đường cong cho thấy sự sinh động của nét vẽ trên gốm.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37451\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
+      "content": "BẢO TÀNG SỐ NÉT — Đĩa hoa mẫu đơn\n\nMã hiện vật: 37451. Niên đại: Thế kỷ XV. Xuất xứ: Việt Nam.\n\nHoa mẫu đơn và những đường vẽ màu lam trải trên lòng đĩa. Nhìn gần, các khoảng đậm nhạt và đường cong cho thấy sự sinh động của nét vẽ trên gốm.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37451\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
     },
     {
       "artifactId": "37451",
@@ -276,11 +287,12 @@
       "kind": "document",
       "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "url": "/assets/samples/37451-document.docx",
-      "sizeBytes": 1754,
+      "sizeBytes": 1625,
+      "sha256": "c912250c8eaeb56cdcc0e0599bd524b9f37ba1cc6b94a626091ee3f6215c590f",
       "title": "Hồ sơ DOCX — Đĩa hoa mẫu đơn",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/37451",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men lam",
       "tags": [
         "đĩa",
@@ -290,7 +302,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Đĩa hoa mẫu đơn\n\nMã hiện vật: 37451. Niên đại: Thế kỷ XV. Xuất xứ: Việt Nam.\n\nHoa mẫu đơn và những đường vẽ màu lam trải trên lòng đĩa. Nhìn gần, các khoảng đậm nhạt và đường cong cho thấy sự sinh động của nét vẽ trên gốm.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37451\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
+      "content": "BẢO TÀNG SỐ NÉT — Đĩa hoa mẫu đơn\n\nMã hiện vật: 37451. Niên đại: Thế kỷ XV. Xuất xứ: Việt Nam.\n\nHoa mẫu đơn và những đường vẽ màu lam trải trên lòng đĩa. Nhìn gần, các khoảng đậm nhạt và đường cong cho thấy sự sinh động của nét vẽ trên gốm.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37451\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
     },
     {
       "artifactId": "37563",
@@ -299,6 +311,7 @@
       "mimeType": "image/jpeg",
       "url": "/assets/samples/37563-detail.jpg",
       "sizeBytes": 39350,
+      "sha256": "005d28e8624e64f23d9f896839a72b9a690e8f65c0e8325b07ff0b0dd6e8b919",
       "title": "Ảnh chi tiết — Chum men nâu khắc hoa văn",
       "author": "Chưa xác định",
       "source": "https://www.metmuseum.org/art/collection/search/37563",
@@ -310,7 +323,7 @@
         "men nâu",
         "tài nguyên học tập"
       ],
-      "description": "Vùng cắt trung tâm từ ảnh gốc để quan sát bề mặt và đường nét; không phải ảnh chụp độc lập.",
+      "description": "",
       "language": "vi-VN",
       "content": "Thân chum đầy đặn được phủ men nâu, kết hợp các đường khắc trên bề mặt. Một tác phẩm gợi mở cách chất liệu, hình khối và hoa văn có thể tạo nên vẻ đẹp của đồ gốm.",
       "width": 290,
@@ -322,11 +335,12 @@
       "kind": "audio",
       "mimeType": "audio/mpeg",
       "url": "/assets/samples/37563-audio.mp3",
-      "sizeBytes": 461158,
+      "sizeBytes": 403166,
+      "sha256": "2d224b24537a0b675be25bf4582ee4baadaa2aceed6901374fceb254b6444672",
       "title": "Thuyết minh tiếng Việt — Chum men nâu khắc hoa văn",
       "author": "Nét — thuyết minh tổng hợp",
       "source": "https://www.metmuseum.org/art/collection/search/37563",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men nâu",
       "tags": [
         "chum",
@@ -338,9 +352,9 @@
       ],
       "description": "Bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp eSpeak NG (vi); nội dung biên soạn phục vụ học tập.",
       "language": "vi-VN",
-      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Chum men nâu khắc hoa văn, có niên đại thế kỷ mười lăm đến mười sáu, xuất xứ Việt Nam. Thân chum đầy đặn được phủ men nâu, kết hợp các đường khắc trên bề mặt. Một tác phẩm gợi mở cách chất liệu, hình khối và hoa văn có thể tạo nên vẻ đẹp của đồ gốm. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
-      "duration": 38.4,
-      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Chum men nâu khắc hoa văn, có niên đại thế kỷ mười lăm đến mười sáu, xuất xứ Việt Nam. Thân chum đầy đặn được phủ men nâu, kết hợp các đường khắc trên bề mặt. Một tác phẩm gợi mở cách chất liệu, hình khối và hoa văn có thể tạo nên vẻ đẹp của đồ gốm. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập."
+      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Chum men nâu khắc hoa văn, có niên đại thế kỷ mười lăm đến mười sáu, xuất xứ Việt Nam. Thân chum đầy đặn được phủ men nâu, kết hợp các đường khắc trên bề mặt. Một tác phẩm gợi mở cách chất liệu, hình khối và hoa văn có thể tạo nên vẻ đẹp của đồ gốm. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "duration": 33.567347,
+      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Chum men nâu khắc hoa văn, có niên đại thế kỷ mười lăm đến mười sáu, xuất xứ Việt Nam. Thân chum đầy đặn được phủ men nâu, kết hợp các đường khắc trên bề mặt. Một tác phẩm gợi mở cách chất liệu, hình khối và hoa văn có thể tạo nên vẻ đẹp của đồ gốm. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập."
     },
     {
       "artifactId": "37563",
@@ -348,11 +362,12 @@
       "kind": "video",
       "mimeType": "video/mp4",
       "url": "/assets/samples/37563-video.mp4",
-      "sizeBytes": 764604,
+      "sizeBytes": 698389,
+      "sha256": "cad56494548d3800e3ccc35cbee97d5095ec38b64beca1f01d108fbedc1a0c6a",
       "title": "Video minh họa — Chum men nâu khắc hoa văn",
       "author": "Nét — thuyết minh tổng hợp",
       "source": "https://www.metmuseum.org/art/collection/search/37563",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men nâu",
       "tags": [
         "chum",
@@ -364,9 +379,9 @@
       ],
       "description": "Video minh họa tĩnh từ ảnh hiện vật với nhãn minh họa và giọng đọc tổng hợp tiếng Việt. Không phải phim tư liệu lịch sử.",
       "language": "vi-VN",
-      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Chum men nâu khắc hoa văn, có niên đại thế kỷ mười lăm đến mười sáu, xuất xứ Việt Nam. Thân chum đầy đặn được phủ men nâu, kết hợp các đường khắc trên bề mặt. Một tác phẩm gợi mở cách chất liệu, hình khối và hoa văn có thể tạo nên vẻ đẹp của đồ gốm. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
-      "duration": 42.2,
-      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Chum men nâu khắc hoa văn, có niên đại thế kỷ mười lăm đến mười sáu, xuất xứ Việt Nam. Thân chum đầy đặn được phủ men nâu, kết hợp các đường khắc trên bề mặt. Một tác phẩm gợi mở cách chất liệu, hình khối và hoa văn có thể tạo nên vẻ đẹp của đồ gốm. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Chum men nâu khắc hoa văn, có niên đại thế kỷ mười lăm đến mười sáu, xuất xứ Việt Nam. Thân chum đầy đặn được phủ men nâu, kết hợp các đường khắc trên bề mặt. Một tác phẩm gợi mở cách chất liệu, hình khối và hoa văn có thể tạo nên vẻ đẹp của đồ gốm. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "duration": 37.334,
+      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Chum men nâu khắc hoa văn, có niên đại thế kỷ mười lăm đến mười sáu, xuất xứ Việt Nam. Thân chum đầy đặn được phủ men nâu, kết hợp các đường khắc trên bề mặt. Một tác phẩm gợi mở cách chất liệu, hình khối và hoa văn có thể tạo nên vẻ đẹp của đồ gốm. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
       "width": 1280,
       "height": 720
     },
@@ -376,11 +391,12 @@
       "kind": "document",
       "mimeType": "application/pdf",
       "url": "/assets/samples/37563-document.pdf",
-      "sizeBytes": 32742,
+      "sizeBytes": 32091,
+      "sha256": "61153000778d1a3ce75b3eb27758c94d9ecc05169dba4aa3114e9e9300758966",
       "title": "Hồ sơ PDF — Chum men nâu khắc hoa văn",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/37563",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men nâu",
       "tags": [
         "chum",
@@ -390,7 +406,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Chum men nâu khắc hoa văn\n\nMã hiện vật: 37563. Niên đại: Thế kỷ XV–XVI. Xuất xứ: Việt Nam.\n\nThân chum đầy đặn được phủ men nâu, kết hợp các đường khắc trên bề mặt. Một tác phẩm gợi mở cách chất liệu, hình khối và hoa văn có thể tạo nên vẻ đẹp của đồ gốm.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware with brown glaze.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37563\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét.",
+      "content": "BẢO TÀNG SỐ NÉT — Chum men nâu khắc hoa văn\n\nMã hiện vật: 37563. Niên đại: Thế kỷ XV–XVI. Xuất xứ: Việt Nam.\n\nThân chum đầy đặn được phủ men nâu, kết hợp các đường khắc trên bề mặt. Một tác phẩm gợi mở cách chất liệu, hình khối và hoa văn có thể tạo nên vẻ đẹp của đồ gốm.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware with brown glaze.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37563\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét.",
       "pageCount": 1
     },
     {
@@ -399,11 +415,12 @@
       "kind": "text",
       "mimeType": "text/plain",
       "url": "/assets/samples/37563-document.txt",
-      "sizeBytes": 1313,
+      "sizeBytes": 1061,
+      "sha256": "d5c55639c2c06b4a86b71af23f224f02d2b378f27bc6e36b185fae39d0ce8736",
       "title": "Hồ sơ TXT — Chum men nâu khắc hoa văn",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/37563",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men nâu",
       "tags": [
         "chum",
@@ -413,7 +430,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Chum men nâu khắc hoa văn\n\nMã hiện vật: 37563. Niên đại: Thế kỷ XV–XVI. Xuất xứ: Việt Nam.\n\nThân chum đầy đặn được phủ men nâu, kết hợp các đường khắc trên bề mặt. Một tác phẩm gợi mở cách chất liệu, hình khối và hoa văn có thể tạo nên vẻ đẹp của đồ gốm.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware with brown glaze.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37563\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
+      "content": "BẢO TÀNG SỐ NÉT — Chum men nâu khắc hoa văn\n\nMã hiện vật: 37563. Niên đại: Thế kỷ XV–XVI. Xuất xứ: Việt Nam.\n\nThân chum đầy đặn được phủ men nâu, kết hợp các đường khắc trên bề mặt. Một tác phẩm gợi mở cách chất liệu, hình khối và hoa văn có thể tạo nên vẻ đẹp của đồ gốm.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware with brown glaze.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37563\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
     },
     {
       "artifactId": "37563",
@@ -421,11 +438,12 @@
       "kind": "document",
       "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "url": "/assets/samples/37563-document.docx",
-      "sizeBytes": 1747,
+      "sizeBytes": 1629,
+      "sha256": "49ce1992517bacceeb60ffb60bafe05f0868e80528f705bb68d84a079dfb4fd5",
       "title": "Hồ sơ DOCX — Chum men nâu khắc hoa văn",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/37563",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men nâu",
       "tags": [
         "chum",
@@ -435,7 +453,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Chum men nâu khắc hoa văn\n\nMã hiện vật: 37563. Niên đại: Thế kỷ XV–XVI. Xuất xứ: Việt Nam.\n\nThân chum đầy đặn được phủ men nâu, kết hợp các đường khắc trên bề mặt. Một tác phẩm gợi mở cách chất liệu, hình khối và hoa văn có thể tạo nên vẻ đẹp của đồ gốm.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware with brown glaze.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37563\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
+      "content": "BẢO TÀNG SỐ NÉT — Chum men nâu khắc hoa văn\n\nMã hiện vật: 37563. Niên đại: Thế kỷ XV–XVI. Xuất xứ: Việt Nam.\n\nThân chum đầy đặn được phủ men nâu, kết hợp các đường khắc trên bề mặt. Một tác phẩm gợi mở cách chất liệu, hình khối và hoa văn có thể tạo nên vẻ đẹp của đồ gốm.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware with brown glaze.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37563\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
     },
     {
       "artifactId": "38546",
@@ -444,6 +462,7 @@
       "mimeType": "image/jpeg",
       "url": "/assets/samples/38546-detail.jpg",
       "sizeBytes": 11515,
+      "sha256": "088dbce8a5372ccb8fd1941c615e1c346c99f6ee1057a015b2bb467759294e60",
       "title": "Ảnh chi tiết — Bình gốm men trắng",
       "author": "Chưa xác định",
       "source": "https://www.metmuseum.org/art/collection/search/38546",
@@ -455,7 +474,7 @@
         "men trong",
         "tài nguyên học tập"
       ],
-      "description": "Vùng cắt trung tâm từ ảnh gốc để quan sát bề mặt và đường nét; không phải ảnh chụp độc lập.",
+      "description": "",
       "language": "vi-VN",
       "content": "Lớp men trong trên cốt gốm trắng tạo nên vẻ dịu nhẹ cho chiếc bình. Bề mặt đơn sắc hướng sự chú ý vào đường nét và sự cân đối của hình khối.",
       "width": 208,
@@ -467,11 +486,12 @@
       "kind": "audio",
       "mimeType": "audio/mpeg",
       "url": "/assets/samples/38546-audio.mp3",
-      "sizeBytes": 436707,
+      "sizeBytes": 378716,
+      "sha256": "338146622de6edf452d71efb1d404a4044ec296b81f90d9213f04f3f2bf2e88d",
       "title": "Thuyết minh tiếng Việt — Bình gốm men trắng",
       "author": "Nét — thuyết minh tổng hợp",
       "source": "https://www.metmuseum.org/art/collection/search/38546",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men trắng",
       "tags": [
         "bình",
@@ -483,9 +503,9 @@
       ],
       "description": "Bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp eSpeak NG (vi); nội dung biên soạn phục vụ học tập.",
       "language": "vi-VN",
-      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình gốm men trắng, có niên đại thế kỷ mười lăm đến mười sáu, xuất xứ Việt Nam. Lớp men trong trên cốt gốm trắng tạo nên vẻ dịu nhẹ cho chiếc bình. Bề mặt đơn sắc hướng sự chú ý vào đường nét và sự cân đối của hình khối. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
-      "duration": 36.362449,
-      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình gốm men trắng, có niên đại thế kỷ mười lăm đến mười sáu, xuất xứ Việt Nam. Lớp men trong trên cốt gốm trắng tạo nên vẻ dịu nhẹ cho chiếc bình. Bề mặt đơn sắc hướng sự chú ý vào đường nét và sự cân đối của hình khối. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập."
+      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình gốm men trắng, có niên đại thế kỷ mười lăm đến mười sáu, xuất xứ Việt Nam. Lớp men trong trên cốt gốm trắng tạo nên vẻ dịu nhẹ cho chiếc bình. Bề mặt đơn sắc hướng sự chú ý vào đường nét và sự cân đối của hình khối. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "duration": 31.529796,
+      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình gốm men trắng, có niên đại thế kỷ mười lăm đến mười sáu, xuất xứ Việt Nam. Lớp men trong trên cốt gốm trắng tạo nên vẻ dịu nhẹ cho chiếc bình. Bề mặt đơn sắc hướng sự chú ý vào đường nét và sự cân đối của hình khối. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập."
     },
     {
       "artifactId": "38546",
@@ -493,11 +513,12 @@
       "kind": "video",
       "mimeType": "video/mp4",
       "url": "/assets/samples/38546-video.mp4",
-      "sizeBytes": 634682,
+      "sizeBytes": 564645,
+      "sha256": "58423563b57a79e657646876b7e0bb04727183c71946f2b0c371f2398087bc18",
       "title": "Video minh họa — Bình gốm men trắng",
       "author": "Nét — thuyết minh tổng hợp",
       "source": "https://www.metmuseum.org/art/collection/search/38546",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men trắng",
       "tags": [
         "bình",
@@ -509,9 +530,9 @@
       ],
       "description": "Video minh họa tĩnh từ ảnh hiện vật với nhãn minh họa và giọng đọc tổng hợp tiếng Việt. Không phải phim tư liệu lịch sử.",
       "language": "vi-VN",
-      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình gốm men trắng, có niên đại thế kỷ mười lăm đến mười sáu, xuất xứ Việt Nam. Lớp men trong trên cốt gốm trắng tạo nên vẻ dịu nhẹ cho chiếc bình. Bề mặt đơn sắc hướng sự chú ý vào đường nét và sự cân đối của hình khối. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
-      "duration": 40.134,
-      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình gốm men trắng, có niên đại thế kỷ mười lăm đến mười sáu, xuất xứ Việt Nam. Lớp men trong trên cốt gốm trắng tạo nên vẻ dịu nhẹ cho chiếc bình. Bề mặt đơn sắc hướng sự chú ý vào đường nét và sự cân đối của hình khối. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình gốm men trắng, có niên đại thế kỷ mười lăm đến mười sáu, xuất xứ Việt Nam. Lớp men trong trên cốt gốm trắng tạo nên vẻ dịu nhẹ cho chiếc bình. Bề mặt đơn sắc hướng sự chú ý vào đường nét và sự cân đối của hình khối. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "duration": 35.334,
+      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình gốm men trắng, có niên đại thế kỷ mười lăm đến mười sáu, xuất xứ Việt Nam. Lớp men trong trên cốt gốm trắng tạo nên vẻ dịu nhẹ cho chiếc bình. Bề mặt đơn sắc hướng sự chú ý vào đường nét và sự cân đối của hình khối. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
       "width": 1280,
       "height": 720
     },
@@ -521,11 +542,12 @@
       "kind": "document",
       "mimeType": "application/pdf",
       "url": "/assets/samples/38546-document.pdf",
-      "sizeBytes": 33670,
+      "sizeBytes": 32979,
+      "sha256": "1dd37fab6a3a07945fcd87e9cc64d1c58e960f182751de0f8d95df1780c9c572",
       "title": "Hồ sơ PDF — Bình gốm men trắng",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/38546",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men trắng",
       "tags": [
         "bình",
@@ -535,7 +557,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Bình gốm men trắng\n\nMã hiện vật: 38546. Niên đại: Thế kỷ XV–XVI. Xuất xứ: Việt Nam.\n\nLớp men trong trên cốt gốm trắng tạo nên vẻ dịu nhẹ cho chiếc bình. Bề mặt đơn sắc hướng sự chú ý vào đường nét và sự cân đối của hình khối.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: White stoneware with translucent glaze.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/38546\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét.",
+      "content": "BẢO TÀNG SỐ NÉT — Bình gốm men trắng\n\nMã hiện vật: 38546. Niên đại: Thế kỷ XV–XVI. Xuất xứ: Việt Nam.\n\nLớp men trong trên cốt gốm trắng tạo nên vẻ dịu nhẹ cho chiếc bình. Bề mặt đơn sắc hướng sự chú ý vào đường nét và sự cân đối của hình khối.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: White stoneware with translucent glaze.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/38546\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét.",
       "pageCount": 1
     },
     {
@@ -544,11 +566,12 @@
       "kind": "text",
       "mimeType": "text/plain",
       "url": "/assets/samples/38546-document.txt",
-      "sizeBytes": 1284,
+      "sizeBytes": 1032,
+      "sha256": "e27eb26b7b348f50861fa13dd8f49171fd64a3d215cea6ee19795cb12dc88d71",
       "title": "Hồ sơ TXT — Bình gốm men trắng",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/38546",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men trắng",
       "tags": [
         "bình",
@@ -558,7 +581,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Bình gốm men trắng\n\nMã hiện vật: 38546. Niên đại: Thế kỷ XV–XVI. Xuất xứ: Việt Nam.\n\nLớp men trong trên cốt gốm trắng tạo nên vẻ dịu nhẹ cho chiếc bình. Bề mặt đơn sắc hướng sự chú ý vào đường nét và sự cân đối của hình khối.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: White stoneware with translucent glaze.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/38546\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
+      "content": "BẢO TÀNG SỐ NÉT — Bình gốm men trắng\n\nMã hiện vật: 38546. Niên đại: Thế kỷ XV–XVI. Xuất xứ: Việt Nam.\n\nLớp men trong trên cốt gốm trắng tạo nên vẻ dịu nhẹ cho chiếc bình. Bề mặt đơn sắc hướng sự chú ý vào đường nét và sự cân đối của hình khối.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: White stoneware with translucent glaze.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/38546\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
     },
     {
       "artifactId": "38546",
@@ -566,11 +589,12 @@
       "kind": "document",
       "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "url": "/assets/samples/38546-document.docx",
-      "sizeBytes": 1743,
+      "sizeBytes": 1621,
+      "sha256": "47263282e479c2aeb46291aca36130a45b1a3728750f732e5adb77bdf871329a",
       "title": "Hồ sơ DOCX — Bình gốm men trắng",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/38546",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men trắng",
       "tags": [
         "bình",
@@ -580,7 +604,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Bình gốm men trắng\n\nMã hiện vật: 38546. Niên đại: Thế kỷ XV–XVI. Xuất xứ: Việt Nam.\n\nLớp men trong trên cốt gốm trắng tạo nên vẻ dịu nhẹ cho chiếc bình. Bề mặt đơn sắc hướng sự chú ý vào đường nét và sự cân đối của hình khối.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: White stoneware with translucent glaze.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/38546\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
+      "content": "BẢO TÀNG SỐ NÉT — Bình gốm men trắng\n\nMã hiện vật: 38546. Niên đại: Thế kỷ XV–XVI. Xuất xứ: Việt Nam.\n\nLớp men trong trên cốt gốm trắng tạo nên vẻ dịu nhẹ cho chiếc bình. Bề mặt đơn sắc hướng sự chú ý vào đường nét và sự cân đối của hình khối.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: White stoneware with translucent glaze.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/38546\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
     },
     {
       "artifactId": "37450",
@@ -589,6 +613,7 @@
       "mimeType": "image/jpeg",
       "url": "/assets/samples/37450-detail.jpg",
       "sizeBytes": 29919,
+      "sha256": "ff26d17ef04bb2720cfd9a414ea7309f66ec2d208092d15a02aa28a37a39a990",
       "title": "Ảnh chi tiết — Bình sóng nước và cát tường",
       "author": "Chưa xác định",
       "source": "https://www.metmuseum.org/art/collection/search/37450",
@@ -600,7 +625,7 @@
         "men lam",
         "tài nguyên học tập"
       ],
-      "description": "Vùng cắt trung tâm từ ảnh gốc để quan sát bề mặt và đường nét; không phải ảnh chụp độc lập.",
+      "description": "",
       "language": "vi-VN",
       "content": "Những họa tiết sóng và biểu tượng cát tường được thể hiện bằng sắc lam dưới men trong. Hãy phóng lớn ảnh để quan sát sự chuyển động của những đường vẽ.",
       "width": 271,
@@ -612,11 +637,12 @@
       "kind": "audio",
       "mimeType": "audio/mpeg",
       "url": "/assets/samples/37450-audio.mp3",
-      "sizeBytes": 435140,
+      "sizeBytes": 377148,
+      "sha256": "b57b76c7828e1aa5a19d5e1e9ed466278051df78a36b2ef01cb2c14947644646",
       "title": "Thuyết minh tiếng Việt — Bình sóng nước và cát tường",
       "author": "Nét — thuyết minh tổng hợp",
       "source": "https://www.metmuseum.org/art/collection/search/37450",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men lam",
       "tags": [
         "sóng nước",
@@ -628,9 +654,9 @@
       ],
       "description": "Bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp eSpeak NG (vi); nội dung biên soạn phục vụ học tập.",
       "language": "vi-VN",
-      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình sóng nước và cát tường, có niên đại thế kỷ mười bốn, xuất xứ Việt Nam. Những họa tiết sóng và biểu tượng cát tường được thể hiện bằng sắc lam dưới men trong. Hãy phóng lớn ảnh để quan sát sự chuyển động của những đường vẽ. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
-      "duration": 36.231837,
-      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình sóng nước và cát tường, có niên đại thế kỷ mười bốn, xuất xứ Việt Nam. Những họa tiết sóng và biểu tượng cát tường được thể hiện bằng sắc lam dưới men trong. Hãy phóng lớn ảnh để quan sát sự chuyển động của những đường vẽ. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập."
+      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình sóng nước và cát tường, có niên đại thế kỷ mười bốn, xuất xứ Việt Nam. Những họa tiết sóng và biểu tượng cát tường được thể hiện bằng sắc lam dưới men trong. Hãy phóng lớn ảnh để quan sát sự chuyển động của những đường vẽ. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "duration": 31.399184,
+      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình sóng nước và cát tường, có niên đại thế kỷ mười bốn, xuất xứ Việt Nam. Những họa tiết sóng và biểu tượng cát tường được thể hiện bằng sắc lam dưới men trong. Hãy phóng lớn ảnh để quan sát sự chuyển động của những đường vẽ. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập."
     },
     {
       "artifactId": "37450",
@@ -638,11 +664,12 @@
       "kind": "video",
       "mimeType": "video/mp4",
       "url": "/assets/samples/37450-video.mp4",
-      "sizeBytes": 679506,
+      "sizeBytes": 609176,
+      "sha256": "c65182b1cffbb87297578ce35bb07bd7fa4c0bad4a7e3138a700aa54f5892387",
       "title": "Video minh họa — Bình sóng nước và cát tường",
       "author": "Nét — thuyết minh tổng hợp",
       "source": "https://www.metmuseum.org/art/collection/search/37450",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men lam",
       "tags": [
         "sóng nước",
@@ -654,9 +681,9 @@
       ],
       "description": "Video minh họa tĩnh từ ảnh hiện vật với nhãn minh họa và giọng đọc tổng hợp tiếng Việt. Không phải phim tư liệu lịch sử.",
       "language": "vi-VN",
-      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình sóng nước và cát tường, có niên đại thế kỷ mười bốn, xuất xứ Việt Nam. Những họa tiết sóng và biểu tượng cát tường được thể hiện bằng sắc lam dưới men trong. Hãy phóng lớn ảnh để quan sát sự chuyển động của những đường vẽ. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
-      "duration": 40,
-      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình sóng nước và cát tường, có niên đại thế kỷ mười bốn, xuất xứ Việt Nam. Những họa tiết sóng và biểu tượng cát tường được thể hiện bằng sắc lam dưới men trong. Hãy phóng lớn ảnh để quan sát sự chuyển động của những đường vẽ. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình sóng nước và cát tường, có niên đại thế kỷ mười bốn, xuất xứ Việt Nam. Những họa tiết sóng và biểu tượng cát tường được thể hiện bằng sắc lam dưới men trong. Hãy phóng lớn ảnh để quan sát sự chuyển động của những đường vẽ. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "duration": 35.2,
+      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Bình sóng nước và cát tường, có niên đại thế kỷ mười bốn, xuất xứ Việt Nam. Những họa tiết sóng và biểu tượng cát tường được thể hiện bằng sắc lam dưới men trong. Hãy phóng lớn ảnh để quan sát sự chuyển động của những đường vẽ. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
       "width": 1280,
       "height": 720
     },
@@ -666,11 +693,12 @@
       "kind": "document",
       "mimeType": "application/pdf",
       "url": "/assets/samples/37450-document.pdf",
-      "sizeBytes": 32415,
+      "sizeBytes": 32053,
+      "sha256": "6eb1eddf013dec9294b26574e8fa45d05fad8e27c0936d316be433a6989f01e4",
       "title": "Hồ sơ PDF — Bình sóng nước và cát tường",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/37450",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men lam",
       "tags": [
         "sóng nước",
@@ -680,7 +708,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Bình sóng nước và cát tường\n\nMã hiện vật: 37450. Niên đại: Thế kỷ XIV. Xuất xứ: Việt Nam.\n\nNhững họa tiết sóng và biểu tượng cát tường được thể hiện bằng sắc lam dưới men trong. Hãy phóng lớn ảnh để quan sát sự chuyển động của những đường vẽ.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37450\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét.",
+      "content": "BẢO TÀNG SỐ NÉT — Bình sóng nước và cát tường\n\nMã hiện vật: 37450. Niên đại: Thế kỷ XIV. Xuất xứ: Việt Nam.\n\nNhững họa tiết sóng và biểu tượng cát tường được thể hiện bằng sắc lam dưới men trong. Hãy phóng lớn ảnh để quan sát sự chuyển động của những đường vẽ.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37450\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét.",
       "pageCount": 1
     },
     {
@@ -689,11 +717,12 @@
       "kind": "text",
       "mimeType": "text/plain",
       "url": "/assets/samples/37450-document.txt",
-      "sizeBytes": 1329,
+      "sizeBytes": 1077,
+      "sha256": "388f48f4ec0cbc19f3620207dd5e3018604e78e43263e52d8f6de05bed0d79df",
       "title": "Hồ sơ TXT — Bình sóng nước và cát tường",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/37450",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men lam",
       "tags": [
         "sóng nước",
@@ -703,7 +732,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Bình sóng nước và cát tường\n\nMã hiện vật: 37450. Niên đại: Thế kỷ XIV. Xuất xứ: Việt Nam.\n\nNhững họa tiết sóng và biểu tượng cát tường được thể hiện bằng sắc lam dưới men trong. Hãy phóng lớn ảnh để quan sát sự chuyển động của những đường vẽ.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37450\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
+      "content": "BẢO TÀNG SỐ NÉT — Bình sóng nước và cát tường\n\nMã hiện vật: 37450. Niên đại: Thế kỷ XIV. Xuất xứ: Việt Nam.\n\nNhững họa tiết sóng và biểu tượng cát tường được thể hiện bằng sắc lam dưới men trong. Hãy phóng lớn ảnh để quan sát sự chuyển động của những đường vẽ.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37450\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
     },
     {
       "artifactId": "37450",
@@ -711,11 +740,12 @@
       "kind": "document",
       "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "url": "/assets/samples/37450-document.docx",
-      "sizeBytes": 1756,
+      "sizeBytes": 1634,
+      "sha256": "cd342eb65be8c1b0d39204ea898b8cca49aa2fe2e25ff224171248c4a2fcc276",
       "title": "Hồ sơ DOCX — Bình sóng nước và cát tường",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/37450",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men lam",
       "tags": [
         "sóng nước",
@@ -725,7 +755,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Bình sóng nước và cát tường\n\nMã hiện vật: 37450. Niên đại: Thế kỷ XIV. Xuất xứ: Việt Nam.\n\nNhững họa tiết sóng và biểu tượng cát tường được thể hiện bằng sắc lam dưới men trong. Hãy phóng lớn ảnh để quan sát sự chuyển động của những đường vẽ.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37450\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
+      "content": "BẢO TÀNG SỐ NÉT — Bình sóng nước và cát tường\n\nMã hiện vật: 37450. Niên đại: Thế kỷ XIV. Xuất xứ: Việt Nam.\n\nNhững họa tiết sóng và biểu tượng cát tường được thể hiện bằng sắc lam dưới men trong. Hãy phóng lớn ảnh để quan sát sự chuyển động của những đường vẽ.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware painted with cobalt blue under transparent glaze.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37450\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
     },
     {
       "artifactId": "75915",
@@ -734,6 +764,7 @@
       "mimeType": "image/jpeg",
       "url": "/assets/samples/75915-detail.jpg",
       "sizeBytes": 45048,
+      "sha256": "ac96e8cad7b1088ac3bd6eb09245063731704a06806c283a2882eda188e2d246",
       "title": "Ảnh chi tiết — Thạp gốm tráng men",
       "author": "Chưa xác định",
       "source": "https://www.metmuseum.org/art/collection/search/75915",
@@ -745,7 +776,7 @@
         "gốm",
         "tài nguyên học tập"
       ],
-      "description": "Vùng cắt trung tâm từ ảnh gốc để quan sát bề mặt và đường nét; không phải ảnh chụp độc lập.",
+      "description": "",
       "language": "vi-VN",
       "content": "Chiếc thạp gốm tráng men được nguồn tư liệu liên hệ với vùng sông Hồng. Hình dáng vững chãi và các mảng trang trí cho phép khám phá sự gắn kết giữa công năng và nghệ thuật.",
       "width": 271,
@@ -757,11 +788,12 @@
       "kind": "audio",
       "mimeType": "audio/mpeg",
       "url": "/assets/samples/75915-audio.mp3",
-      "sizeBytes": 455202,
+      "sizeBytes": 397210,
+      "sha256": "3b01745130424c74ed4567294d0a73cfb505971bcfc2710e9014ec49d3fb3a1f",
       "title": "Thuyết minh tiếng Việt — Thạp gốm tráng men",
       "author": "Nét — thuyết minh tổng hợp",
       "source": "https://www.metmuseum.org/art/collection/search/75915",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men nâu",
       "tags": [
         "thạp",
@@ -773,9 +805,9 @@
       ],
       "description": "Bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp eSpeak NG (vi); nội dung biên soạn phục vụ học tập.",
       "language": "vi-VN",
-      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Thạp gốm tráng men, có niên đại khoảng thế kỷ mười ba, xuất xứ Việt Nam. Chiếc thạp gốm tráng men được nguồn tư liệu liên hệ với vùng sông Hồng. Hình dáng vững chãi và các mảng trang trí cho phép khám phá sự gắn kết giữa công năng và nghệ thuật. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
-      "duration": 37.903673,
-      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Thạp gốm tráng men, có niên đại khoảng thế kỷ mười ba, xuất xứ Việt Nam. Chiếc thạp gốm tráng men được nguồn tư liệu liên hệ với vùng sông Hồng. Hình dáng vững chãi và các mảng trang trí cho phép khám phá sự gắn kết giữa công năng và nghệ thuật. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập."
+      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Thạp gốm tráng men, có niên đại khoảng thế kỷ mười ba, xuất xứ Việt Nam. Chiếc thạp gốm tráng men được nguồn tư liệu liên hệ với vùng sông Hồng. Hình dáng vững chãi và các mảng trang trí cho phép khám phá sự gắn kết giữa công năng và nghệ thuật. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "duration": 33.07102,
+      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Thạp gốm tráng men, có niên đại khoảng thế kỷ mười ba, xuất xứ Việt Nam. Chiếc thạp gốm tráng men được nguồn tư liệu liên hệ với vùng sông Hồng. Hình dáng vững chãi và các mảng trang trí cho phép khám phá sự gắn kết giữa công năng và nghệ thuật. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập."
     },
     {
       "artifactId": "75915",
@@ -783,11 +815,12 @@
       "kind": "video",
       "mimeType": "video/mp4",
       "url": "/assets/samples/75915-video.mp4",
-      "sizeBytes": 713310,
+      "sizeBytes": 646464,
+      "sha256": "188a253b9baa5810d4c82b8b2f5f03a620b2808844a7f54fb61b83aa4781cf81",
       "title": "Video minh họa — Thạp gốm tráng men",
       "author": "Nét — thuyết minh tổng hợp",
       "source": "https://www.metmuseum.org/art/collection/search/75915",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men nâu",
       "tags": [
         "thạp",
@@ -799,9 +832,9 @@
       ],
       "description": "Video minh họa tĩnh từ ảnh hiện vật với nhãn minh họa và giọng đọc tổng hợp tiếng Việt. Không phải phim tư liệu lịch sử.",
       "language": "vi-VN",
-      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Thạp gốm tráng men, có niên đại khoảng thế kỷ mười ba, xuất xứ Việt Nam. Chiếc thạp gốm tráng men được nguồn tư liệu liên hệ với vùng sông Hồng. Hình dáng vững chãi và các mảng trang trí cho phép khám phá sự gắn kết giữa công năng và nghệ thuật. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
-      "duration": 41.667,
-      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Thạp gốm tráng men, có niên đại khoảng thế kỷ mười ba, xuất xứ Việt Nam. Chiếc thạp gốm tráng men được nguồn tư liệu liên hệ với vùng sông Hồng. Hình dáng vững chãi và các mảng trang trí cho phép khám phá sự gắn kết giữa công năng và nghệ thuật. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Thạp gốm tráng men, có niên đại khoảng thế kỷ mười ba, xuất xứ Việt Nam. Chiếc thạp gốm tráng men được nguồn tư liệu liên hệ với vùng sông Hồng. Hình dáng vững chãi và các mảng trang trí cho phép khám phá sự gắn kết giữa công năng và nghệ thuật. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "duration": 36.867,
+      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Thạp gốm tráng men, có niên đại khoảng thế kỷ mười ba, xuất xứ Việt Nam. Chiếc thạp gốm tráng men được nguồn tư liệu liên hệ với vùng sông Hồng. Hình dáng vững chãi và các mảng trang trí cho phép khám phá sự gắn kết giữa công năng và nghệ thuật. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
       "width": 1280,
       "height": 720
     },
@@ -811,11 +844,12 @@
       "kind": "document",
       "mimeType": "application/pdf",
       "url": "/assets/samples/75915-document.pdf",
-      "sizeBytes": 33666,
+      "sizeBytes": 32882,
+      "sha256": "c3aeedc3486e6548277e046ee882e8a02c575e306224d4d5e58f11f58b7eeadd",
       "title": "Hồ sơ PDF — Thạp gốm tráng men",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/75915",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men nâu",
       "tags": [
         "thạp",
@@ -825,7 +859,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Thạp gốm tráng men\n\nMã hiện vật: 75915. Niên đại: Khoảng thế kỷ XIII. Xuất xứ: Việt Nam.\n\nChiếc thạp gốm tráng men được nguồn tư liệu liên hệ với vùng sông Hồng. Hình dáng vững chãi và các mảng trang trí cho phép khám phá sự gắn kết giữa công năng và nghệ thuật.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Glazed stoneware (Hong River region).\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/75915\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét.",
+      "content": "BẢO TÀNG SỐ NÉT — Thạp gốm tráng men\n\nMã hiện vật: 75915. Niên đại: Khoảng thế kỷ XIII. Xuất xứ: Việt Nam.\n\nChiếc thạp gốm tráng men được nguồn tư liệu liên hệ với vùng sông Hồng. Hình dáng vững chãi và các mảng trang trí cho phép khám phá sự gắn kết giữa công năng và nghệ thuật.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Glazed stoneware (Hong River region).\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/75915\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét.",
       "pageCount": 1
     },
     {
@@ -834,11 +868,12 @@
       "kind": "text",
       "mimeType": "text/plain",
       "url": "/assets/samples/75915-document.txt",
-      "sizeBytes": 1318,
+      "sizeBytes": 1066,
+      "sha256": "076e5d55794a05672f8de2bce9e74bfb19a811678b2642673ca232353bdd5f20",
       "title": "Hồ sơ TXT — Thạp gốm tráng men",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/75915",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men nâu",
       "tags": [
         "thạp",
@@ -848,7 +883,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Thạp gốm tráng men\n\nMã hiện vật: 75915. Niên đại: Khoảng thế kỷ XIII. Xuất xứ: Việt Nam.\n\nChiếc thạp gốm tráng men được nguồn tư liệu liên hệ với vùng sông Hồng. Hình dáng vững chãi và các mảng trang trí cho phép khám phá sự gắn kết giữa công năng và nghệ thuật.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Glazed stoneware (Hong River region).\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/75915\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
+      "content": "BẢO TÀNG SỐ NÉT — Thạp gốm tráng men\n\nMã hiện vật: 75915. Niên đại: Khoảng thế kỷ XIII. Xuất xứ: Việt Nam.\n\nChiếc thạp gốm tráng men được nguồn tư liệu liên hệ với vùng sông Hồng. Hình dáng vững chãi và các mảng trang trí cho phép khám phá sự gắn kết giữa công năng và nghệ thuật.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Glazed stoneware (Hong River region).\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/75915\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
     },
     {
       "artifactId": "75915",
@@ -856,11 +891,12 @@
       "kind": "document",
       "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "url": "/assets/samples/75915-document.docx",
-      "sizeBytes": 1762,
+      "sizeBytes": 1634,
+      "sha256": "8e0f8912728d455ec2d2b177965438d86e5bd411affa7c4f9527a1158c7dc92c",
       "title": "Hồ sơ DOCX — Thạp gốm tráng men",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/75915",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men nâu",
       "tags": [
         "thạp",
@@ -870,7 +906,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Thạp gốm tráng men\n\nMã hiện vật: 75915. Niên đại: Khoảng thế kỷ XIII. Xuất xứ: Việt Nam.\n\nChiếc thạp gốm tráng men được nguồn tư liệu liên hệ với vùng sông Hồng. Hình dáng vững chãi và các mảng trang trí cho phép khám phá sự gắn kết giữa công năng và nghệ thuật.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Glazed stoneware (Hong River region).\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/75915\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
+      "content": "BẢO TÀNG SỐ NÉT — Thạp gốm tráng men\n\nMã hiện vật: 75915. Niên đại: Khoảng thế kỷ XIII. Xuất xứ: Việt Nam.\n\nChiếc thạp gốm tráng men được nguồn tư liệu liên hệ với vùng sông Hồng. Hình dáng vững chãi và các mảng trang trí cho phép khám phá sự gắn kết giữa công năng và nghệ thuật.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Glazed stoneware (Hong River region).\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/75915\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
     },
     {
       "artifactId": "37449",
@@ -879,6 +915,7 @@
       "mimeType": "image/jpeg",
       "url": "/assets/samples/37449-detail.jpg",
       "sizeBytes": 28120,
+      "sha256": "57c47b6856a1cef46ddd57d0a3be9d526477b8d56c44f9a4baaaa19c1ae60e75",
       "title": "Ảnh chi tiết — Hũ gốm có chân",
       "author": "Chưa xác định",
       "source": "https://www.metmuseum.org/art/collection/search/37449",
@@ -890,7 +927,7 @@
         "gốm",
         "tài nguyên học tập"
       ],
-      "description": "Vùng cắt trung tâm từ ảnh gốc để quan sát bề mặt và đường nét; không phải ảnh chụp độc lập.",
+      "description": "",
       "language": "vi-VN",
       "content": "Hình dáng hũ được nâng đỡ bởi phần chân đế, tạo một nhịp chuyển nhẹ giữa thân và nền. Tác phẩm gợi ý một cách thưởng thức gốm bắt đầu từ đường viền và tỷ lệ.",
       "width": 261,
@@ -902,11 +939,12 @@
       "kind": "audio",
       "mimeType": "audio/mpeg",
       "url": "/assets/samples/37449-audio.mp3",
-      "sizeBytes": 453321,
+      "sizeBytes": 395329,
+      "sha256": "ca42b72a68629e7d689dcf8ef5b6fbb1ef8a1db442bd8c1fac3c1af6987774ff",
       "title": "Thuyết minh tiếng Việt — Hũ gốm có chân",
       "author": "Nét — thuyết minh tổng hợp",
       "source": "https://www.metmuseum.org/art/collection/search/37449",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men nâu",
       "tags": [
         "hũ",
@@ -918,9 +956,9 @@
       ],
       "description": "Bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp eSpeak NG (vi); nội dung biên soạn phục vụ học tập.",
       "language": "vi-VN",
-      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Hũ gốm có chân, có niên đại thế kỷ mười một đến mười hai, xuất xứ Việt Nam. Hình dáng hũ được nâng đỡ bởi phần chân đế, tạo một nhịp chuyển nhẹ giữa thân và nền. Tác phẩm gợi ý một cách thưởng thức gốm bắt đầu từ đường viền và tỷ lệ. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
-      "duration": 37.746939,
-      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Hũ gốm có chân, có niên đại thế kỷ mười một đến mười hai, xuất xứ Việt Nam. Hình dáng hũ được nâng đỡ bởi phần chân đế, tạo một nhịp chuyển nhẹ giữa thân và nền. Tác phẩm gợi ý một cách thưởng thức gốm bắt đầu từ đường viền và tỷ lệ. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập."
+      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Hũ gốm có chân, có niên đại thế kỷ mười một đến mười hai, xuất xứ Việt Nam. Hình dáng hũ được nâng đỡ bởi phần chân đế, tạo một nhịp chuyển nhẹ giữa thân và nền. Tác phẩm gợi ý một cách thưởng thức gốm bắt đầu từ đường viền và tỷ lệ. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "duration": 32.914286,
+      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Hũ gốm có chân, có niên đại thế kỷ mười một đến mười hai, xuất xứ Việt Nam. Hình dáng hũ được nâng đỡ bởi phần chân đế, tạo một nhịp chuyển nhẹ giữa thân và nền. Tác phẩm gợi ý một cách thưởng thức gốm bắt đầu từ đường viền và tỷ lệ. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập."
     },
     {
       "artifactId": "37449",
@@ -928,11 +966,12 @@
       "kind": "video",
       "mimeType": "video/mp4",
       "url": "/assets/samples/37449-video.mp4",
-      "sizeBytes": 735838,
+      "sizeBytes": 670121,
+      "sha256": "a7c5e1109d3fbef02f9f085df84de9d4e331937eaed4668147da6b03fc7d1127",
       "title": "Video minh họa — Hũ gốm có chân",
       "author": "Nét — thuyết minh tổng hợp",
       "source": "https://www.metmuseum.org/art/collection/search/37449",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men nâu",
       "tags": [
         "hũ",
@@ -944,9 +983,9 @@
       ],
       "description": "Video minh họa tĩnh từ ảnh hiện vật với nhãn minh họa và giọng đọc tổng hợp tiếng Việt. Không phải phim tư liệu lịch sử.",
       "language": "vi-VN",
-      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Hũ gốm có chân, có niên đại thế kỷ mười một đến mười hai, xuất xứ Việt Nam. Hình dáng hũ được nâng đỡ bởi phần chân đế, tạo một nhịp chuyển nhẹ giữa thân và nền. Tác phẩm gợi ý một cách thưởng thức gốm bắt đầu từ đường viền và tỷ lệ. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
-      "duration": 41.534,
-      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Hũ gốm có chân, có niên đại thế kỷ mười một đến mười hai, xuất xứ Việt Nam. Hình dáng hũ được nâng đỡ bởi phần chân đế, tạo một nhịp chuyển nhẹ giữa thân và nền. Tác phẩm gợi ý một cách thưởng thức gốm bắt đầu từ đường viền và tỷ lệ. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Thông tin và ảnh gốc được tham khảo từ Bảo tàng Nghệ thuật Metropolitan. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "content": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Hũ gốm có chân, có niên đại thế kỷ mười một đến mười hai, xuất xứ Việt Nam. Hình dáng hũ được nâng đỡ bởi phần chân đế, tạo một nhịp chuyển nhẹ giữa thân và nền. Tác phẩm gợi ý một cách thưởng thức gốm bắt đầu từ đường viền và tỷ lệ. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
+      "duration": 36.734,
+      "transcript": "Chào mừng bạn đến với Bảo tàng số Nét. Bạn đang khám phá hiện vật Hũ gốm có chân, có niên đại thế kỷ mười một đến mười hai, xuất xứ Việt Nam. Hình dáng hũ được nâng đỡ bởi phần chân đế, tạo một nhịp chuyển nhẹ giữa thân và nền. Tác phẩm gợi ý một cách thưởng thức gốm bắt đầu từ đường viền và tỷ lệ. Bạn có thể mở ảnh chi tiết để quan sát bề mặt men và các đường nét của hiện vật. Đây là bản thuyết minh tiếng Việt bằng giọng đọc tổng hợp, phục vụ việc tham quan và học tập.",
       "width": 1280,
       "height": 720
     },
@@ -956,11 +995,12 @@
       "kind": "document",
       "mimeType": "application/pdf",
       "url": "/assets/samples/37449-document.pdf",
-      "sizeBytes": 32204,
+      "sizeBytes": 31536,
+      "sha256": "51713f4746b2a378b6181ca23b009a0ba5d106e6f189b3e037db6ed658d27d96",
       "title": "Hồ sơ PDF — Hũ gốm có chân",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/37449",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men nâu",
       "tags": [
         "hũ",
@@ -970,7 +1010,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Hũ gốm có chân\n\nMã hiện vật: 37449. Niên đại: Thế kỷ XI–XII. Xuất xứ: Việt Nam.\n\nHình dáng hũ được nâng đỡ bởi phần chân đế, tạo một nhịp chuyển nhẹ giữa thân và nền. Tác phẩm gợi ý một cách thưởng thức gốm bắt đầu từ đường viền và tỷ lệ.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37449\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét.",
+      "content": "BẢO TÀNG SỐ NÉT — Hũ gốm có chân\n\nMã hiện vật: 37449. Niên đại: Thế kỷ XI–XII. Xuất xứ: Việt Nam.\n\nHình dáng hũ được nâng đỡ bởi phần chân đế, tạo một nhịp chuyển nhẹ giữa thân và nền. Tác phẩm gợi ý một cách thưởng thức gốm bắt đầu từ đường viền và tỷ lệ.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37449\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét.",
       "pageCount": 1
     },
     {
@@ -979,11 +1019,12 @@
       "kind": "text",
       "mimeType": "text/plain",
       "url": "/assets/samples/37449-document.txt",
-      "sizeBytes": 1283,
+      "sizeBytes": 1031,
+      "sha256": "d60c569c819c06767d22f5e19a8723cefb6b0668b535f9cc432c1ea1a66f6635",
       "title": "Hồ sơ TXT — Hũ gốm có chân",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/37449",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men nâu",
       "tags": [
         "hũ",
@@ -993,7 +1034,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Hũ gốm có chân\n\nMã hiện vật: 37449. Niên đại: Thế kỷ XI–XII. Xuất xứ: Việt Nam.\n\nHình dáng hũ được nâng đỡ bởi phần chân đế, tạo một nhịp chuyển nhẹ giữa thân và nền. Tác phẩm gợi ý một cách thưởng thức gốm bắt đầu từ đường viền và tỷ lệ.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37449\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
+      "content": "BẢO TÀNG SỐ NÉT — Hũ gốm có chân\n\nMã hiện vật: 37449. Niên đại: Thế kỷ XI–XII. Xuất xứ: Việt Nam.\n\nHình dáng hũ được nâng đỡ bởi phần chân đế, tạo một nhịp chuyển nhẹ giữa thân và nền. Tác phẩm gợi ý một cách thưởng thức gốm bắt đầu từ đường viền và tỷ lệ.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37449\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
     },
     {
       "artifactId": "37449",
@@ -1001,11 +1042,12 @@
       "kind": "document",
       "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       "url": "/assets/samples/37449-document.docx",
-      "sizeBytes": 1742,
+      "sizeBytes": 1620,
+      "sha256": "6ad9f3977d99f63c21cd3c11cf02aa298500e07ac2d6085cd3058c7f62827b4a",
       "title": "Hồ sơ DOCX — Hũ gốm có chân",
       "author": "Bảo tàng số Nét",
       "source": "https://www.metmuseum.org/art/collection/search/37449",
-      "license": "CC BY 4.0 — Bảo tàng số Nét; ảnh gốc Public Domain / The Met Open Access",
+      "license": "",
       "topic": "Gốm men nâu",
       "tags": [
         "hũ",
@@ -1015,7 +1057,7 @@
       ],
       "description": "Tài liệu tiếng Việt về hiện vật, kèm nguồn và thông tin quyền sử dụng.",
       "language": "vi-VN",
-      "content": "BẢO TÀNG SỐ NÉT — Hũ gốm có chân\n\nMã hiện vật: 37449. Niên đại: Thế kỷ XI–XII. Xuất xứ: Việt Nam.\n\nHình dáng hũ được nâng đỡ bởi phần chân đế, tạo một nhịp chuyển nhẹ giữa thân và nền. Tác phẩm gợi ý một cách thưởng thức gốm bắt đầu từ đường viền và tỷ lệ.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware.\n\nGợi ý quan sát: hãy xem ảnh tổng thể trước, sau đó đối chiếu ảnh chi tiết để nhận ra đường nét, bề mặt men và hoa văn. Ảnh chi tiết là vùng cắt từ ảnh gốc, không phải một lần chụp khác.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37449\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
+      "content": "BẢO TÀNG SỐ NÉT — Hũ gốm có chân\n\nMã hiện vật: 37449. Niên đại: Thế kỷ XI–XII. Xuất xứ: Việt Nam.\n\nHình dáng hũ được nâng đỡ bởi phần chân đế, tạo một nhịp chuyển nhẹ giữa thân và nền. Tác phẩm gợi ý một cách thưởng thức gốm bắt đầu từ đường viền và tỷ lệ.\n\nTác giả hiện vật: Chưa xác định. Chất liệu theo nguồn gốc: Stoneware.\n\nThuyết minh tiếng Việt và video trong bộ tài nguyên này do Bảo tàng số Nét biên soạn cho mục đích học tập. Giọng đọc được tổng hợp bằng eSpeak NG, ngôn ngữ tiếng Việt; video là minh họa tĩnh từ ảnh hiện vật, không phải phim tư liệu lịch sử.\n\nNguồn ảnh và thông tin hiện vật: The Metropolitan Museum of Art. https://www.metmuseum.org/art/collection/search/37449\n\nQuyền sử dụng ảnh: Public Domain / The Met Open Access. Nội dung thuyết minh bổ sung: CC BY 4.0, Bảo tàng số Nét."
     }
   ]
 }

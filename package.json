@@ -14,7 +14,7 @@
     "db:queries": "node scripts/run-queries.mjs",
     "db:check": "node scripts/check-database.mjs",
     "check": "node scripts/build-pages.mjs --check && node scripts/check-syntax.mjs && node --test tests/auth.test.mjs tests/core.test.mjs tests/validation.test.mjs tests/pg-config.test.mjs tests/media-storage.test.mjs tests/cloud-media.test.mjs",
-    "test:integration": "node --test tests/postgresql.test.mjs tests/multimedia.test.mjs tests/cloud-uploads.test.mjs",
+    "test:integration": "node --test tests/postgresql.test.mjs tests/multimedia.test.mjs tests/cloud-uploads.test.mjs tests/sample-content.test.mjs",
     "cloudinary:check": "node scripts/check-cloudinary.mjs",
     "media:migrate": "node scripts/migrate-cloudinary.mjs",
     "media:index": "node scripts/index-images.mjs",
