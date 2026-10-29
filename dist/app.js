@@ -1,4 +1,5 @@
-import {enhanceArtwork,renderStatistics} from './multimedia.js';
+import {renderStatistics} from './multimedia.js';
+import {enhanceArtwork} from './artwork-detail.js';
 import { api, loadCatalog, categoryNames, escapeHtml as esc } from "./catalog.js";
 import { filterArtworks } from "./core.js";
 import { initHero } from "./hero.js";
@@ -193,21 +194,9 @@ function renderDetail() {
   persist("net.views", safeViews);
   document.title = item.title;
   $("#artwork-detail").innerHTML =
-    `<div class="detail-layout"><div class="detail-figure"><div class="zoom-stage"><img id="detail-image" src="${esc(item.image)}" alt="${esc(item.title)}"></div></div><div class="detail-copy"><p class="eyebrow">${esc(categoryNames[item.category] || item.categoryLabel)}</p><h1>${esc(item.title)}</h1><p class="detail-description">${esc(item.description)}</p><dl><div><dt>Niên đại</dt><dd>${esc(item.period)}</dd></div><div><dt>Chất liệu</dt><dd>${esc(item.material || item.originalMedium)}</dd></div><div><dt>Xuất xứ</dt><dd>${esc(item.origin)}</dd></div><div><dt>Ảnh số</dt><dd>${esc(item.format || "Ảnh")} · ${(item.sizeBytes / 1024).toFixed(1)} KB</dd></div></dl><div class="detail-actions"><button class="button button-dark detail-save" data-save="${esc(item.id)}" aria-pressed="false"></button></div><a data-admin-only hidden class="detail-edit text-link" href="/quan-ly/?edit=${encodeURIComponent(item.id)}">Chỉnh sửa hồ sơ tác phẩm ↗</a></div></div>`;
+    `<div class="detail-layout"><div class="detail-figure"><div class="zoom-stage"><img id="detail-image" src="${esc(item.image)}" alt="${esc(item.title)}"></div></div><div class="detail-copy"><p class="eyebrow">${esc(categoryNames[item.category] || item.categoryLabel)}</p><h1>${esc(item.title)}</h1><p class="detail-description">${esc(item.description)}</p><dl><div><dt>Niên đại</dt><dd>${esc(item.period)}</dd></div><div><dt>Chất liệu</dt><dd>${esc(item.material || item.originalMedium)}</dd></div><div><dt>Xuất xứ</dt><dd>${esc(item.origin)}</dd></div><div><dt>Ảnh số</dt><dd>${esc(item.format || "Ảnh")} · ${(item.sizeBytes / 1024).toFixed(1)} KB</dd></div></dl><div class="detail-actions"><button class="button button-dark detail-save" data-save="${esc(item.id)}" aria-pressed="false"></button></div><a data-admin-only hidden class="detail-edit action-icon" href="/quan-ly/?edit=${encodeURIComponent(item.id)}" title="Chỉnh sửa hồ sơ tác phẩm" aria-label="Chỉnh sửa hồ sơ tác phẩm: ${esc(item.title)}"><svg aria-hidden="true" focusable="false"><use href="#icon-pencil"/></svg></a></div></div>`;
   syncAccess();
-  if (item.video) {
-    $(".detail-figure").insertAdjacentHTML(
-      "beforeend",
-      `<section class="artwork-video"><p class="eyebrow">VIDEO GIỚI THIỆU</p><video id="artwork-video" controls playsinline preload="metadata" poster="${esc(item.image)}" aria-label="Video giới thiệu: ${esc(item.title)}"><source src="${esc(item.video)}" type="${esc(item.videoMimeType || "video/mp4")}">Trình duyệt chưa hỗ trợ phát video.</video><p id="video-playback-error" class="detail-tip" role="status" hidden>Chưa phát được video. <a href="${esc(item.video)}" target="_blank" rel="noopener noreferrer">Mở video ↗</a></p></section>`,
-    );
-    const player = $("#artwork-video");
-    player.addEventListener("error", () => {
-      $("#video-playback-error").hidden = false;
-    });
-    player.querySelector("source").addEventListener("error", () => {
-      $("#video-playback-error").hidden = false;
-    });
-  }
+  enhanceArtwork(item);
 
   const related = artworks
     .filter((a) => a.id !== item.id)
@@ -271,7 +260,7 @@ if (["home", "collection", "saved", "artwork", "stats"].includes(page)) {
       updateSaved();
     }
     if (["collection", "saved"].includes(page)) initGallery();
-    if (page === "artwork") {renderDetail();await enhanceArtwork(params.get("id"));}
+    if (page === "artwork") renderDetail();
     if (page === "stats") renderStats();
   } catch {
     const target =

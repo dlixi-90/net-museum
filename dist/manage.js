@@ -52,7 +52,7 @@ async function reloadManager(event){
 }
 function renderRows(){
   const query=$('#manager-query').value.trim().toLocaleLowerCase('vi');const list=items.filter(a=>`${a.title} ${a.author}`.toLocaleLowerCase('vi').includes(query));
-  $('#manager-rows').innerHTML=list.length?list.map(a=>`<tr><td><div class="manager-artwork"><img src="${esc(a.image)}" alt=""><div><strong>${esc(a.title)}</strong><span>${esc(a.author)}</span></div></div></td><td>${esc(categoryNames[a.category]||a.category)}</td><td>${esc(a.period)}</td><td><button class="edit-artwork" data-edit-artwork="${esc(a.id)}">Chỉnh sửa ↗</button> <button class="danger-link" data-delete-artwork="${esc(a.id)}">Xóa</button></td></tr>`).join(''):'<tr><td colspan="4" class="manager-empty">Chưa có tác phẩm phù hợp.</td></tr>';
+  $('#manager-rows').innerHTML=list.length?list.map(a=>`<tr><td><div class="manager-artwork"><img src="${esc(a.image)}" alt=""><div><strong>${esc(a.title)}</strong><span>${esc(a.author)}</span></div></div></td><td>${esc(categoryNames[a.category]||a.category)}</td><td>${esc(a.period)}</td><td><div class="record-actions"><button type="button" class="action-icon" data-edit-artwork="${esc(a.id)}" title="Chỉnh sửa tác phẩm" aria-label="Chỉnh sửa tác phẩm: ${esc(a.title)}"><svg aria-hidden="true" focusable="false"><use href="#icon-pencil"/></svg></button><button type="button" class="action-icon action-icon-delete" data-delete-artwork="${esc(a.id)}" title="Xóa tác phẩm" aria-label="Xóa tác phẩm: ${esc(a.title)}"><svg aria-hidden="true" focusable="false"><use href="#icon-trash"/></svg></button></div></td></tr>`).join(''):'<tr><td colspan="4" class="manager-empty">Chưa có tác phẩm phù hợp.</td></tr>';
 }
 function openEditor(artwork=null){
   if(!isAdmin(user))return;
@@ -115,7 +115,7 @@ $('#artwork-form').addEventListener('submit',async e=>{
   }catch(error){setEditorError((uploadController?.signal.aborted?'Đã dừng tải. Chọn lại cùng tệp để tiếp tục.':error.message)+(error.fields?' '+Object.values(error.fields).join(' '):''));}
   finally{busy=false;$('#editor-cancel-upload').hidden=true;controls.forEach((c,i)=>c.disabled=disabled[i]);submit.textContent=selected?'Lưu thay đổi ↗':'Thêm vào bộ sưu tập ↗';}
 });
-function renderAttachments(){$('#attachment-items').innerHTML=attachmentResources.filter(r=>attachmentIds.includes(r.id)).map(r=>`<p>${esc(r.title)} <button type="button" class="text-link" data-detach="${esc(r.id)}">Gỡ ×</button></p>`).join('')+attachmentFiles.map(p=>`<p>${esc(p.file.name)} · chờ lưu</p>`).join('');}
+function renderAttachments(){$('#attachment-items').innerHTML=attachmentResources.filter(r=>attachmentIds.includes(r.id)).map(r=>`<p>${esc(r.title)} <button type="button" class="action-icon action-icon-delete" data-detach="${esc(r.id)}" title="Gỡ tư liệu khỏi tác phẩm" aria-label="Gỡ tư liệu khỏi tác phẩm: ${esc(r.title)}"><svg aria-hidden="true" focusable="false"><use href="#icon-trash"/></svg></button></p>`).join('')+attachmentFiles.map(p=>`<p>${esc(p.file.name)} · chờ lưu</p>`).join('');}
 $('#attachment-files').addEventListener('change',e=>{attachmentFiles=[...e.target.files].map(file=>({file}));unsaved=true;renderAttachments();});
 $('#attachment-items').addEventListener('click',e=>{const button=e.target.closest('[data-detach]');if(button&&!busy){attachmentIds=attachmentIds.filter(id=>id!==button.dataset.detach);unsaved=true;renderAttachments();}});
 $('#editor-cancel-upload').addEventListener('click',()=>uploadController?.abort());
