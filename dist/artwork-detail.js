@@ -1,5 +1,6 @@
 import {api, escapeHtml as esc} from './catalog.js';
 import {bytes, fileURL, trackView} from './multimedia.js';
+import {bindArtworkQR} from './artwork-qr.js';
 
 // Both galleries and download categories support arrow keys without tabbing
 // through every option. Native dialogs provide focus trapping and Escape.
@@ -50,6 +51,7 @@ export async function enhanceArtwork(item) {
   actions.insertAdjacentHTML('beforeend', `
     <button id="speak-description" class="button button-outline" aria-pressed="false" aria-controls="artwork-narration">Nghe thuyết minh ▷</button>
     <button id="artwork-download" class="button button-outline" aria-haspopup="dialog" aria-controls="artwork-download-dialog">Tải xuống ↓</button>`);
+  bindArtworkQR(item,actions,layout);
   actions.insertAdjacentHTML('afterend', `
     <div id="artwork-narration" class="detail-narration" hidden></div>
     <p class="detail-media-status" role="status" aria-live="polite"></p>`);

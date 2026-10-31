@@ -31,6 +31,14 @@ Mở http://localhost:3000. Cách cài đặt và cấp admin đầu tiên nằm
 | `/thong-ke/` | Số lượng năm loại, dung lượng, chủ đề, hiện vật quan tâm, tư liệu xem/tải nhiều |
 | `/da-luu/` | Yêu thích đồng bộ theo tài khoản; khách lưu trong trình duyệt |
 
+## Mã QR của tác phẩm
+
+Mở trang chi tiết bất kỳ tác phẩm và chọn **Mã QR** cạnh nút Tải xuống. Hộp thoại hiển thị mã, liên kết chi tiết, nút **Tải mã PNG** và **Sao chép liên kết**. Người xem quét mã bằng camera để mở đúng tác phẩm; có thể tải ảnh PNG để in hoặc chia sẻ.
+
+QR được tạo trực tiếp trên backend theo ID và địa chỉ website, dùng được ngay cho tác phẩm mới. Đổi tên hoặc mô tả không làm đổi liên kết QR; xóa tác phẩm làm liên kết không còn hồ sơ tương ứng. Không cần cột hoặc thao tác nhập QR trong database. Bản Render dùng domain do PUBLIC_ORIGIN hoặc RENDER_EXTERNAL_URL xác định; QR trên máy phát triển trỏ đến địa chỉ cục bộ của phiên chạy đó.
+
+API `GET /api/artworks/:id/qr` trả liên kết, ảnh PNG và tên tệp tải; trả 404 nếu tác phẩm không tồn tại. QR được tạo trong ứng dụng, không gửi liên kết sang dịch vụ tạo QR bên ngoài.
+
 ## Audio tiếng Việt
 
 Bộ mẫu có **7 MP3 tiếng Việt** bằng giọng AI **Minh Đức**, nam miền Bắc, tạo bằng VieNeu-TTS v3 Turbo miễn phí trên máy. Lời đọc có trong `transcript`; thời lượng hiển thị theo từng tệp. Bảy video dùng cùng phần thuyết minh với audio. Website phát tệp đã tạo sẵn, không cần tài khoản hay API tạo giọng lúc người dùng nghe.

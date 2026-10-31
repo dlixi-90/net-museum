@@ -40,6 +40,15 @@
 .detail-media-status{font-size:13px;line-height:1.7;color:#696969}
 .detail-media-status:not(:empty){margin-top:12px}
 body:has(.artwork-download-dialog[open]){overflow:hidden}
+.artwork-download-dialog.artwork-qr-dialog{width:min(460px,calc(100vw - 28px))}
+.artwork-qr-dialog .download-heading{margin-bottom:14px}
+.artwork-qr-image{display:block;width:min(100%,280px);height:auto;aspect-ratio:1;margin:0 auto;background:#fff}
+.artwork-qr-hint,.artwork-qr-status{font-size:13px;line-height:1.7;color:#696969}
+.artwork-qr-status:not(:empty){margin:12px 0}
+.artwork-qr-hint{text-align:center;margin-top:8px}
+.artwork-qr-link{display:block;margin-top:10px;font-size:12px;line-height:1.7;overflow-wrap:anywhere;text-align:center;text-decoration:underline;text-underline-offset:3px}
+.artwork-qr-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:22px}
+.artwork-qr-actions .button{font-size:12px;padding:10px 14px;gap:8px;min-height:44px}
 .artwork-download-dialog{width:min(760px,calc(100vw - 40px));max-height:85svh;margin:auto;padding:30px;border:1px solid #e4e4df;border-radius:22px;background:#fff;color:#171717;box-shadow:0 24px 90px #0003;overflow:auto}
 .artwork-download-dialog::backdrop{background:#17171770;backdrop-filter:blur(4px)}
 .download-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:24px}

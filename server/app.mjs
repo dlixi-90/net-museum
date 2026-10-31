@@ -9,6 +9,7 @@ import {getSession,newSession,sessionCookie,passwordHash,passwordMatches,validat
 import {createCloudinaryStorage,IMAGE_LIMIT,VIDEO_LIMIT,imageTypes,videoTypes,validateVideo} from './media-storage.mjs';
 import {featureRoutes} from './feature-routes.mjs';
 import {clientAddress} from './request-client.mjs';
+import {createArtworkQR} from './artwork-qr.mjs';
 const publicDir=fileURLToPath(new URL('../dist/',import.meta.url));
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.jpg':'image/jpeg','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.woff2':'font/woff2'};
 export function createRequestHandler({db,uploadDir=process.env.UPLOAD_DIR||fileURLToPath(new URL('../uploads/',import.meta.url)),mediaStorage=createCloudinaryStorage(),cloudMedia,uploadStorage=process.env.UPLOAD_STORAGE||'local',allowSetup=false,adminEmails=parseAdminEmails(),publicOrigin='',secureCookies=false,directUploads=false,onError=()=>{}}){
@@ -114,6 +115,11 @@ export function createRequestHandler({db,uploadDir=process.env.UPLOAD_DIR||fileU
       const media={id,...asset,sha256:createHash('sha256').update(output).digest('hex'),uploadedBy:user.id,createdAt:new Date()};
       try{await db.insertMedia(media);}catch(e){await mediaStorage.remove(asset).catch(onError);throw e;}
       return json(res,201,{media});
+    }
+    const qrMatch=pathname.match(/^\/api\/artworks\/([a-zA-Z0-9-]{1,64})\/qr$/);
+    if(qrMatch&&req.method==='GET'){
+      if(!await db.getArtwork(qrMatch[1]))throw new HttpError(404,'Không tìm thấy tác phẩm.');
+      return json(res,200,await createArtworkQR(qrMatch[1],{publicOrigin,requestHost:req.headers.host}));
     }
     const match=pathname.match(/^\/api\/artworks\/([a-zA-Z0-9-]{1,64})$/);
     if(match&&req.method==='GET'){const item=await db.getArtwork(match[1]);if(!item)throw new HttpError(404,'Không tìm thấy tác phẩm.');return json(res,200,{item:clean(item)});}

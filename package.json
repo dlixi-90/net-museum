@@ -13,8 +13,8 @@
     "db:seed": "node database/seed-postgresql.mjs",
     "db:queries": "node scripts/run-queries.mjs",
     "db:check": "node scripts/check-database.mjs",
-    "check": "node scripts/build-pages.mjs --check && node scripts/check-syntax.mjs && node scripts/check-references.mjs && node --test tests/auth.test.mjs tests/core.test.mjs tests/validation.test.mjs tests/pg-config.test.mjs tests/media-storage.test.mjs tests/cloud-media.test.mjs tests/postgresql-env.test.mjs",
-    "test:integration": "node --test tests/postgresql.test.mjs tests/multimedia.test.mjs tests/cloud-uploads.test.mjs tests/sample-content.test.mjs",
+    "check": "node scripts/build-pages.mjs --check && node scripts/check-syntax.mjs && node scripts/check-references.mjs && node --test tests/auth.test.mjs tests/core.test.mjs tests/validation.test.mjs tests/pg-config.test.mjs tests/media-storage.test.mjs tests/cloud-media.test.mjs tests/postgresql-env.test.mjs tests/artwork-qr.test.mjs",
+    "test:integration": "node --test tests/postgresql.test.mjs tests/multimedia.test.mjs tests/cloud-uploads.test.mjs tests/sample-content.test.mjs tests/artwork-qr-integration.test.mjs",
     "cloudinary:check": "node scripts/check-cloudinary.mjs",
     "media:index": "node scripts/index-images.mjs",
     "test:cbir": "node scripts/evaluate-cbir.mjs",
@@ -27,9 +27,13 @@
     "ffprobe-static": "^3.1.0",
     "pdf-lib": "^1.17.1",
     "pg": "^8.16.3",
+    "qrcode": "^1.5.4",
     "sharp": "^0.35.5"
   },
   "engines": {
     "node": "24.x"
+  },
+  "devDependencies": {
+    "jsqr": "^1.4.0"
   }
 }

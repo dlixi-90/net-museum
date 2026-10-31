@@ -8,6 +8,7 @@ Node.js 24 phục vụ giao diện và API cùng origin; PostgreSQL lưu dữ li
 
 - Duyệt bộ sưu tập, khám phá, đọc câu chuyện; tìm kiếm metadata kết hợp bộ lọc và tìm ảnh có màu sắc tương tự.
 - Chi tiết tác phẩm trên một trang: ảnh, ảnh chi tiết và video trong cùng khung; thuyết minh cạnh nút lưu; tải xuống qua hộp thoại có tab theo loại tệp.
+- Mỗi tác phẩm có nút Mã QR để xem, tải PNG hoặc sao chép liên kết đến đúng trang chi tiết. Tác phẩm tạo mới tự có QR theo ID, không cần nhập mã riêng.
 - Lưu tác phẩm, đăng ký và đăng nhập bằng email hoặc tên tài khoản.
 - Admin quản lý tác phẩm, tài nguyên, tài khoản và thống kê. Thao tác sửa/xóa dùng biểu tượng bút chì/thùng rác; liên kết quản trị nằm trong khu vực quản lý.
 - Tải lên theo khối, xác minh định dạng thực, phát audio/video và tải tệp; phân quyền được kiểm tra ở API.
